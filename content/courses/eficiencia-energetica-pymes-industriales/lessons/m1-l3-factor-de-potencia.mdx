@@ -1,0 +1,67 @@
+En la factura de Talleres Brisco aparecía, casi todos los meses, un recargo por "bajo factor de potencia". Es uno de los cargos más frecuentes en las facturas industriales y, a la vez, uno de los más fáciles de eliminar. Para entenderlo, hay que hablar de dos tipos de energía.
+
+## Energía activa y energía reactiva
+
+Los motores, transformadores, balastos de tubos fluorescentes y soldadoras necesitan dos cosas de la red:
+
+- **Energía activa (kWh):** es la que se transforma en trabajo útil: hacer girar un eje, calentar, iluminar. Es la que querés.
+- **Energía reactiva (kVArh):** es la que necesitan para crear los campos magnéticos que les permiten funcionar. No produce trabajo, pero circula por los cables, ocupa capacidad de la red y genera pérdidas.
+
+<Callout type="tip" title="La analogía del chopp">
+Pensá en un chopp de cerveza. El líquido es la energía activa: lo que realmente querés. La espuma es la energía reactiva: viene con el chopp, ocupa lugar en el vaso, pero no te la tomás. El vaso completo es la **potencia aparente**. Cuanta más espuma, menos cerveza entra en el mismo vaso.
+</Callout>
+
+## El factor de potencia (cos φ)
+
+El **factor de potencia** mide qué proporción de la potencia total es útil:
+
+<Formula>cos φ = Potencia activa (kW) ÷ Potencia aparente (kVA)</Formula>
+
+- **cos φ = 1:** toda la potencia es útil (solo cerveza, sin espuma).
+- **cos φ = 0,80:** el 20% de la capacidad del "vaso" se va en reactiva.
+
+Como la red tiene que transportar la potencia aparente completa, a la distribuidora no le conviene que tengas un cos φ bajo: le exigís cables y transformadores más grandes para entregarte la misma energía útil. Por eso **penaliza** a los usuarios con factor de potencia bajo.
+
+<Callout type="info" title="¿Desde qué valor se penaliza?">
+En muchas distribuidoras, el recargo empieza cuando el cos φ cae por debajo de **0,95** y aumenta a medida que baja. El valor exacto y la forma de cálculo dependen del cuadro tarifario de tu distribuidora: verificalo antes de dimensionar una solución.
+</Callout>
+
+## Qué baja el factor de potencia en una planta
+
+- Motores trabajando **muy por debajo de su carga nominal** (un motor sobredimensionado tiene peor cos φ).
+- Muchos motores de inducción funcionando al mismo tiempo.
+- Transformadores funcionando en vacío o casi en vacío.
+- Balastos magnéticos de iluminación fluorescente o de descarga.
+- Soldadoras y hornos de inducción.
+
+## La solución: compensar con capacitores
+
+Los **capacitores** generan energía reactiva en el mismo lugar donde se consume, así la red no la tiene que transportar. Hay tres esquemas comunes:
+
+| Esquema | Cómo funciona | Cuándo conviene |
+|---|---|---|
+| **Individual** | Un capacitor al lado de cada motor grande | Motores grandes que trabajan muchas horas |
+| **Por grupo** | Un banco por tablero o sector | Sectores con varias cargas similares |
+| **Central automático** | Un banco en el tablero general que conecta y desconecta escalones según la necesidad | La opción más común en PyMEs con cargas variables |
+
+Para calcular cuánta potencia reactiva hay que compensar, se usa esta fórmula:
+
+<Formula>kVAr necesarios = kW × (tan φ actual − tan φ objetivo)</Formula>
+
+<Callout type="case" title="Talleres Brisco: ¿cuántos capacitores necesita?">
+Con una demanda de **140 kW** y un cos φ de **0,88**, Sofía quiere llegar a **0,96** para tener margen sobre el umbral de penalización. Probá el cálculo en la calculadora.
+
+El resultado ronda los **35 kVAr**. Un banco automático de ese tamaño es una inversión chica comparada con los recargos que la empresa venía pagando: en el módulo 5 vamos a ver que se recupera en menos de un año.
+</Callout>
+
+<Calculator id="capacitor-sizing" />
+
+## Precauciones
+
+- **Armónicos.** Si en la planta hay muchos variadores de velocidad, rectificadores o equipos electrónicos, los armónicos pueden dañar los capacitores o provocar resonancias. En esos casos se usan bancos con **reactancias de rechazo** (filtros desintonizados). Por eso conviene medir con un **analizador de redes** antes de comprar.
+- **No sobrecompensar.** Un banco demasiado grande, sin escalones automáticos, puede llevar el factor de potencia a valores capacitivos, que también son un problema.
+- **Mantenimiento.** Los capacitores pierden capacidad con el tiempo. Revisá el banco al menos una vez por año y mirá el cos φ en cada factura: si el recargo vuelve, algo falló.
+
+## Qué hacer el lunes
+
+<Checklist id="m1-l3-lunes" items={["Buscá en tus facturas el cos φ o la energía reactiva registrada y si hay recargo", "Si ya tenés un banco de capacitores, verificá que esté funcionando (muchos quedan fuera de servicio por un fusible quemado)", "Si tenés recargo, pedí presupuesto a un electricista matriculado para medir con analizador de redes y dimensionar la compensación"]} />

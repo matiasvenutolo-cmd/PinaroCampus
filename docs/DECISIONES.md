@@ -1,0 +1,12 @@
+# Decisiones
+
+Registro de decisiones tomadas durante la implementación que no están en la especificación. Formato: fecha · decisión · motivo · cómo revertirla.
+
+| Fecha | Decisión | Motivo | Reversión |
+|---|---|---|---|
+| 2026-09-27 | Auth.js v5 (`next-auth`) fijado en `5.0.0-beta.32`, aunque nunca salió de beta | Es la única versión que soporta sesiones en base vía adapter de Drizzle + `trustHost` dinámico por dominio, tal como pide `02-arquitectura.md`; está ampliamente usada en producción pese al tag | Migrar a `next-auth@4` (JWT) o a otra librería (por ejemplo Better Auth) si el beta da problemas en producción. Se instala recién en la Fase 1 |
+| 2026-09-27 | TypeScript fijado en la serie `^5` (resuelve a 5.9.3) en vez de la 7.0.2 | `typescript-eslint` 8.x (la que trae `eslint-config-next@16`) declara `peerDependency: typescript >=4.8.4 <6.1.0`; TS 7 rompería el lint | Subir el rango en `package.json` cuando `typescript-eslint` soporte TS 7 |
+| 2026-09-27 | Zod v4 (`4.6.5`) para todo el proyecto | Es la versión estable actual; `drizzle-zod` ya declara soporte (`peerDependencies: zod ^3.25 \|\| ^4`) | Bajar a Zod v3 si algún schema depende de la API vieja de errores (`.flatten()`, etc.) |
+| 2026-09-27 | Driver de Postgres para Drizzle: `postgres` (postgres-js). La app usa `DATABASE_URL` (pooled) con `prepare: false`; `drizzle-kit` usa `DATABASE_URL_UNPOOLED` para migraciones | La URL pooled de Neon pasa por pgbouncer en modo transacción, que no soporta prepared statements; `drizzle-kit` necesita conexión directa para alterar el schema | Cambiar a `@neondatabase/serverless` si más adelante se necesita correr consultas en Edge Runtime |
+| 2026-09-27 | `package.json` con `"type": "module"` | Next 16, Vitest, Playwright y Drizzle Kit ya son todos ESM; evita el warning de Vitest por cargar `vitest.config.ts` como CommonJS | Sacar el campo si algún script de terceros exige CommonJS |
+| 2026-09-27 | `src/env.ts` valida con Zod las variables de `02-arquitectura.md` desde la Fase 0, pero solo `DATABASE_URL` y `DATABASE_URL_UNPOOLED` son obligatorias por ahora; el resto queda `.optional()` hasta que la fase que las usa exista en código (Auth.js, Resend, Vercel Blob, Mercado Pago) | Exigir ya variables de fases que todavía no tienen código (auth, pagos, email) bloquearía `pnpm dev`/`pnpm build` sin necesidad | Sacar el `.optional()` de cada variable a medida que se implementa su fase |

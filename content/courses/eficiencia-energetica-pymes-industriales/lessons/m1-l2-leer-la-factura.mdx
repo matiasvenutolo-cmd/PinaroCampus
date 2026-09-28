@@ -1,0 +1,88 @@
+La factura de electricidad es el único dato de energía que todas las empresas tienen. Y casi nadie la lee más allá del total. En esta lección vamos a desarmarla: qué te cobran, por qué y qué parte depende de decisiones tuyas.
+
+<Callout type="info" title="Sobre los nombres y las reglas">
+Las categorías tarifarias, los nombres de los cargos y los valores cambian según la distribuidora y la provincia, y se actualizan seguido. Acá usamos la estructura general más común. Para tu caso, tené a mano tu factura y el cuadro tarifario vigente de tu distribuidora.
+</Callout>
+
+## Primero: ¿en qué categoría estás?
+
+Las distribuidoras clasifican a los usuarios según la potencia que demandan. En el Área Metropolitana de Buenos Aires, por ejemplo, se usan tres grandes categorías:
+
+| Categoría | Demanda de potencia | Cómo se cobra |
+|---|---|---|
+| **T1 – Pequeñas demandas** | Menos de 10 kW | Cargo fijo + energía consumida |
+| **T2 – Medianas demandas** | De 10 a menos de 50 kW | Cargo fijo + potencia contratada + energía |
+| **T3 – Grandes demandas** | 50 kW o más | Cargo fijo + potencia contratada (a veces separada en pico y fuera de pico) + energía por franja horaria |
+
+En otras provincias los nombres cambian, pero la lógica es parecida: cuanto más grande sos, más componentes tiene tu factura y **más cosas podés gestionar**.
+
+## Los componentes de la factura
+
+<Steps>
+  <Step title="Cargo fijo">
+    Un monto mensual que pagás por estar conectado, consumas lo que consumas. No lo podés reducir, pero conviene saber cuánto pesa.
+  </Step>
+  <Step title="Cargo por potencia">
+    Pagás por la **capacidad** que la red tiene que tener disponible para vos, en kW. En las tarifas de medianas y grandes demandas se contrata una potencia y se paga todos los meses, la uses o no. Si en algún momento superás lo contratado, el excedente suele cobrarse con recargo. Este cargo depende de **cuánto consumís al mismo tiempo**, no de cuánto consumís en el mes.
+  </Step>
+  <Step title="Cargo por energía">
+    Los kWh que efectivamente consumiste. En las tarifas de grandes demandas se separa por franja horaria: **pico**, **resto** y **valle**, con precios distintos. Consumir en el valle suele ser más barato.
+  </Step>
+  <Step title="Recargo por factor de potencia">
+    Si tu instalación consume mucha **energía reactiva** (la vemos en la próxima lección), la distribuidora te cobra un recargo. Es plata que se paga sin recibir nada a cambio y, por lo general, se elimina con una inversión chica.
+  </Step>
+  <Step title="Impuestos, tasas y contribuciones">
+    IVA, tasas municipales y otros cargos que dependen de tu jurisdicción. Se calculan sobre los conceptos anteriores, así que bajan cuando bajan los otros.
+  </Step>
+</Steps>
+
+## Dos números que tenés que calcular
+
+### 1. El precio medio de tu energía
+
+<Formula>Precio medio ($/kWh) = Total de la factura ($) ÷ Energía consumida en el mes (kWh)</Formula>
+
+Es el número que vas a usar en todas las calculadoras del curso. Calculalo para los 12 meses y usá el promedio. No es el precio "de la energía" que figura en el cuadro tarifario: incluye todo lo que pagás.
+
+### 2. El factor de utilización de la potencia contratada
+
+<Formula>Utilización (%) = Demanda máxima registrada (kW) ÷ Potencia contratada (kW) × 100</Formula>
+
+Si la demanda máxima de los últimos 12 meses nunca pasó del 70% de lo contratado, probablemente estés pagando potencia que no usás. Lo vemos en detalle en el módulo 4.
+
+<Callout type="case" title="Talleres Brisco: la primera lectura de Sofía">
+Sofía juntó las 12 facturas del último año y armó una planilla. Encontró tres cosas que nadie había notado:
+
+1. **Potencia:** la empresa tiene contratados **200 kW**, pero la demanda máxima registrada en todo el año fue de **140 kW**. Están pagando todos los meses por 60 kW que nunca usaron.
+2. **Factor de potencia:** en 9 de las 12 facturas aparece un recargo por bajo factor de potencia. El cos φ registrado ronda **0,88**.
+3. **Consumo en el valle:** más del 10% de la energía se consume en la franja de valle, de noche, cuando la planta no produce. ¿Qué está funcionando a esa hora?
+
+Ninguna de las tres cosas requería una medición especial. Estaban en la factura.
+</Callout>
+
+## Qué mirar en tus 12 facturas
+
+Armá una planilla con una fila por mes y estas columnas (en el módulo 2 tenés una plantilla descargable):
+
+- Energía total (kWh) y, si figura, separada por pico, resto y valle
+- Demanda máxima registrada (kW), en pico y fuera de pico si figura
+- Potencia contratada (kW)
+- Factor de potencia o energía reactiva registrada
+- Recargos (por exceso de potencia, por factor de potencia)
+- Total pagado ($)
+- Producción del mes (toneladas, piezas, horas máquina: la unidad que mejor represente tu actividad)
+
+Con esa planilla ya podés responder: ¿cuánto pago por kWh?, ¿estoy pagando potencia de más?, ¿tengo recargos evitables?, ¿cuánto consumo cuando no produzco?
+
+<Accordion>
+  <AccordionItem title="¿Y el gas?">
+    Si tu planta usa gas natural en hornos, calderas o secaderos, hacé el mismo ejercicio con esas facturas. En gas, el precio medio se calcula en $/m³ y conviene convertirlo a kWh para comparar (1 m³ de gas natural equivale aproximadamente a 10,5 kWh de energía térmica, según su poder calorífico).
+  </AccordionItem>
+  <AccordionItem title="Mi factura no muestra la demanda máxima">
+    En tarifas de pequeñas demandas la factura no la muestra. En ese caso, empezá solo con energía y total pagado. Si tu consumo es relevante, pedile a la distribuidora el detalle o evaluá instalar un medidor propio.
+  </AccordionItem>
+</Accordion>
+
+## Qué hacer el lunes
+
+<Checklist id="m1-l2-lunes" items={["Armá la planilla de 12 meses con los datos de tus facturas", "Calculá tu precio medio en $/kWh", "Calculá la utilización de tu potencia contratada", "Marcá los meses con recargos y anotá el monto"]} />

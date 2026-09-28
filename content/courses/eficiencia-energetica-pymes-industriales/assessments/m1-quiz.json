@@ -1,0 +1,75 @@
+{
+  "id": "m1-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 1",
+  "description": "Cinco preguntas para repasar. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m1q1",
+      "type": "single",
+      "prompt": "¿Cuál es la mejor forma de pensar la energía en una planta industrial?",
+      "options": [
+        { "id": "a", "text": "Como un gasto general, igual que el alquiler" },
+        { "id": "b", "text": "Como un insumo de producción, que se puede medir por unidad producida" },
+        { "id": "c", "text": "Como un costo fijo que no depende de la gestión" },
+        { "id": "d", "text": "Como un tema exclusivo del área de mantenimiento" }
+      ],
+      "correct": ["b"],
+      "explanation": "Pensar la energía como un insumo permite medir cuántos kWh lleva cada unidad producida y gestionar ese número, igual que se gestiona la materia prima."
+    },
+    {
+      "id": "m1q2",
+      "type": "single",
+      "prompt": "Una empresa pagó $ 7.800.000 en una factura en la que consumió 52.000 kWh. ¿Cuál es su precio medio de la energía?",
+      "options": [
+        { "id": "a", "text": "$ 15/kWh" },
+        { "id": "b", "text": "$ 150/kWh" },
+        { "id": "c", "text": "$ 1.500/kWh" },
+        { "id": "d", "text": "No se puede calcular sin el cuadro tarifario" }
+      ],
+      "correct": ["b"],
+      "explanation": "Precio medio = total de la factura ÷ kWh consumidos = 7.800.000 ÷ 52.000 = $ 150/kWh. Incluye todos los cargos, no solo el de energía."
+    },
+    {
+      "id": "m1q3",
+      "type": "true_false",
+      "prompt": "El cargo por potencia contratada depende de cuántos kWh consumiste en el mes.",
+      "correct": ["false"],
+      "explanation": "El cargo por potencia depende de la capacidad contratada (kW), es decir, de cuánto consumís al mismo tiempo. Se paga aunque consumas pocos kWh."
+    },
+    {
+      "id": "m1q4",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estas situaciones suelen bajar el factor de potencia de una instalación? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "Motores trabajando muy por debajo de su carga nominal" },
+        { "id": "b", "text": "Balastos magnéticos de iluminación fluorescente" },
+        { "id": "c", "text": "Luminarias LED de buena calidad" },
+        { "id": "d", "text": "Transformadores funcionando casi en vacío" }
+      ],
+      "correct": ["a", "b", "d"],
+      "explanation": "Los motores con poca carga, los balastos magnéticos y los transformadores en vacío consumen energía reactiva en proporción alta. Los LED de buena calidad tienen un factor de potencia alto."
+    },
+    {
+      "id": "m1q5",
+      "type": "single",
+      "prompt": "Una planta tiene recargo por bajo factor de potencia y muchos variadores de velocidad instalados. ¿Qué conviene hacer antes de comprar un banco de capacitores?",
+      "options": [
+        { "id": "a", "text": "Nada: cualquier banco de capacitores sirve" },
+        { "id": "b", "text": "Desconectar los variadores" },
+        { "id": "c", "text": "Medir con un analizador de redes para evaluar armónicos y dimensionar bien la compensación" },
+        { "id": "d", "text": "Pedir a la distribuidora que elimine el recargo" }
+      ],
+      "correct": ["c"],
+      "explanation": "Con muchos variadores puede haber armónicos que dañan los capacitores o generan resonancias. Una medición permite elegir un banco adecuado, por ejemplo con reactancias de rechazo."
+    }
+  ]
+}

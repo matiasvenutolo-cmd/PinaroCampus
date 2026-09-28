@@ -1,0 +1,64 @@
+Imaginá que para ir más despacio con el auto, en vez de levantar el pie del acelerador, lo mantenés a fondo y frenás. Suena absurdo, pero es exactamente lo que pasa en muchísimas plantas con bombas y ventiladores: el motor funciona siempre a velocidad máxima y el caudal se regula **estrangulando** con una válvula o una persiana (dámper).
+
+El **variador de velocidad** (también llamado variador de frecuencia o VFD) es el equivalente a levantar el pie del acelerador.
+
+## Cómo funciona un variador
+
+Un motor de inducción gira a una velocidad que depende de la frecuencia de la red (50 Hz en Argentina). El variador cambia esa frecuencia y, con ella, la velocidad del motor. Así, en lugar de mover siempre el máximo caudal y "tirar" lo que sobra, el motor gira solo lo necesario.
+
+## Las leyes de afinidad: por qué el ahorro es tan grande
+
+En las **cargas centrífugas** (bombas y ventiladores), hay una relación física entre velocidad y potencia que se conoce como **leyes de afinidad**:
+
+- El **caudal** es proporcional a la velocidad.
+- La **presión** es proporcional a la velocidad al cuadrado.
+- La **potencia** es proporcional a la velocidad **al cubo**.
+
+<Formula>Potencia nueva = Potencia actual × (Velocidad nueva ÷ Velocidad actual)³</Formula>
+
+Eso significa que pequeñas reducciones de velocidad producen grandes reducciones de potencia:
+
+| Velocidad | Potencia necesaria |
+|---:|---:|
+| 100% | 100% |
+| 90% | 73% |
+| 80% | 51% |
+| 70% | 34% |
+| 50% | 13% |
+
+Bajar la velocidad un **20%** reduce la potencia casi a la **mitad**. Ninguna válvula o persiana logra algo parecido.
+
+<Callout type="warning" title="Solo en cargas centrífugas">
+La ley cúbica aplica a **bombas y ventiladores centrífugos**. En cargas de torque constante (cintas transportadoras, compresores a pistón, extrusoras, mezcladoras) la potencia baja en forma proporcional a la velocidad, no al cubo: el ahorro existe, pero es mucho menor. En esos casos el variador se justifica más por control de proceso o por arranques suaves.
+</Callout>
+
+## El caso del extractor
+
+<Callout type="case" title="Talleres Brisco: el extractor de la cabina de pintura">
+El extractor de la cabina de pintura consume **15 kW** y funciona los dos turnos, siempre a velocidad máxima. El caudal se ajusta con una persiana que está casi siempre semicerrada: los pintores se quejaban de que "chupaba demasiado" y la cerraron.
+
+Un proveedor midió el caudal necesario y estimó que el ventilador podría girar a un **80% de su velocidad** sin afectar la calidad de la extracción, con la persiana totalmente abierta.
+
+Usá la calculadora: con 15 kW, 4.224 horas por año, 20% menos de velocidad y un variador con 97% de eficiencia, el ahorro ronda los **29.900 kWh por año**, casi **$ 4,5 millones** a $ 150/kWh. La inversión estimada del variador instalado es de **$ 4,5 millones**: se recupera en alrededor de **un año**.
+</Callout>
+
+<Calculator id="vfd-savings" />
+
+## Dónde buscar candidatos
+
+- **Ventiladores y extractores** con persianas o dámpers semicerrados.
+- **Bombas** con válvulas de salida estranguladas o con recirculación (bypass) abierta.
+- **Torres de enfriamiento**: el ventilador puede ajustarse según la temperatura del agua.
+- **Sistemas con demanda variable**: bombeo a tanques, ventilación que depende de la ocupación o de la producción.
+- **Compresores de aire** con demanda muy variable: existen compresores de velocidad variable diseñados para eso (lo vemos en la próxima lección).
+
+## Lo que hay que tener en cuenta
+
+- **Armónicos.** Los variadores generan distorsión en la red. Con muchos variadores, puede hacer falta filtrado, y los bancos de capacitores deben ser aptos para convivir con ellos.
+- **Velocidad mínima.** Por debajo de cierta velocidad, algunas bombas no alcanzan la presión necesaria y algunos motores se refrigeran mal. El proveedor tiene que definir un mínimo.
+- **Motor adecuado.** Motores muy viejos pueden sufrir con la alimentación de un variador. Conviene verificarlo.
+- **Control.** El variador ahorra si se regula según la necesidad real: con un sensor de presión, caudal o temperatura, o al menos con una consigna fija bien elegida. Un variador puesto al 100% no ahorra nada.
+
+## Qué hacer el lunes
+
+<Checklist id="m3-l2-lunes" items={["Recorré la planta buscando válvulas estranguladas, persianas semicerradas o bypass abiertos", "Anotá potencia y horas de uso de cada bomba o ventilador candidato", "Estimá el ahorro con la calculadora para los dos más grandes", "Pedí una visita técnica a un proveedor de variadores para validar la velocidad posible"]} />

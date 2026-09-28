@@ -1,0 +1,76 @@
+La factura te dice **cuánto** consume tu planta. El relevamiento de cargas te dice **quién** lo consume. Es el paso que transforma un número total en una lista de oportunidades concretas.
+
+## Qué es un relevamiento de cargas
+
+Es un inventario de todos los equipos que consumen energía, con una estimación de cuánto consume cada uno por año. No hace falta que sea perfecto: el objetivo es identificar los **pocos equipos que explican la mayor parte del consumo**. Casi siempre se cumple la regla del 80/20: un puñado de equipos se lleva la mayor parte de la energía.
+
+## Los datos de cada equipo
+
+Para cada equipo o grupo de equipos similares, anotá:
+
+| Dato | De dónde sale |
+|---|---|
+| **Potencia nominal (kW)** | La placa del equipo o el manual. Si está en HP, multiplicá por 0,746. |
+| **Cantidad** | Contá los equipos iguales (por ejemplo, 120 luminarias). |
+| **Factor de carga (%)** | Qué porcentaje de su potencia usa en promedio. Un motor rara vez trabaja al 100%. |
+| **Horas de uso por año** | Horas por día × días por año. Ojo con los equipos que quedan prendidos fuera de turno. |
+
+Con eso calculás:
+
+<Formula>Consumo anual (kWh) = Potencia (kW) × Cantidad × Factor de carga × Horas por año</Formula>
+
+## Cómo estimar el factor de carga
+
+Es el dato más difícil. Tenés tres opciones, de menor a mayor precisión:
+
+1. **Estimación por experiencia:** un motor de bomba o ventilador sin regulación suele trabajar cerca del 75-85% de su potencia; una máquina herramienta, mucho menos en promedio; la iluminación, al 100%.
+2. **Medición con pinza amperimétrica:** medís la corriente de cada fase y calculás la potencia. Para un equipo trifásico:
+
+<Formula>P (kW) = √3 × Tensión (V) × Corriente (A) × cos φ ÷ 1.000</Formula>
+
+   Por ejemplo, un motor trifásico en 380 V que toma 25 A con un cos φ de 0,85 consume: 1,732 × 380 × 25 × 0,85 ÷ 1.000 ≈ **14 kW**.
+
+3. **Analizador de redes o medidores fijos:** registran la potencia durante días o semanas. Es la forma más precisa y la única que muestra cómo varía el consumo a lo largo del día. Hoy existen medidores inteligentes accesibles que se instalan en el tablero y mandan los datos a una plataforma web.
+
+## Controlá contra la factura
+
+Cuando termines, sumá el consumo anual de todos los equipos y comparalo con la energía de las 12 facturas. Si la diferencia es menor al 10-15%, tu relevamiento es razonable. Si es mayor, falta algún equipo o hay horas de uso mal estimadas (muy común: equipos que quedan prendidos de noche).
+
+<Callout type="case" title="Talleres Brisco: el mapa del consumo">
+Sofía relevó la planta durante una semana, con la ayuda de un electricista y una pinza amperimétrica. El resultado, agrupado por uso:
+
+| Uso | Consumo anual (kWh) | % del total |
+|---|---:|---:|
+| Máquinas herramienta (CNC, tornos, plegadoras) | 180.000 | 29% |
+| **Compresor de aire (37 kW)** | **150.000** | **24%** |
+| Soldadura | 70.000 | 11% |
+| **Extractor de la cabina de pintura (15 kW)** | **63.000** | **10%** |
+| **Iluminación de planta y oficinas** | **50.000** | **8%** |
+| Oficinas y climatización | 45.000 | 7% |
+| Puente grúa, bombas y otros motores | 30.000 | 5% |
+| No identificado | 36.000 | 6% |
+| **Total** | **624.000** | **100%** |
+
+Tres cosas le llamaron la atención:
+
+- El **compresor** consume casi tanto como todas las máquinas CNC juntas. Y es el único equipo que queda encendido de noche y los fines de semana.
+- El **extractor de la cabina de pintura** funciona siempre a velocidad máxima, regulado con una persiana (dámper) casi cerrada.
+- La **iluminación** son 120 luminarias con tubos fluorescentes de 2 × 36 W y balasto magnético, de hace más de quince años.
+
+Esos tres usos suman el **42% del consumo** y van a ser el foco del módulo 3.
+</Callout>
+
+## Probá con un equipo de tu planta
+
+<Calculator id="energy-cost" />
+
+## Errores comunes
+
+- **Usar la potencia de placa sin factor de carga.** Sobreestima mucho el consumo de motores.
+- **Olvidarse de las horas fuera de turno.** Compresores, iluminación exterior, equipos en espera, hornos que se dejan calientes.
+- **Relevar solo lo grande.** Diez equipos chicos que funcionan todo el día pueden sumar más que uno grande que se usa poco.
+- **No anotar la fecha y el estado de producción.** Un relevamiento en una semana de poco trabajo da resultados distintos que en una semana pico.
+
+## Qué hacer el lunes
+
+<Checklist id="m2-l2-lunes" items={["Descargá la planilla de relevamiento de cargas (está en la lección de plantillas de este módulo)", "Listá los 10 equipos que creés que más consumen", "Buscá la potencia de placa de cada uno", "Pedile al electricista de confianza una medición con pinza de los 3 más grandes"]} />

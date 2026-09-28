@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "slug": "eficiencia-energetica-pymes-industriales",
+  "status": "published",
+  "title": "Eficiencia energética para PyMEs industriales",
+  "subtitle": "Bajá el costo de energía de tu planta sin frenar la producción",
+  "description": "La energía ya no es un costo menor para la industria. Este curso te da un método práctico para entender tu factura, medir dónde se va la energía en tu planta y encontrar ahorros concretos, muchos de ellos con inversión baja o nula.\n\nVas a acompañar a una metalmecánica ficticia de 45 empleados, desde la primera lectura de su factura hasta un plan de acción que reduce casi 15% su consumo eléctrico. Con calculadoras interactivas, vas a poder repetir cada cálculo con los números de tu propia empresa.",
+  "level": "inicial",
+  "language": "es-AR",
+  "durationMinutes": 360,
+  "suggestedCategory": { "slug": "energia-y-sustentabilidad", "name": "Energía y sustentabilidad" },
+  "tags": ["energía", "costos", "industria", "mantenimiento", "sustentabilidad"],
+  "cover": null,
+  "instructors": [
+    {
+      "name": "Equipo docente",
+      "bio": "Contenido desarrollado por Pinaro junto a especialistas en energía industrial. Reemplazar por el nombre y la bio del docente que valide el curso.",
+      "photo": null
+    }
+  ],
+  "outcomes": [
+    "Leer tu factura de electricidad e identificar qué cargos podés reducir",
+    "Construir la línea base de consumo de tu planta y un indicador de desempeño energético",
+    "Hacer un relevamiento de cargas y una recorrida de planta para detectar desperdicios",
+    "Estimar el ahorro de medidas concretas: fugas de aire comprimido, variadores de velocidad, iluminación LED y corrección del factor de potencia",
+    "Priorizar proyectos por impacto y recupero de la inversión",
+    "Armar un plan de acción de 90 días para tu empresa"
+  ],
+  "audience": [
+    "Dueños y gerentes de PyMEs industriales",
+    "Responsables de mantenimiento, producción o planta",
+    "Administración y compras que siguen el costo de la energía"
+  ],
+  "prerequisites": [
+    "No hace falta formación técnica previa",
+    "Tener a mano una o más facturas de electricidad de tu empresa te va a ayudar a aprovechar el curso"
+  ],
+  "certificate": { "enabled": true, "hours": 6, "title": "Certificado de aprobación" },
+  "completion": { "requireAllRequiredLessons": true, "finalAssessment": "examen-final" },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "La energía en tu PyME",
+      "summary": "Por qué la energía pasó a ser un costo estratégico y cómo leer lo que realmente estás pagando.",
+      "lessons": [
+        {
+          "id": "m1-video-bienvenida",
+          "type": "video",
+          "title": "Bienvenida al curso",
+          "durationMinutes": 3,
+          "video": { "provider": "youtube", "url": null },
+          "file": "lessons/m1-video-bienvenida.mdx"
+        },
+        {
+          "id": "m1-l1-costo-de-produccion",
+          "type": "text",
+          "title": "La energía como costo de producción",
+          "durationMinutes": 15,
+          "file": "lessons/m1-l1-costo-de-produccion.mdx"
+        },
+        {
+          "id": "m1-l2-leer-la-factura",
+          "type": "text",
+          "title": "Cómo leer tu factura de electricidad",
+          "durationMinutes": 20,
+          "file": "lessons/m1-l2-leer-la-factura.mdx"
+        },
+        {
+          "id": "m1-l3-factor-de-potencia",
+          "type": "text",
+          "title": "Energía reactiva y factor de potencia",
+          "durationMinutes": 15,
+          "file": "lessons/m1-l3-factor-de-potencia.mdx"
+        },
+        {
+          "id": "m1-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 1",
+          "durationMinutes": 10,
+          "assessment": "m1-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Diagnóstico: medir antes de actuar",
+      "summary": "Cómo saber cuánto, dónde y cuándo consume tu planta, para no invertir a ciegas.",
+      "lessons": [
+        {
+          "id": "m2-l1-linea-base",
+          "type": "text",
+          "title": "Línea base e indicadores de desempeño energético",
+          "durationMinutes": 20,
+          "file": "lessons/m2-l1-linea-base.mdx"
+        },
+        {
+          "id": "m2-l2-relevamiento-de-cargas",
+          "type": "text",
+          "title": "Relevamiento de cargas: quién consume qué",
+          "durationMinutes": 20,
+          "file": "lessons/m2-l2-relevamiento-de-cargas.mdx"
+        },
+        {
+          "id": "m2-l3-recorrida-de-planta",
+          "type": "text",
+          "title": "La recorrida de planta",
+          "durationMinutes": 15,
+          "file": "lessons/m2-l3-recorrida-de-planta.mdx"
+        },
+        {
+          "id": "m2-recursos-plantillas",
+          "type": "resource",
+          "title": "Plantillas para tu diagnóstico",
+          "durationMinutes": 10,
+          "file": "lessons/m2-recursos-plantillas.mdx",
+          "resources": [
+            {
+              "title": "Planilla de relevamiento de cargas",
+              "file": "resources/relevamiento-de-cargas.csv",
+              "description": "Inventario de equipos con potencia, factor de carga y horas de uso. Incluye filas de ejemplo del caso práctico."
+            },
+            {
+              "title": "Registro mensual de consumo y producción",
+              "file": "resources/registro-consumo-produccion.csv",
+              "description": "12 meses de consumo, demanda máxima, factor de potencia y producción para armar tu línea base."
+            }
+          ]
+        },
+        {
+          "id": "m2-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 2",
+          "durationMinutes": 10,
+          "assessment": "m2-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Las grandes oportunidades técnicas",
+      "summary": "Motores, variadores, aire comprimido, iluminación y calor: dónde suele estar el ahorro en una planta industrial.",
+      "lessons": [
+        {
+          "id": "m3-l1-motores",
+          "type": "text",
+          "title": "Motores eléctricos: el consumo que nadie mira",
+          "durationMinutes": 20,
+          "file": "lessons/m3-l1-motores.mdx"
+        },
+        {
+          "id": "m3-l2-variadores",
+          "type": "text",
+          "title": "Variadores de velocidad en bombas y ventiladores",
+          "durationMinutes": 15,
+          "file": "lessons/m3-l2-variadores.mdx"
+        },
+        {
+          "id": "m3-l3-aire-comprimido",
+          "type": "text",
+          "title": "Aire comprimido: la energía más cara de la planta",
+          "durationMinutes": 20,
+          "file": "lessons/m3-l3-aire-comprimido.mdx"
+        },
+        {
+          "id": "m3-l4-iluminacion",
+          "type": "text",
+          "title": "Iluminación eficiente",
+          "durationMinutes": 15,
+          "file": "lessons/m3-l4-iluminacion.mdx"
+        },
+        {
+          "id": "m3-l5-calor-y-frio",
+          "type": "text",
+          "title": "Calor, frío y climatización",
+          "durationMinutes": 15,
+          "file": "lessons/m3-l5-calor-y-frio.mdx"
+        },
+        {
+          "id": "m3-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 3",
+          "durationMinutes": 10,
+          "assessment": "m3-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Gestión: que el ahorro dure",
+      "summary": "Contratos, horarios, mantenimiento y personas: lo que hace que los ahorros no se pierdan a los seis meses.",
+      "lessons": [
+        {
+          "id": "m4-l1-demanda-y-horarios",
+          "type": "text",
+          "title": "Potencia contratada, picos y horarios",
+          "durationMinutes": 15,
+          "file": "lessons/m4-l1-demanda-y-horarios.mdx"
+        },
+        {
+          "id": "m4-l2-mantenimiento-y-cultura",
+          "type": "text",
+          "title": "Mantenimiento, hábitos y cultura",
+          "durationMinutes": 15,
+          "file": "lessons/m4-l2-mantenimiento-y-cultura.mdx"
+        },
+        {
+          "id": "m4-l3-iso-50001",
+          "type": "text",
+          "title": "Introducción a la gestión de la energía (ISO 50001)",
+          "durationMinutes": 15,
+          "file": "lessons/m4-l3-iso-50001.mdx"
+        },
+        {
+          "id": "m4-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 4",
+          "durationMinutes": 10,
+          "assessment": "m4-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "title": "Priorizar, financiar y armar tu plan",
+      "summary": "Cómo decidir qué hacer primero, cómo pensar las renovables y cómo convertir todo en un plan de 90 días.",
+      "lessons": [
+        {
+          "id": "m5-l1-evaluar-proyectos",
+          "type": "text",
+          "title": "Cómo evaluar y priorizar proyectos",
+          "durationMinutes": 20,
+          "file": "lessons/m5-l1-evaluar-proyectos.mdx"
+        },
+        {
+          "id": "m5-l2-renovables",
+          "type": "text",
+          "title": "Energías renovables y generación distribuida",
+          "durationMinutes": 15,
+          "file": "lessons/m5-l2-renovables.mdx"
+        },
+        {
+          "id": "m5-l3-plan-90-dias",
+          "type": "resource",
+          "title": "Tu plan de acción de 90 días",
+          "durationMinutes": 20,
+          "file": "lessons/m5-l3-plan-90-dias.mdx",
+          "resources": [
+            {
+              "title": "Plantilla del plan de acción",
+              "file": "resources/plan-de-accion.csv",
+              "description": "Medidas, responsable, inversión, ahorro estimado, recupero y estado. Incluye el plan del caso práctico como ejemplo."
+            }
+          ]
+        },
+        {
+          "id": "m5-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 5",
+          "durationMinutes": 10,
+          "assessment": "m5-quiz"
+        }
+      ]
+    },
+    {
+      "id": "cierre",
+      "title": "Evaluación final",
+      "summary": "Demostrá lo que aprendiste y obtené tu certificado.",
+      "lessons": [
+        {
+          "id": "cierre-examen-final",
+          "type": "exam",
+          "title": "Examen final",
+          "durationMinutes": 30,
+          "assessment": "examen-final"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "m2-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 2",
+  "description": "Cinco preguntas para repasar. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m2q1",
+      "type": "single",
+      "prompt": "Una planta tiene esta línea base: Consumo mensual = 8.000 kWh + 150 kWh × toneladas. ¿Qué significan los 8.000 kWh?",
+      "options": [
+        { "id": "a", "text": "El consumo necesario para producir cada tonelada" },
+        { "id": "b", "text": "El consumo que la planta tendría aunque no produjera nada" },
+        { "id": "c", "text": "El ahorro esperado por mes" },
+        { "id": "d", "text": "La potencia contratada" }
+      ],
+      "correct": ["b"],
+      "explanation": "El término independiente de la recta es el consumo base: lo que consume la planta aunque la producción sea cero (iluminación, compresor, equipos en espera, oficinas)."
+    },
+    {
+      "id": "m2q2",
+      "type": "single",
+      "prompt": "En un mes con mucha menos producción, la intensidad energética (kWh por tonelada) empeoró, aunque nadie cambió nada en la planta. ¿Por qué?",
+      "options": [
+        { "id": "a", "text": "Porque el consumo base se reparte entre menos toneladas" },
+        { "id": "b", "text": "Porque la distribuidora aumentó la tarifa" },
+        { "id": "c", "text": "Porque el indicador está mal calculado" },
+        { "id": "d", "text": "Porque bajó el factor de potencia" }
+      ],
+      "correct": ["a"],
+      "explanation": "El consumo base no baja con la producción. Si producís menos, ese consumo fijo se divide entre menos unidades y el indicador empeora. Por eso conviene usar la línea base con consumo base y variable."
+    },
+    {
+      "id": "m2q3",
+      "type": "single",
+      "prompt": "Un motor trifásico en 380 V toma 20 A con un cos φ de 0,85. ¿Cuánta potencia consume, aproximadamente?",
+      "options": [
+        { "id": "a", "text": "6,5 kW" },
+        { "id": "b", "text": "11,2 kW" },
+        { "id": "c", "text": "7,6 kW" },
+        { "id": "d", "text": "19,4 kW" }
+      ],
+      "correct": ["b"],
+      "explanation": "P = √3 × V × I × cos φ = 1,732 × 380 × 20 × 0,85 ≈ 11.190 W ≈ 11,2 kW."
+    },
+    {
+      "id": "m2q4",
+      "type": "true_false",
+      "prompt": "La recorrida con la planta parada (de noche o un fin de semana) sirve para descubrir de dónde sale el consumo base.",
+      "correct": ["true"],
+      "explanation": "Todo lo que encuentres consumiendo cuando no hay producción es consumo base. Es la recorrida que más sorpresas da y la que casi nadie hace."
+    },
+    {
+      "id": "m2q5",
+      "type": "single",
+      "prompt": "Sumaste el consumo anual de todos los equipos relevados y te da un 30% menos que la energía de las 12 facturas. ¿Qué es lo más probable?",
+      "options": [
+        { "id": "a", "text": "Que la distribuidora factura de más" },
+        { "id": "b", "text": "Que falta algún equipo o hay horas de uso mal estimadas, por ejemplo equipos que quedan encendidos fuera de turno" },
+        { "id": "c", "text": "Que el relevamiento está bien, porque siempre hay un 30% de pérdidas" },
+        { "id": "d", "text": "Que hay que usar la potencia de placa sin factor de carga" }
+      ],
+      "correct": ["b"],
+      "explanation": "Una diferencia de hasta 10-15% es razonable. Una diferencia mayor suele indicar equipos que faltan u horas subestimadas, sobre todo fuera de turno."
+    }
+  ]
+}

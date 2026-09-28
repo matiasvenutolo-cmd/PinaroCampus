@@ -1,0 +1,75 @@
+{
+  "id": "m5-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 5",
+  "description": "Cinco preguntas para repasar antes del examen final. No suman nota.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m5q1",
+      "type": "single",
+      "prompt": "Una medida cuesta $ 3.000.000 y ahorra $ 1.500.000 por año. ¿Cuál es su recupero simple?",
+      "options": [
+        { "id": "a", "text": "6 meses" },
+        { "id": "b", "text": "1 año" },
+        { "id": "c", "text": "2 años" },
+        { "id": "d", "text": "4,5 años" }
+      ],
+      "correct": ["c"],
+      "explanation": "Recupero = inversión ÷ ahorro anual = 3.000.000 ÷ 1.500.000 = 2 años."
+    },
+    {
+      "id": "m5q2",
+      "type": "single",
+      "prompt": "Dos medidas tienen el mismo recupero de 2 años. La A dura 15 años y la B, 3 años. ¿Qué indicador ayuda a ver la diferencia?",
+      "options": [
+        { "id": "a", "text": "El recupero simple" },
+        { "id": "b", "text": "El ahorro neto a lo largo de la vida útil (o el VAN)" },
+        { "id": "c", "text": "El precio medio de la energía" },
+        { "id": "d", "text": "El factor de potencia" }
+      ],
+      "correct": ["b"],
+      "explanation": "El recupero no mira lo que pasa después. La medida A genera 13 años de ahorro después de recuperarse; la B, solo 1. El ahorro neto en la vida útil o el VAN muestran esa diferencia."
+    },
+    {
+      "id": "m5q3",
+      "type": "single",
+      "prompt": "En la matriz de impacto y esfuerzo, ¿dónde ubicarías reparar las fugas de aire comprimido de una planta?",
+      "options": [
+        { "id": "a", "text": "Impacto alto, esfuerzo bajo: hacer ya" },
+        { "id": "b", "text": "Impacto bajo, esfuerzo alto: postergar" },
+        { "id": "c", "text": "Impacto alto, esfuerzo alto: planificar" },
+        { "id": "d", "text": "Impacto bajo, esfuerzo bajo: cuando se pueda" }
+      ],
+      "correct": ["a"],
+      "explanation": "Las fugas suelen tener un impacto grande y se reparan con poca inversión y trabajo de mantenimiento. Son la victoria rápida típica."
+    },
+    {
+      "id": "m5q4",
+      "type": "true_false",
+      "prompt": "Conviene instalar paneles solares antes de aplicar medidas de eficiencia, para dimensionar el sistema con el consumo actual.",
+      "correct": ["false"],
+      "explanation": "Primero eficiencia, después renovables. Si instalás antes, dimensionás un sistema más grande para abastecer desperdicios que podías eliminar más barato."
+    },
+    {
+      "id": "m5q5",
+      "type": "single",
+      "prompt": "Un sistema solar de 50 kWp se instala en un lugar con una producción específica de 1.400 kWh/kWp por año. ¿Cuánto genera, aproximadamente?",
+      "options": [
+        { "id": "a", "text": "7.000 kWh por año" },
+        { "id": "b", "text": "28.000 kWh por año" },
+        { "id": "c", "text": "70.000 kWh por año" },
+        { "id": "d", "text": "700.000 kWh por año" }
+      ],
+      "correct": ["c"],
+      "explanation": "Generación ≈ 50 kWp × 1.400 kWh/kWp = 70.000 kWh por año."
+    }
+  ]
+}

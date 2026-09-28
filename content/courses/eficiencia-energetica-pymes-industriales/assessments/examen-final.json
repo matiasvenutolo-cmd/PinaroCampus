@@ -1,0 +1,310 @@
+{
+  "id": "examen-final",
+  "kind": "exam",
+  "title": "Examen final",
+  "description": "15 preguntas elegidas al azar entre las del banco del curso. Tenés 30 minutos y necesitás 70 puntos para aprobar. Podés rendir hasta 3 veces, con una espera de 1 hora entre intentos. Tené a mano una calculadora: varias preguntas piden hacer una cuenta simple.",
+  "passingScore": 70,
+  "maxAttempts": 3,
+  "cooldownMinutes": 60,
+  "timeLimitMinutes": 30,
+  "drawCount": 15,
+  "shuffleQuestions": true,
+  "shuffleOptions": true,
+  "showExplanations": "after_pass",
+  "questions": [
+    {
+      "id": "ef-01",
+      "type": "single",
+      "prompt": "Una PyME quiere empezar a gestionar su energía pero no tiene presupuesto para inversiones este año. ¿Cuál es el mejor primer paso?",
+      "options": [
+        { "id": "a", "text": "Esperar a tener presupuesto para una auditoría externa" },
+        { "id": "b", "text": "Juntar 12 meses de facturas, calcular el precio medio y el indicador de desempeño, y hacer una recorrida con la planta parada" },
+        { "id": "c", "text": "Cambiar todos los motores por motores IE4" },
+        { "id": "d", "text": "Instalar paneles solares con un crédito" }
+      ],
+      "correct": ["b"],
+      "explanation": "Ordenar la información de las facturas y recorrer la planta no requiere inversión y suele revelar las primeras oportunidades (recargos, consumo base, fugas)."
+    },
+    {
+      "id": "ef-02",
+      "type": "single",
+      "prompt": "Una planta de inyección de plásticos pagó en total $ 36.000.000 en un año en el que consumió 240.000 kWh. ¿Qué precio medio conviene usar para estimar ahorros?",
+      "options": [
+        { "id": "a", "text": "$ 66,7/kWh" },
+        { "id": "b", "text": "$ 150/kWh" },
+        { "id": "c", "text": "$ 240/kWh" },
+        { "id": "d", "text": "El precio del cargo por energía del cuadro tarifario, sin impuestos" }
+      ],
+      "correct": ["b"],
+      "explanation": "Precio medio = 36.000.000 ÷ 240.000 = $ 150/kWh. Incluye todos los cargos de la factura, por eso es el adecuado para estimaciones rápidas."
+    },
+    {
+      "id": "ef-03",
+      "type": "multiple",
+      "prompt": "Al revisar las facturas de 12 meses de una planta con tarifa de grandes demandas, ¿cuáles de estos hallazgos representan un costo que se puede reducir sin cambiar el nivel de producción? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "Recargo por bajo factor de potencia en casi todos los meses" },
+        { "id": "b", "text": "Potencia contratada muy por encima de la demanda máxima registrada" },
+        { "id": "c", "text": "Consumo relevante en la franja de valle cuando la planta no produce" },
+        { "id": "d", "text": "El IVA de la factura" }
+      ],
+      "correct": ["a", "b", "c"],
+      "explanation": "El recargo se elimina compensando reactiva; la potencia contratada se puede ajustar; el consumo nocturno sin producción suele ser desperdicio. El IVA baja solo si bajan los demás conceptos."
+    },
+    {
+      "id": "ef-04",
+      "type": "single",
+      "prompt": "Una planta con 120 kW de demanda y un cos φ de 0,80 quiere llevarlo a 0,95. ¿Qué tipo de solución corresponde?",
+      "options": [
+        { "id": "a", "text": "Un variador de velocidad en el motor más grande" },
+        { "id": "b", "text": "Un banco de capacitores, idealmente automático y dimensionado con mediciones" },
+        { "id": "c", "text": "Aumentar la potencia contratada" },
+        { "id": "d", "text": "Cambiar la iluminación a LED" }
+      ],
+      "correct": ["b"],
+      "explanation": "El factor de potencia se corrige compensando la energía reactiva con capacitores. Un banco automático se adapta a cargas variables; conviene dimensionarlo con un analizador de redes."
+    },
+    {
+      "id": "ef-05",
+      "type": "true_false",
+      "prompt": "Si una planta produjo más y su factura subió, eso demuestra que las medidas de eficiencia no funcionaron.",
+      "correct": ["false"],
+      "explanation": "Hay que comparar contra la línea base: cuánto debería haber consumido para esa producción. La factura puede subir y aun así haber ahorro."
+    },
+    {
+      "id": "ef-06",
+      "type": "single",
+      "prompt": "La línea base de una planta es: Consumo mensual = 10.000 kWh + 200 kWh × toneladas. En un mes produjo 150 toneladas y consumió 36.500 kWh. ¿Cuánto ahorró respecto de la línea base?",
+      "options": [
+        { "id": "a", "text": "No ahorró: consumió más de 30.000 kWh" },
+        { "id": "b", "text": "3.500 kWh" },
+        { "id": "c", "text": "6.500 kWh" },
+        { "id": "d", "text": "13.500 kWh" }
+      ],
+      "correct": ["b"],
+      "explanation": "Consumo esperado = 10.000 + 200 × 150 = 40.000 kWh. Ahorro = 40.000 − 36.500 = 3.500 kWh."
+    },
+    {
+      "id": "ef-07",
+      "type": "single",
+      "prompt": "En la línea base de una planta, el consumo base es el 30% del consumo total. ¿Qué acción es la más directa para investigarlo?",
+      "options": [
+        { "id": "a", "text": "Cambiar la unidad de producción del indicador" },
+        { "id": "b", "text": "Hacer una recorrida con la planta parada para ver qué consume cuando no se produce" },
+        { "id": "c", "text": "Aumentar la producción para diluirlo" },
+        { "id": "d", "text": "Pedir una nueva tarifa a la distribuidora" }
+      ],
+      "correct": ["b"],
+      "explanation": "El consumo base es lo que la planta consume aunque no produzca. La recorrida de noche o de fin de semana muestra quién lo genera."
+    },
+    {
+      "id": "ef-08",
+      "type": "single",
+      "prompt": "En un relevamiento, un equipo tiene una potencia de 20 kW, factor de carga del 50% y funciona 3.000 horas por año. ¿Cuál es su consumo anual estimado?",
+      "options": [
+        { "id": "a", "text": "10.000 kWh" },
+        { "id": "b", "text": "30.000 kWh" },
+        { "id": "c", "text": "60.000 kWh" },
+        { "id": "d", "text": "300.000 kWh" }
+      ],
+      "correct": ["b"],
+      "explanation": "Consumo = 20 kW × 0,5 × 3.000 h = 30.000 kWh por año."
+    },
+    {
+      "id": "ef-09",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estos hallazgos de una recorrida con la planta parada indican un desperdicio? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "El compresor arranca solo cada pocos minutos aunque nadie usa aire" },
+        { "id": "b", "text": "La iluminación del depósito encendida desde el viernes" },
+        { "id": "c", "text": "La alarma y las cámaras de seguridad funcionando" },
+        { "id": "d", "text": "El aire acondicionado de la sala de reuniones encendido" }
+      ],
+      "correct": ["a", "b", "d"],
+      "explanation": "El compresor alimentando fugas, las luces y el aire acondicionado encendidos sin nadie son desperdicios. Los sistemas de seguridad tienen que funcionar."
+    },
+    {
+      "id": "ef-10",
+      "type": "single",
+      "prompt": "En un taller, un motor de 30 kW nominales mueve una carga que, según la medición con pinza, requiere unos 10 kW de forma permanente. ¿Qué situación describe y qué conviene planificar?",
+      "options": [
+        { "id": "a", "text": "Motor bien dimensionado; no hay nada que hacer" },
+        { "id": "b", "text": "Motor sobredimensionado; cuando falle, reemplazarlo por uno más chico y eficiente" },
+        { "id": "c", "text": "Motor subdimensionado; reemplazarlo por uno más grande" },
+        { "id": "d", "text": "Falla de medición; los motores siempre trabajan a plena carga" }
+      ],
+      "correct": ["b"],
+      "explanation": "Trabaja a un tercio de su carga, por debajo del rango de mejor rendimiento. Lo razonable es planificar su reemplazo por uno del tamaño adecuado y de alta eficiencia."
+    },
+    {
+      "id": "ef-11",
+      "type": "single",
+      "prompt": "¿Por qué el precio de compra no debería ser el criterio principal para elegir un motor que va a trabajar muchas horas por año?",
+      "options": [
+        { "id": "a", "text": "Porque los motores caros siempre duran más" },
+        { "id": "b", "text": "Porque a lo largo de su vida útil la energía que consume representa la gran mayoría de su costo total" },
+        { "id": "c", "text": "Porque la norma prohíbe comprar motores baratos" },
+        { "id": "d", "text": "Porque el precio de compra se recupera con la venta del motor usado" }
+      ],
+      "correct": ["b"],
+      "explanation": "En un motor que trabaja muchas horas, la energía supera el 90% del costo de vida. Unos puntos de eficiencia valen mucho más que la diferencia de precio."
+    },
+    {
+      "id": "ef-12",
+      "type": "single",
+      "prompt": "Una bomba centrífuga de agua de enfriamiento trabaja siempre al 100% y el caudal se regula con una válvula semicerrada. Se estima que podría girar al 70% de su velocidad. ¿Qué potencia necesitaría, aproximadamente?",
+      "options": [
+        { "id": "a", "text": "Alrededor del 34% de la actual" },
+        { "id": "b", "text": "El 49% de la actual" },
+        { "id": "c", "text": "El 70% de la actual" },
+        { "id": "d", "text": "La misma: el variador no ahorra en bombas" }
+      ],
+      "correct": ["a"],
+      "explanation": "Por la ley cúbica: 0,7³ ≈ 0,34. La bomba necesitaría alrededor de un tercio de la potencia actual (sin contar las pérdidas del variador)."
+    },
+    {
+      "id": "ef-13",
+      "type": "single",
+      "prompt": "¿En cuál de estos equipos un variador de velocidad produce el mayor ahorro de energía, en general?",
+      "options": [
+        { "id": "a", "text": "Una cinta transportadora cargada de forma constante" },
+        { "id": "b", "text": "Un ventilador centrífugo regulado con una persiana semicerrada" },
+        { "id": "c", "text": "Una extrusora" },
+        { "id": "d", "text": "Un compresor a pistón que trabaja siempre a plena carga" }
+      ],
+      "correct": ["b"],
+      "explanation": "En ventiladores y bombas centrífugas la potencia varía con el cubo de la velocidad. En cargas de torque constante el ahorro es mucho menor."
+    },
+    {
+      "id": "ef-14",
+      "type": "single",
+      "prompt": "Una planta tiene 6 fugas de aire de 1 mm y 1 de 5 mm. Usando los valores de referencia del curso (1 mm ≈ 0,3 kW; 5 mm ≈ 8,3 kW), ¿cuánta potencia de compresor se desperdicia?",
+      "options": [
+        { "id": "a", "text": "Alrededor de 2 kW" },
+        { "id": "b", "text": "Alrededor de 8,6 kW" },
+        { "id": "c", "text": "Alrededor de 10,1 kW" },
+        { "id": "d", "text": "Alrededor de 51,6 kW" }
+      ],
+      "correct": ["c"],
+      "explanation": "6 × 0,3 + 1 × 8,3 = 1,8 + 8,3 = 10,1 kW. La fuga grande explica la mayor parte: conviene repararla primero."
+    },
+    {
+      "id": "ef-15",
+      "type": "single",
+      "prompt": "Un compresor trabaja a 8 bar, pero el equipo más exigente de la planta funciona bien con 6,5 bar. ¿Qué conviene hacer?",
+      "options": [
+        { "id": "a", "text": "Nada: más presión siempre es mejor para las herramientas" },
+        { "id": "b", "text": "Bajar gradualmente la presión hacia el mínimo que funcione bien, porque cada bar menos ahorra energía y reduce las fugas" },
+        { "id": "c", "text": "Subir la presión a 9 bar para tener margen" },
+        { "id": "d", "text": "Agregar un segundo compresor" }
+      ],
+      "correct": ["b"],
+      "explanation": "Como referencia habitual, cada bar menos ahorra alrededor de un 7% de la energía del compresor y además reduce el caudal que se pierde por fugas."
+    },
+    {
+      "id": "ef-16",
+      "type": "true_false",
+      "prompt": "Reparar todas las fugas de aire una vez alcanza: si la red se mantiene sin tocar, no vuelven a aparecer.",
+      "correct": ["false"],
+      "explanation": "Las fugas reaparecen con el uso: uniones, mangueras y conexiones se desgastan. Hace falta un programa periódico de detección y reparación con responsable."
+    },
+    {
+      "id": "ef-17",
+      "type": "single",
+      "prompt": "Una empresa recambia 200 luminarias de 80 W por LED de 40 W que funcionan 4.000 horas por año, con un precio medio de $ 150/kWh. ¿Cuánto ahorra por año?",
+      "options": [
+        { "id": "a", "text": "$ 1.600.000" },
+        { "id": "b", "text": "$ 4.800.000" },
+        { "id": "c", "text": "$ 9.600.000" },
+        { "id": "d", "text": "$ 32.000.000" }
+      ],
+      "correct": ["b"],
+      "explanation": "Ahorro = 200 × 40 W × 4.000 h = 32.000 kWh por año. En pesos: 32.000 × 150 = $ 4.800.000."
+    },
+    {
+      "id": "ef-18",
+      "type": "multiple",
+      "prompt": "Después de un recambio a LED, ¿qué medidas pueden aumentar todavía más el ahorro en iluminación? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "Sensores de presencia en depósitos, pasillos y baños" },
+        { "id": "b", "text": "Sectorizar los circuitos para encender solo donde se trabaja" },
+        { "id": "c", "text": "Aprovechar la luz natural con sensores y chapas traslúcidas limpias" },
+        { "id": "d", "text": "Dejar todas las luces encendidas para que los LED duren más" }
+      ],
+      "correct": ["a", "b", "c"],
+      "explanation": "Los controles multiplican el ahorro del LED. Los LED no se degradan por encendidos frecuentes, así que no hay razón para dejarlos encendidos."
+    },
+    {
+      "id": "ef-19",
+      "type": "single",
+      "prompt": "La puerta de un horno a gas queda abierta varios minutos en cada carga mientras se acomodan las piezas. ¿Qué medida de bajo costo ataca el problema?",
+      "options": [
+        { "id": "a", "text": "Subir la temperatura del horno para compensar" },
+        { "id": "b", "text": "Preparar la carga fuera del horno (por ejemplo, en un carro) para abrir la puerta solo lo imprescindible" },
+        { "id": "c", "text": "Cambiar el horno por uno eléctrico" },
+        { "id": "d", "text": "Instalar un variador en el quemador" }
+      ],
+      "correct": ["b"],
+      "explanation": "Reducir el tiempo con la puerta abierta evita pérdidas de calor sin inversión. Se complementa con burletes en buen estado y aislación reparada."
+    },
+    {
+      "id": "ef-20",
+      "type": "single",
+      "prompt": "En una planta con tarifa de grandes demandas, ¿qué consumo convendría mover del horario pico a la franja de valle?",
+      "options": [
+        { "id": "a", "text": "La iluminación de las oficinas en horario de trabajo" },
+        { "id": "b", "text": "La carga de las baterías de los autoelevadores eléctricos" },
+        { "id": "c", "text": "Las máquinas herramienta del turno tarde" },
+        { "id": "d", "text": "El sistema de seguridad" }
+      ],
+      "correct": ["b"],
+      "explanation": "La carga de baterías puede programarse sin afectar la operación y aprovecha el precio más bajo del valle."
+    },
+    {
+      "id": "ef-21",
+      "type": "single",
+      "prompt": "Una empresa bajó mucho su consumo con una campaña, pero seis meses después volvió a los valores anteriores. ¿Qué es lo más probable que haya faltado?",
+      "options": [
+        { "id": "a", "text": "Una inversión más grande" },
+        { "id": "b", "text": "Convertir las medidas en tareas con responsable, frecuencia y control: mantenimiento preventivo, listas de cierre y seguimiento del indicador" },
+        { "id": "c", "text": "Cambiar de distribuidora" },
+        { "id": "d", "text": "Certificar la ISO 50001" }
+      ],
+      "correct": ["b"],
+      "explanation": "Los ahorros se sostienen cuando se vuelven parte de la rutina, con responsables y controles periódicos. La certificación puede ayudar, pero no es condición necesaria."
+    },
+    {
+      "id": "ef-22",
+      "type": "single",
+      "prompt": "Tres proyectos: A cuesta $ 1 M y ahorra $ 4 M/año; B cuesta $ 10 M y ahorra $ 5 M/año; C cuesta $ 6 M y ahorra $ 1 M/año. Si hay que empezar por uno, ¿cuál tiene el recupero más rápido?",
+      "options": [
+        { "id": "a", "text": "A: 3 meses" },
+        { "id": "b", "text": "B: 2 años" },
+        { "id": "c", "text": "C: 6 años" },
+        { "id": "d", "text": "B, porque ahorra más pesos por año" }
+      ],
+      "correct": ["a"],
+      "explanation": "Recuperos: A = 1 ÷ 4 = 0,25 años (3 meses); B = 2 años; C = 6 años. A es la victoria rápida, aunque B ahorre más en valor absoluto."
+    },
+    {
+      "id": "ef-23",
+      "type": "true_false",
+      "prompt": "Si una medida tiene un recupero de 4 años, siempre hay que descartarla.",
+      "correct": ["false"],
+      "explanation": "Un recupero de 4 años puede ser muy conveniente si el equipo dura 15 años o más. Conviene mirar el ahorro a lo largo de la vida útil, los beneficios adicionales y evaluar financiamiento."
+    },
+    {
+      "id": "ef-24",
+      "type": "single",
+      "prompt": "Una planta que consume principalmente de día está evaluando instalar paneles solares. Todavía no hizo ninguna medida de eficiencia y tiene fugas, luces viejas y un compresor que no se apaga. ¿Qué le recomendarías?",
+      "options": [
+        { "id": "a", "text": "Instalar ya un sistema grande que cubra todo su consumo actual" },
+        { "id": "b", "text": "Aplicar primero las medidas de eficiencia y después dimensionar el sistema solar con el consumo resultante" },
+        { "id": "c", "text": "Descartar la energía solar porque consume de día" },
+        { "id": "d", "text": "Instalar baterías antes que paneles" }
+      ],
+      "correct": ["b"],
+      "explanation": "Primero eficiencia, después renovables. Con menos desperdicio, el sistema necesario es más chico y cubre una proporción mayor del consumo. Consumir de día es, además, una ventaja para la solar."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+Hasta acá hablamos de consumir **menos energía**. Esta lección es sobre algo distinto: pagar menos por la **misma** energía, gestionando **cuánta potencia** pedís a la red y **en qué horario** consumís. En las tarifas de medianas y grandes demandas, estas decisiones pueden mover la factura tanto como una medida técnica, y casi nunca requieren inversión.
+
+<Callout type="info" title="Verificá las reglas de tu distribuidora">
+Las franjas horarias, la forma de contratar potencia, los plazos mínimos de permanencia y los recargos por exceso cambian según la distribuidora y se actualizan. Usá esta lección como guía y confirmá los detalles con tu cuadro tarifario y con tu ejecutivo de cuenta.
+</Callout>
+
+## 1. La potencia contratada correcta
+
+Como vimos en el módulo 1, en muchas tarifas pagás todos los meses una **potencia contratada**, la uses o no. Hay dos errores posibles:
+
+- **Contratar de más:** pagás todos los meses por capacidad que nunca usás.
+- **Contratar de menos:** cuando la demanda supera lo contratado, el excedente suele cobrarse con un recargo importante.
+
+El punto óptimo es contratar un poco por encima de la **demanda máxima real** de los últimos 12 meses, con un margen razonable para imprevistos o crecimiento previsto.
+
+<Callout type="case" title="Talleres Brisco: 60 kW que nadie usaba">
+Talleres Brisco tenía contratados **200 kW** desde una ampliación que se había planificado años atrás y nunca se hizo. La demanda máxima de los últimos 12 meses fue de **140 kW**.
+
+Sofía propuso bajar la potencia contratada a **150 kW**: un margen de más del 7% sobre la máxima histórica. Resultado: **50 kW menos** pagados todos los meses, sin tocar un solo equipo.
+
+Pero antes de pedir el cambio, se preguntó: ¿por qué la demanda máxima es de 140 kW? ¿Se puede bajar?
+</Callout>
+
+## 2. Achatar los picos de demanda
+
+La demanda máxima no la determina el consumo promedio, sino **el momento en que más equipos funcionan al mismo tiempo**. Muchas veces ese pico dura unos minutos y se podría evitar.
+
+Situaciones típicas que generan picos:
+
+- **El arranque del turno:** todos encienden sus máquinas, el compresor arranca con la red vacía, se prende toda la iluminación.
+- **Arranques de motores grandes** en simultáneo (los motores toman varias veces su corriente nominal al arrancar, aunque sea por segundos; según cómo registre el medidor, eso puede influir).
+- **Procesos que coinciden** sin necesidad: un horno eléctrico calentando justo cuando están todas las soldadoras en marcha.
+
+Qué se puede hacer:
+
+<Steps>
+  <Step title="Secuenciar los arranques">
+    Definir un orden de arranque al inicio del turno, con unos minutos entre equipos grandes. Primero el compresor, después las máquinas por sector.
+  </Step>
+  <Step title="Arrancadores suaves y variadores">
+    En motores grandes, reducen el pico de corriente de arranque.
+  </Step>
+  <Step title="Desplazar procesos que no son urgentes">
+    Precalentamientos, cargas de baterías, bombeos a tanques: programarlos cuando la planta demanda menos.
+  </Step>
+  <Step title="Controlador de demanda">
+    En plantas con cargas que se pueden cortar por unos minutos (climatización, calentamiento de agua, algunos hornos), un controlador desconecta cargas no críticas cuando la demanda se acerca a un límite.
+  </Step>
+</Steps>
+
+<Callout type="case" title="Talleres Brisco: el pico de las 6 de la mañana">
+Con un medidor instalado en el tablero general durante dos semanas, Sofía vio que el pico de 140 kW se daba todos los días **entre las 6:00 y las 6:15**, cuando arrancaban juntos el compresor (con la red vacía después de toda la noche apagado… o descargada por las fugas), la iluminación y todas las máquinas.
+
+Con un orden de arranque escalonado de 20 minutos, el pico bajó a unos **125 kW**. Eso le dio más margen para bajar la potencia contratada a 150 kW con tranquilidad.
+</Callout>
+
+## 3. Consumir en el horario más barato
+
+En las tarifas de grandes demandas, la energía tiene precios distintos según la franja horaria. En el AMBA, por ejemplo, las franjas habituales son:
+
+| Franja | Horario | Precio relativo |
+|---|---|---|
+| **Pico** | 18 a 23 h | El más caro |
+| **Resto** | 5 a 18 h | Intermedio |
+| **Valle** | 23 a 5 h | El más barato |
+
+En otras distribuidoras los horarios pueden variar. Además, en algunas tarifas también se contrata y se cobra en forma separada la potencia **en pico** y **fuera de pico**: reducir la demanda en el horario pico baja ese cargo.
+
+Qué conviene desplazar hacia el valle o fuera del pico:
+
+- **Carga de baterías** de autoelevadores y equipos eléctricos.
+- **Bombeo** a tanques de reserva.
+- **Procesos por lotes** que no requieren personal (secados, curados, algunos tratamientos térmicos).
+- **Precalentamientos** que pueden programarse para terminar justo antes del turno.
+
+<Callout type="warning" title="Ojo con el costo total">
+Mover un proceso al turno noche puede requerir personal extra, horas nocturnas o supervisión. Hacé la cuenta completa: el ahorro en energía tiene que superar cualquier costo adicional.
+</Callout>
+
+## Qué hacer el lunes
+
+<Checklist id="m4-l1-lunes" items={["Compará tu potencia contratada con la demanda máxima de los últimos 12 meses", "Averiguá con tu distribuidora cómo y cada cuánto se puede modificar la potencia contratada", "Identificá en qué momento del día se produce tu pico de demanda (medidor propio o datos de la distribuidora)", "Escribí un orden de arranque escalonado para el inicio de cada turno", "Listá los consumos que podrían moverse fuera del horario pico"]} />

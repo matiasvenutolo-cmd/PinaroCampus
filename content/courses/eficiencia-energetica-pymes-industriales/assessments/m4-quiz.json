@@ -1,0 +1,75 @@
+{
+  "id": "m4-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 4",
+  "description": "Cinco preguntas para repasar. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m4q1",
+      "type": "single",
+      "prompt": "Una planta tiene 300 kW contratados y su demanda máxima de los últimos 12 meses fue de 180 kW, sin planes de ampliación. ¿Qué conviene?",
+      "options": [
+        { "id": "a", "text": "Mantener los 300 kW por seguridad" },
+        { "id": "b", "text": "Contratar exactamente 180 kW" },
+        { "id": "c", "text": "Evaluar bajar la potencia contratada a un valor algo superior a 180 kW, con un margen razonable y según las reglas de la distribuidora" },
+        { "id": "d", "text": "Aumentar la potencia contratada para evitar recargos" }
+      ],
+      "correct": ["c"],
+      "explanation": "Pagar 120 kW que nunca se usan es un costo evitable. Pero contratar justo la máxima deja sin margen ante un pico y el exceso suele tener recargo. Lo ideal es un margen razonable."
+    },
+    {
+      "id": "m4q2",
+      "type": "single",
+      "prompt": "El pico de demanda de una planta ocurre todos los días a las 6:05, cuando arranca el turno. ¿Cuál es la medida más simple para bajarlo?",
+      "options": [
+        { "id": "a", "text": "Instalar paneles solares" },
+        { "id": "b", "text": "Definir un orden de arranque escalonado de los equipos grandes" },
+        { "id": "c", "text": "Cambiar el turno a la noche" },
+        { "id": "d", "text": "Aumentar la potencia contratada" }
+      ],
+      "correct": ["b"],
+      "explanation": "Si el pico se produce porque todo arranca junto, escalonar los arranques unos minutos lo reduce sin inversión."
+    },
+    {
+      "id": "m4q3",
+      "type": "multiple",
+      "prompt": "¿Qué consumos son buenos candidatos para desplazarse fuera del horario pico? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "Carga de baterías de autoelevadores" },
+        { "id": "b", "text": "Bombeo a un tanque de reserva" },
+        { "id": "c", "text": "La iluminación de la nave durante el turno" },
+        { "id": "d", "text": "Un proceso por lotes que no necesita personal" }
+      ],
+      "correct": ["a", "b", "d"],
+      "explanation": "Las cargas de baterías, los bombeos a tanques y los procesos por lotes sin personal pueden programarse. La iluminación se necesita cuando la gente trabaja."
+    },
+    {
+      "id": "m4q4",
+      "type": "true_false",
+      "prompt": "Para que los ahorros duren, alcanza con hacer una buena campaña de concientización una vez por año.",
+      "correct": ["false"],
+      "explanation": "Los ahorros duran cuando se vuelven tareas con responsable: mantenimiento preventivo con frecuencia definida, listas de cierre de turno, controles periódicos y números visibles."
+    },
+    {
+      "id": "m4q5",
+      "type": "single",
+      "prompt": "¿Qué es un 'uso significativo de la energía' en la lógica de la ISO 50001?",
+      "options": [
+        { "id": "a", "text": "Cualquier equipo que consuma electricidad" },
+        { "id": "b", "text": "Un uso que representa una parte importante del consumo o tiene un potencial de mejora considerable" },
+        { "id": "c", "text": "El consumo de la oficina de la dirección" },
+        { "id": "d", "text": "Un equipo nuevo con certificación de eficiencia" }
+      ],
+      "correct": ["b"],
+      "explanation": "Los usos significativos son los que explican una parte importante del consumo o tienen gran potencial de mejora. Son donde se concentra la gestión, como el compresor o el extractor en el caso práctico."
+    }
+  ]
+}

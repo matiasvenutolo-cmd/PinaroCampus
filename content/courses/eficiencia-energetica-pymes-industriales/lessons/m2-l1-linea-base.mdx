@@ -1,0 +1,74 @@
+"Lo que no se mide no se gestiona" es una frase gastada, pero en energía es literal. Sin una referencia contra la cual comparar, no hay forma de saber si una medida funcionó o si el consumo bajó simplemente porque hubo menos trabajo. Esa referencia se llama **línea base**.
+
+## Qué es la línea base
+
+La **línea base energética** es el comportamiento "normal" del consumo de tu planta, antes de aplicar mejoras. Se construye con datos históricos, idealmente de **12 meses**, para que incluya todas las estaciones y los altibajos de la producción.
+
+No es un número único. Es una relación: **cuánto consume la planta en función de lo que produce** (y, si influye, del clima).
+
+## El indicador de desempeño energético
+
+El indicador más simple y útil es la **intensidad energética**:
+
+<Formula>Intensidad energética = Energía consumida (kWh) ÷ Producción (unidades)</Formula>
+
+La unidad de producción la elegís vos: toneladas, piezas, metros, litros, horas máquina. Tiene que ser la que mejor explique por qué la planta consume más o menos.
+
+<Callout type="case" title="Talleres Brisco: el primer indicador">
+Con 624.000 kWh por año y una producción de 2.160 toneladas (180 por mes), la intensidad energética promedio de Talleres Brisco es de **289 kWh por tonelada**.
+
+Solo, ese número dice poco. Pero a partir de ahora Sofía lo va a calcular todos los meses. Si baja, la planta mejora; si sube, algo cambió y hay que buscar qué.
+</Callout>
+
+## La trampa del indicador simple
+
+La intensidad energética tiene un problema: **empeora cuando la producción baja**, aunque nadie haya hecho nada mal. ¿Por qué? Porque hay una parte del consumo que no depende de la producción: iluminación, oficinas, compresor manteniendo presión, equipos en espera. Si producís la mitad, ese consumo fijo se reparte entre menos toneladas.
+
+Por eso conviene ir un paso más allá y separar el consumo en dos partes.
+
+## Consumo base y consumo variable
+
+Si graficás el consumo mensual (eje vertical) contra la producción mensual (eje horizontal), vas a ver una nube de puntos que se parece a una recta. Esa recta tiene dos datos valiosos:
+
+- **Dónde corta el eje vertical:** es el **consumo base**, lo que consumirías aunque no produjeras nada.
+- **La pendiente:** es el **consumo variable**, cuántos kWh extra necesitás por cada unidad adicional producida.
+
+<Formula>Consumo mensual (kWh) = Consumo base + Consumo variable × Producción</Formula>
+
+Cualquier planilla de cálculo te da esa recta: en Excel o Google Sheets, un gráfico de dispersión con "línea de tendencia lineal" y la opción "mostrar ecuación".
+
+<Callout type="case" title="Talleres Brisco: el consumo que nadie veía">
+Sofía cargó los 12 meses de consumo y producción en una planilla y trazó la recta. El resultado fue aproximadamente:
+
+**Consumo mensual = 12.000 kWh + 222 kWh × toneladas producidas**
+
+Es decir: aunque Talleres Brisco no produjera una sola pieza, consumiría unos **12.000 kWh por mes**. Es casi el **23% del consumo total**.
+
+Ese número le dio a Sofía su primera pregunta de investigación: ¿qué está funcionando cuando nadie produce?
+</Callout>
+
+<KeyFigures>
+  <KeyFigure value="289 kWh/t" label="Intensidad energética promedio de Talleres Brisco" />
+  <KeyFigure value="12.000 kWh" label="Consumo base mensual: lo que consume la planta aunque no produzca" />
+  <KeyFigure value="222 kWh/t" label="Consumo variable: la energía que realmente exige cada tonelada" />
+</KeyFigures>
+
+## Cómo se usa la línea base
+
+Con la ecuación de la línea base, cada mes podés calcular cuánto **deberías** haber consumido según lo que produjiste, y compararlo con lo que **realmente** consumiste:
+
+<Formula>Ahorro del mes = Consumo esperado según la línea base − Consumo real</Formula>
+
+Así, si en un mes se produjo más y la factura subió, igual podés demostrar que hubo ahorro. Y si la factura bajó porque hubo poco trabajo, no te engañás pensando que las medidas funcionaron.
+
+## Buenas prácticas
+
+- **Usá datos mensuales de al menos 12 meses.** Si tenés datos semanales o diarios (de un medidor propio), mejor.
+- **Elegí bien la variable de producción.** Si fabricás productos muy distintos, quizás "horas máquina" o "kilos procesados" expliquen mejor el consumo que "piezas".
+- **Revisá si influye el clima.** Si tenés mucha climatización o calefacción, el consumo va a depender de la temperatura exterior además de la producción.
+- **Marcá los meses raros.** Vacaciones, paradas por mantenimiento, un equipo nuevo. Anotalos para no sacar conclusiones equivocadas.
+- **Actualizá la línea base** si cambia algo estructural: una línea de producción nueva, una ampliación de la planta.
+
+## Qué hacer el lunes
+
+<Checklist id="m2-l1-lunes" items={["Elegí la unidad de producción que mejor represente tu actividad", "Completá la producción mensual en tu planilla de 12 meses", "Calculá la intensidad energética de cada mes", "Hacé el gráfico de dispersión consumo vs. producción y anotá el consumo base"]} />

@@ -1,0 +1,14 @@
+﻿Sector;Equipo;Cantidad;Potencia unitaria (kW);Factor de carga (%);Horas por año;Consumo anual (kWh);Fuente del dato;Observaciones
+Mecanizado;Centros de mecanizado y tornos CNC;5;15;35;4224;110880;Placa + pinza;EJEMPLO con datos ficticios de Talleres Brisco. Consumo = Cantidad × Potencia × Factor de carga ÷ 100 × Horas
+Plegado y corte;Plegadoras y guillotina;3;15;37;4224;70330;Placa + estimación;
+Sala de compresor;Compresor a tornillo (en turno);1;37;80;4224;125030;Pinza;
+Sala de compresor;Compresor a tornillo (fuera de turno, alimentando fugas);1;37;30;2200;24420;Prueba con la planta parada;Apagar fuera de turno y reparar fugas
+Soldadura;Equipos MIG;8;9;23;4224;69949;Placa + estimación;
+Pintura;Extractor de la cabina de pintura;1;15;100;4224;63360;Pinza;Regulado con persiana semicerrada: candidato a variador
+Nave;Luminarias fluorescentes 2 × 36 W con balasto magnético;120;0,08;100;4224;40550;Conteo;Candidato a recambio LED
+Oficinas y exterior;Iluminación de oficinas y exterior;1;2,4;100;3960;9504;Conteo;
+Oficinas;Aire acondicionado;8;3;55;2640;34848;Placa;
+Oficinas;Computadoras, servidor e impresoras;1;2,5;100;4224;10560;Estimación;
+Nave;Puente grúa;1;11;15;4224;6970;Estimación;
+Servicios;Bombas y otros motores;4;4;34;4224;22979;Estimación;
+;TOTAL RELEVADO;;;;;589380;;Comparalo con la energía de 12 meses de facturas (en el ejemplo: 623.520 kWh). La diferencia es consumo no identificado: si supera el 10-15%, falta algún equipo o hay horas mal estimadas

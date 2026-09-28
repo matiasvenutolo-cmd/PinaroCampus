@@ -1,0 +1,88 @@
+{
+  "id": "m3-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 3",
+  "description": "Seis preguntas para repasar. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m3q1",
+      "type": "single",
+      "prompt": "Se quemó un motor de 11 kW que trabaja 4.000 horas por año en una línea crítica. ¿Cuál es la mejor decisión, en general?",
+      "options": [
+        { "id": "a", "text": "Rebobinarlo siempre, porque es lo más barato" },
+        { "id": "b", "text": "Reemplazarlo por uno de mayor potencia, por las dudas" },
+        { "id": "c", "text": "Comparar el rebobinado contra un motor nuevo IE3 o superior del tamaño adecuado, considerando el costo de la energía en su vida útil" },
+        { "id": "d", "text": "Reemplazarlo por el motor más barato disponible" }
+      ],
+      "correct": ["c"],
+      "explanation": "La energía es más del 90% del costo de vida de un motor. En un motor que trabaja muchas horas, un reemplazo eficiente y bien dimensionado suele convenir frente al rebobinado."
+    },
+    {
+      "id": "m3q2",
+      "type": "single",
+      "prompt": "Un ventilador centrífugo pasa a girar al 80% de su velocidad con un variador. ¿Aproximadamente qué potencia necesita ahora?",
+      "options": [
+        { "id": "a", "text": "El 80% de la potencia original" },
+        { "id": "b", "text": "El 64% de la potencia original" },
+        { "id": "c", "text": "Alrededor del 51% de la potencia original" },
+        { "id": "d", "text": "El 20% de la potencia original" }
+      ],
+      "correct": ["c"],
+      "explanation": "Por las leyes de afinidad, la potencia varía con el cubo de la velocidad: 0,8³ = 0,512. Necesita alrededor del 51% de la potencia original."
+    },
+    {
+      "id": "m3q3",
+      "type": "single",
+      "prompt": "Con la planta parada y ningún equipo usando aire, el compresor carga 3 minutos y descansa 9 minutos, de forma repetida. ¿Qué porcentaje de su capacidad se está yendo en fugas, aproximadamente?",
+      "options": [
+        { "id": "a", "text": "25%" },
+        { "id": "b", "text": "33%" },
+        { "id": "c", "text": "75%" },
+        { "id": "d", "text": "No se puede estimar sin un detector ultrasónico" }
+      ],
+      "correct": ["a"],
+      "explanation": "Fugas ≈ tiempo en carga ÷ (tiempo en carga + tiempo en vacío) = 3 ÷ 12 = 25% de la capacidad del compresor."
+    },
+    {
+      "id": "m3q4",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estas medidas reducen el consumo de un sistema de aire comprimido? (Marcá todas las correctas)",
+      "options": [
+        { "id": "a", "text": "Bajar la presión de trabajo al mínimo que necesitan los equipos" },
+        { "id": "b", "text": "Tomar el aire de aspiración desde un lugar más fresco" },
+        { "id": "c", "text": "Usar pistolas de aire para limpiar el piso" },
+        { "id": "d", "text": "Apagar el compresor fuera de turno" }
+      ],
+      "correct": ["a", "b", "d"],
+      "explanation": "Bajar la presión, aspirar aire fresco y apagar fuera de turno reducen el consumo. Limpiar con pistolas de aire es uno de los usos inadecuados más caros (y además es peligroso)."
+    },
+    {
+      "id": "m3q5",
+      "type": "single",
+      "prompt": "Se reemplazan 50 luminarias de 80 W por LED de 36 W que funcionan 3.000 horas por año. ¿Cuánta energía se ahorra por año?",
+      "options": [
+        { "id": "a", "text": "2.200 kWh" },
+        { "id": "b", "text": "6.600 kWh" },
+        { "id": "c", "text": "12.000 kWh" },
+        { "id": "d", "text": "5.400 kWh" }
+      ],
+      "correct": ["b"],
+      "explanation": "Ahorro = 50 × (80 − 36) W × 3.000 h = 50 × 44 × 3.000 ÷ 1.000 = 6.600 kWh por año."
+    },
+    {
+      "id": "m3q6",
+      "type": "true_false",
+      "prompt": "En un horno a gas, cuanto más exceso de aire en la combustión, mejor, porque se asegura que todo el gas se queme.",
+      "correct": ["false"],
+      "explanation": "Hace falta algo de exceso de aire, pero demasiado aire se calienta y se va por la chimenea llevándose energía. El ajuste con un analizador de gases busca el punto óptimo."
+    }
+  ]
+}
