@@ -8,6 +8,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Valores dummy: alcanzan para que `src/env.ts` valide al importar.
+      # No hay conexión real a ninguna base en CI (ver SKIP_DB_TESTS).
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+      DATABASE_URL_UNPOOLED: postgresql://ci:ci@localhost:5432/ci
+      AUTH_SECRET: ci-auth-secret
+      PREVIEW_SIGNING_SECRET: ci-preview-secret
+      SKIP_DB_TESTS: "1"
     steps:
       - uses: actions/checkout@v4
 

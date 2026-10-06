@@ -22,7 +22,7 @@ const schema = z.object({
     .min(1, "Falta DATABASE_URL_UNPOOLED (Neon, conexión directa para migraciones)"),
 
   // Auth.js — Fase 1
-  AUTH_SECRET: z.string().min(1).optional(),
+  AUTH_SECRET: z.string().min(1, "Falta AUTH_SECRET (generá uno con: openssl rand -base64 33)"),
   AUTH_TRUST_HOST: boolFromString("true"),
 
   // Email transaccional — Fase 1
@@ -34,7 +34,7 @@ const schema = z.object({
 
   // Secretos propios
   ENCRYPTION_KEY: z.string().min(1).optional(), // Fase 5: AES-256-GCM para tokens de MP
-  PREVIEW_SIGNING_SECRET: z.string().min(1).optional(), // Fase 2: "ver como" y preview de cursos
+  PREVIEW_SIGNING_SECRET: z.string().min(1, "Falta PREVIEW_SIGNING_SECRET (cookie de 'ver como')"),
   CRON_SECRET: z.string().min(1).optional(), // Fase 4+: crons
 
   // Multi-tenant
@@ -60,7 +60,14 @@ const schema = z.object({
   MP_SANDBOX: boolFromString("true"),
 });
 
-const parsed = schema.safeParse(process.env);
+// Una variable "declarada pero vacía" en .env.local (p. ej. `RESEND_API_KEY=`)
+// tiene que valer como "no seteada", no como un string vacío que rompe los
+// `.min(1)` de los campos opcionales.
+const rawEnv = Object.fromEntries(
+  Object.entries(process.env).map(([key, value]) => [key, value === "" ? undefined : value]),
+);
+
+const parsed = schema.safeParse(rawEnv);
 
 if (!parsed.success) {
   const detail = parsed.error.issues

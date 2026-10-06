@@ -1,4 +1,9 @@
-// Las tablas reales (tenants, users, courses, orders, ...) se agregan a partir
-// de la Fase 1, siguiendo docs/03-modelo-de-datos.md. Este archivo es el punto
-// de entrada que ya espera drizzle.config.ts desde la Fase 0.
-export {};
+export * from "./enums";
+export * from "./tenants";
+export * from "./auth";
+export * from "./companies";
+export * from "./tenant-memberships";
+export * from "./categories";
+export * from "./audit-log";
+export * from "./rate-limits";
+export * from "./email-log";
