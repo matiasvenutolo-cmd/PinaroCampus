@@ -40,5 +40,5 @@ jobs:
       - name: Tests unitarios
         run: pnpm test
 
-      # courses:validate se suma a partir de la Fase 2 (docs/07-fases.md),
-      # cuando exista content/courses/** y su schema Zod.
+      - name: Validar cursos
+        run: pnpm courses:validate

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "costos-industriales-para-tomar-decisiones",
+  "status": "coming_soon",
+  "title": "Costos industriales para tomar decisiones",
+  "subtitle": "Calculá cuánto te cuesta realmente cada producto",
+  "description": "Cómo armar el costo de un producto industrial, entender el punto de equilibrio y decidir precios y mezcla de producción con números propios.",
+  "level": "intermedio",
+  "language": "es-AR",
+  "durationMinutes": 360,
+  "suggestedCategory": {
+    "slug": "costos-y-finanzas",
+    "name": "Costos y finanzas"
+  },
+  "tags": [
+    "costos",
+    "finanzas",
+    "precios"
+  ],
+  "cover": null,
+  "instructors": [],
+  "outcomes": [],
+  "audience": [],
+  "prerequisites": [],
+  "certificate": {
+    "enabled": true,
+    "hours": 6.0,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": null
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Contenido en preparación",
+      "summary": "Este curso se está produciendo.",
+      "lessons": [
+        {
+          "id": "m1-en-preparacion",
+          "type": "text",
+          "title": "Contenido en preparación",
+          "durationMinutes": 0,
+          "file": "lessons/en-preparacion.mdx"
+        }
+      ]
+    }
+  ]
+}

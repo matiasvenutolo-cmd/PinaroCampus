@@ -15,6 +15,13 @@
       "when": 1790902566135,
       "tag": "0001_yielding_magneto",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791319539183,
+      "tag": "0002_loving_daredevil",
+      "breakpoints": true
     }
   ]
 }

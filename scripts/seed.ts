@@ -2,8 +2,9 @@
  * Seed idempotente de la demo (docs/09-demo-y-seed.md). Upsert por claves
  * naturales: correrlo de nuevo no duplica nada. Todo es ficticio.
  *
- * El contenido de cursos, inscripciones, órdenes y certificados se agrega en
- * las fases siguientes (el seed "crece en cada fase").
+ * Cada fase agrega lo suyo (el seed "crece en cada fase"): cursos, categorías,
+ * inscripciones y lista de espera en scripts/seed-courses.ts (Fase 2); las
+ * órdenes y los certificados llegan en las fases siguientes.
  */
 import { and, eq } from "drizzle-orm";
 import { config as loadEnv } from "dotenv";
@@ -401,6 +402,9 @@ async function main() {
     studentDomain: "riberanorte.demo",
     pendingStudent: { company: "Comercial Ribera Norte S.A." },
   });
+
+  const { seedCourses } = await import("./seed-courses");
+  await seedCourses();
 
   console.log("Seed completo.");
   process.exit(0);

@@ -7,3 +7,5 @@ export * from "./categories";
 export * from "./audit-log";
 export * from "./rate-limits";
 export * from "./email-log";
+export * from "./courses";
+export * from "./enrollments";

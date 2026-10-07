@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "inteligencia-artificial-aplicada-a-la-pyme",
+  "status": "coming_soon",
+  "title": "Inteligencia artificial aplicada a la PyME",
+  "subtitle": "Qué podés automatizar hoy en tu empresa, sin ser técnico",
+  "description": "Un recorrido de casos reales para usar herramientas de IA en administración, ventas y producción, con foco en resultados medibles.",
+  "level": "inicial",
+  "language": "es-AR",
+  "durationMinutes": 300,
+  "suggestedCategory": {
+    "slug": "tecnologia-e-ia",
+    "name": "Tecnología e IA"
+  },
+  "tags": [
+    "inteligencia artificial",
+    "automatización",
+    "productividad"
+  ],
+  "cover": null,
+  "instructors": [],
+  "outcomes": [],
+  "audience": [],
+  "prerequisites": [],
+  "certificate": {
+    "enabled": true,
+    "hours": 5.0,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": null
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Contenido en preparación",
+      "summary": "Este curso se está produciendo.",
+      "lessons": [
+        {
+          "id": "m1-en-preparacion",
+          "type": "text",
+          "title": "Contenido en preparación",
+          "durationMinutes": 0,
+          "file": "lessons/en-preparacion.mdx"
+        }
+      ]
+    }
+  ]
+}

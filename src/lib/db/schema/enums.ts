@@ -24,3 +24,34 @@ export const memberStatus = pgEnum("member_status", [
 ]);
 
 export const companySource = pgEnum("company_source", ["roster", "self_declared", "admin"]);
+
+export const courseLevel = pgEnum("course_level", ["inicial", "intermedio", "avanzado"]);
+
+export const courseStatus = pgEnum("course_status", [
+  "draft",
+  "coming_soon",
+  "published",
+  "archived",
+]);
+
+export const lessonType = pgEnum("lesson_type", ["text", "video", "resource", "quiz", "exam"]);
+
+export const assessmentKind = pgEnum("assessment_kind", ["quiz", "exam"]);
+
+export const courseVisibility = pgEnum("course_visibility", ["public", "members_only", "hidden"]);
+
+export const enrollmentSource = pgEnum("enrollment_source", [
+  "purchase",
+  "seat_code",
+  "admin",
+  "free",
+]);
+
+export const enrollmentStatus = pgEnum("enrollment_status", [
+  "active",
+  "completed",
+  "expired",
+  "revoked",
+]);
+
+export const lessonProgressStatus = pgEnum("lesson_progress_status", ["started", "completed"]);

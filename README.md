@@ -14,12 +14,16 @@ Requisitos: Node 24+, [pnpm](https://pnpm.io) 12.6.0 (`corepack enable && corepa
 pnpm install
 cp .env.example .env.local   # completar DATABASE_URL / DATABASE_URL_UNPOOLED de Neon como mínimo
 
-pnpm dev                     # http://localhost:3000 (dominios *.localhost llegan en la Fase 1)
+pnpm dev                     # usar http://civa.localhost:3000 o http://ribera.localhost:3000 (una cámara por host)
 pnpm build
 pnpm lint
 pnpm typecheck
 pnpm test                    # vitest
 pnpm test:e2e                # playwright
+
+pnpm db:seed                 # datos de demo (idempotente)
+pnpm courses:validate        # valida content/courses/** contra el schema
+pnpm courses:sync            # sincroniza los cursos a la base (también corre en el build de Vercel)
 
 pnpm db:generate             # crea una migración a partir de src/lib/db/schema
 pnpm db:migrate              # aplica migraciones contra DATABASE_URL_UNPOOLED

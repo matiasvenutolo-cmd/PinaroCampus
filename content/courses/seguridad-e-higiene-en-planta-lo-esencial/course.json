@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "seguridad-e-higiene-en-planta-lo-esencial",
+  "status": "coming_soon",
+  "title": "Seguridad e higiene en planta: lo esencial",
+  "subtitle": "Los diez riesgos más comunes de una planta y cómo corregirlos",
+  "description": "Un curso práctico para que supervisores y encargados identifiquen y corrijan los riesgos más frecuentes de su planta, con listas de verificación listas para usar.",
+  "level": "intermedio",
+  "language": "es-AR",
+  "durationMinutes": 300,
+  "suggestedCategory": {
+    "slug": "seguridad-e-higiene",
+    "name": "Seguridad e higiene"
+  },
+  "tags": [
+    "seguridad",
+    "planta",
+    "riesgos"
+  ],
+  "cover": null,
+  "instructors": [],
+  "outcomes": [],
+  "audience": [],
+  "prerequisites": [],
+  "certificate": {
+    "enabled": true,
+    "hours": 5.0,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": null
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Contenido en preparación",
+      "summary": "Este curso se está produciendo.",
+      "lessons": [
+        {
+          "id": "m1-en-preparacion",
+          "type": "text",
+          "title": "Contenido en preparación",
+          "durationMinutes": 0,
+          "file": "lessons/en-preparacion.mdx"
+        }
+      ]
+    }
+  ]
+}

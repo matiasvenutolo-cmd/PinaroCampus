@@ -27,6 +27,9 @@ export async function SiteHeader({ tenant }: { tenant: Tenant }) {
         </Link>
 
         <nav className="flex items-center gap-4 text-sm">
+          <Link href="/cursos" className="text-muted-foreground hover:text-foreground">
+            Cursos
+          </Link>
           {session?.user ? (
             <>
               {membership?.role === "tenant_admin" && (

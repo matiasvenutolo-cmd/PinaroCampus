@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "exportar-por-primera-vez",
+  "status": "coming_soon",
+  "title": "Exportar por primera vez",
+  "subtitle": "Los pasos para vender tu producto afuera sin errores caros",
+  "description": "Una guía paso a paso para PyMEs que quieren dar su primer paso exportador: costos, documentación, logística y cobros.",
+  "level": "inicial",
+  "language": "es-AR",
+  "durationMinutes": 300,
+  "suggestedCategory": {
+    "slug": "comercio-exterior",
+    "name": "Comercio exterior"
+  },
+  "tags": [
+    "exportación",
+    "comercio exterior",
+    "logística"
+  ],
+  "cover": null,
+  "instructors": [],
+  "outcomes": [],
+  "audience": [],
+  "prerequisites": [],
+  "certificate": {
+    "enabled": true,
+    "hours": 5.0,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": null
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Contenido en preparación",
+      "summary": "Este curso se está produciendo.",
+      "lessons": [
+        {
+          "id": "m1-en-preparacion",
+          "type": "text",
+          "title": "Contenido en preparación",
+          "durationMinutes": 0,
+          "file": "lessons/en-preparacion.mdx"
+        }
+      ]
+    }
+  ]
+}

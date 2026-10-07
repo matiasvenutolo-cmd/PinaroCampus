@@ -15,6 +15,10 @@ export default async function SuperadminLayout({ children }: { children: React.R
           <Link href="/superadmin" className="font-semibold text-white">
             Pinaro · Superadmin
           </Link>
+          <nav className="flex gap-4 text-sm text-white">
+            <Link href="/superadmin" className="hover:underline">Cámaras</Link>
+            <Link href="/superadmin/cursos" className="hover:underline">Cursos</Link>
+          </nav>
         </div>
       </header>
       <main className="mx-auto w-full max-w-[1200px] flex-1 px-4 py-8">{children}</main>

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "slug": "liderazgo-para-mandos-medios",
+  "status": "coming_soon",
+  "title": "Liderazgo para mandos medios",
+  "subtitle": "Conducir equipos de planta sin perder la calma ni los resultados",
+  "description": "Herramientas concretas para supervisores y jefes de sector: dar indicaciones claras, resolver conflictos y sostener el ritmo de producción.",
+  "level": "inicial",
+  "language": "es-AR",
+  "durationMinutes": 240,
+  "suggestedCategory": {
+    "slug": "gestion-y-liderazgo",
+    "name": "Gestión y liderazgo"
+  },
+  "tags": [
+    "liderazgo",
+    "equipos",
+    "comunicación"
+  ],
+  "cover": null,
+  "instructors": [],
+  "outcomes": [],
+  "audience": [],
+  "prerequisites": [],
+  "certificate": {
+    "enabled": true,
+    "hours": 4.0,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": null
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Contenido en preparación",
+      "summary": "Este curso se está produciendo.",
+      "lessons": [
+        {
+          "id": "m1-en-preparacion",
+          "type": "text",
+          "title": "Contenido en preparación",
+          "durationMinutes": 0,
+          "file": "lessons/en-preparacion.mdx"
+        }
+      ]
+    }
+  ]
+}
