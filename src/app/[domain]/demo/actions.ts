@@ -7,10 +7,12 @@ import { getCurrentTenant } from "@/lib/tenant/context";
 
 export async function demoLoginAction(formData: FormData) {
   const tenant = await getCurrentTenant();
-  const role = formData.get("role") === "admin" ? "admin" : "student";
-  const email = role === "admin" ? `admin@${tenant.slug}.demo` : `alumno@${tenant.slug}.demo`;
+  const requested = formData.get("role");
+  const role = requested === "admin" ? "admin" : requested === "advanced" ? "advanced" : "student";
+  const prefix = role === "admin" ? "admin" : role === "advanced" ? "avanzado" : "alumno";
 
-  await createDemoSession(tenant, email);
+  await createDemoSession(tenant, `${prefix}@${tenant.slug}.demo`);
 
-  redirect(role === "admin" ? "/admin" : "/mi-campus");
+  // "Alumno con curso avanzado" (docs/09): cae directo en el examen final.
+  redirect(role === "admin" ? "/admin" : role === "advanced" ? "/aprender/eficiencia-energetica-pymes-industriales/cierre-examen-final" : "/mi-campus");
 }

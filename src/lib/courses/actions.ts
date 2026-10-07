@@ -10,6 +10,8 @@ import { forTenant } from "@/lib/db/tenant-scope";
 import { getUnitPrice } from "@/lib/pricing";
 import { getCurrentTenant } from "@/lib/tenant/context";
 
+import { maybeIssueCertificate } from "@/lib/certificates/issue";
+
 import { getCourseAccess } from "./access";
 import { getLessonByKey } from "./structure";
 
@@ -57,10 +59,12 @@ export async function completeLesson(input: z.infer<typeof completeSchema>): Pro
   if (!ctx) return { ok: false, error: "Sin acceso al curso" };
   const lesson = await getLessonByKey(ctx.access.tenantCourse.courseId, parsed.data.lessonKey);
   if (!lesson) return { ok: false, error: "Lección inexistente" };
-  // Los quizzes y el examen se completan al rendirlos (Fase 3), no a mano.
+  // Los quizzes y el examen se completan al rendirlos, no a mano.
   if (lesson.type === "quiz" || lesson.type === "exam") return { ok: false, error: "Esta lección se completa al rendirla" };
 
   const progressPct = await forTenant(ctx.tenant.id).progress.complete(ctx.enrollment.id, lesson.id);
+  // Si ya tenía el examen aprobado (p. ej. se agregó una lección después), completar la última emite el certificado.
+  if (progressPct === 100) await maybeIssueCertificate(ctx.tenant.id, ctx.enrollment.id);
   return { ok: true, progressPct: progressPct ?? 0 };
 }
 

@@ -21,7 +21,7 @@ pnpm typecheck
 pnpm test                    # vitest
 pnpm test:e2e                # playwright
 
-pnpm db:seed                 # datos de demo (idempotente)
+pnpm db:seed                 # datos de demo (idempotente; corre con --conditions=react-server por `server-only`)
 pnpm courses:validate        # valida content/courses/** contra el schema
 pnpm courses:sync            # sincroniza los cursos a la base (también corre en el build de Vercel)
 
@@ -48,6 +48,13 @@ pnpm db:studio
 | `docs/DECISIONES.md` | Decisiones tomadas durante la implementación que no estaban en la especificación. |
 | `.claude/commands/nuevo-curso.md` | Comando de Claude Code (`/nuevo-curso`) que convierte material crudo en un curso. |
 | `content/courses/eficiencia-energetica-pymes-industriales/` | Curso demo completo, listo para cargar (Fase 2). |
+
+## Evaluaciones y certificados
+
+- Los quizzes y el examen final se corrigen siempre en el servidor (`src/lib/assessments/`): el navegador recibe las preguntas sin las respuestas correctas ni las explicaciones.
+- El certificado se emite solo al cumplirse la regla `completion` del curso (`src/lib/certificates/issue.ts`), una única vez por inscripción. El PDF se genera bajo demanda en `/api/certificates/<código>/pdf` y la verificación pública vive en `/verificar/<código>`.
+- Cada cámara carga sus firmas y el texto de pie desde `/admin/certificados/configuracion` (la subida de la imagen de firma necesita `BLOB_READ_WRITE_TOKEN`; sin él se pega una URL `https`).
+- Para probar en la demo: `/demo` → "Alumno con curso avanzado" → rendir el examen → descargar el certificado → escanear el QR.
 
 ## Dominio de la demo
 

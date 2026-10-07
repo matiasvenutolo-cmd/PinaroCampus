@@ -14,6 +14,9 @@ export default async function AdminDashboardPage() {
       <Link href="/admin/cursos" className="mt-2 w-fit text-primary underline-offset-4 hover:underline">
         Cursos e inscripciones
       </Link>
+      <Link href="/admin/certificados" className="w-fit text-primary underline-offset-4 hover:underline">
+        Certificados
+      </Link>
     </div>
   );
 }

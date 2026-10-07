@@ -1,7 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
-import { eq } from "drizzle-orm";
+import { and, asc, desc, eq } from "drizzle-orm";
 
 import { db } from "@/lib/db";
 import { tenantDomains, tenants } from "@/lib/db/schema";
@@ -38,4 +38,18 @@ export const getTenantBySlug = cache(async (slug: string): Promise<Tenant | null
 export const getTenantById = cache(async (tenantId: string): Promise<Tenant | null> => {
   const rows = await db.select().from(tenants).where(eq(tenants.id, tenantId));
   return rows[0] ?? null;
+});
+
+/**
+ * Dominio con el que se arman los links en emails y certificados (docs/02:
+ * el `is_primary`). Si no hay ninguno marcado, el primero que se cargó.
+ */
+export const getPrimaryHost = cache(async (tenantId: string): Promise<string | null> => {
+  const rows = await db
+    .select({ hostname: tenantDomains.hostname })
+    .from(tenantDomains)
+    .where(and(eq(tenantDomains.tenantId, tenantId)))
+    .orderBy(desc(tenantDomains.isPrimary), asc(tenantDomains.createdAt))
+    .limit(1);
+  return rows[0]?.hostname ?? null;
 });

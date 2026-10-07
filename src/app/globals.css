@@ -182,3 +182,23 @@
     white-space: nowrap;
   }
 }
+
+/* Confeti de la pantalla de aprobación (src/components/assessment/confetti.tsx). */
+.confetti-piece {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+  0% { opacity: 1; translate: 0 0; }
+  100% { opacity: 0; translate: 0 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece { display: none; }
+}

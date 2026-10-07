@@ -8,6 +8,8 @@ import { LessonViewTracker } from "@/components/player/lesson-view-tracker";
 import { Temario } from "@/components/player/temario";
 import { TemarioDrawer } from "@/components/player/temario-drawer";
 import { buttonVariants } from "@/components/ui/button";
+import { getAssessmentById } from "@/lib/assessments/data";
+import { getAssessmentView } from "@/lib/assessments/service";
 import { requireMembership } from "@/lib/auth/permissions";
 import { getCourseAccess } from "@/lib/courses/access";
 import { flattenLessons, getCourseStructure } from "@/lib/courses/structure";
@@ -51,6 +53,17 @@ export default async function LessonPage({ params }: { params: Params }) {
   const canComplete = lesson.type !== "quiz" && lesson.type !== "exam";
   const examLesson = flat.find((l) => l.type === "exam");
   const allRequiredDone = enrollment.progressPct === 100;
+
+  let assessment: { view: Awaited<ReturnType<typeof getAssessmentView>>; nextHref: string | null } | null = null;
+  if ((lesson.type === "quiz" || lesson.type === "exam") && lesson.assessmentId) {
+    const row = await getAssessmentById(lesson.assessmentId);
+    if (row) {
+      assessment = {
+        view: await getAssessmentView({ tenantId: tenant.id, enrollment, assessment: row }),
+        nextHref: next ? `/aprender/${slug}/${next.key}` : null,
+      };
+    }
+  }
 
   const hrefFor = (key: string) => `/aprender/${slug}/${key}`;
   const temario = <Temario modules={structure} currentKey={lessonKey} completedIds={completedIds} hrefFor={hrefFor} />;
@@ -99,7 +112,7 @@ export default async function LessonPage({ params }: { params: Params }) {
             <h1 className="mt-1 mb-6 text-balance text-3xl font-semibold leading-tight">{lesson.title}</h1>
 
             <LessonViewTracker courseSlug={slug} lessonKey={lesson.key} />
-            <LessonBody courseSlug={slug} lesson={lesson} checklists={checklists} readOnly={false} examReady={allRequiredDone} />
+            <LessonBody courseSlug={slug} lesson={lesson} checklists={checklists} readOnly={false} assessment={assessment} />
 
             {allRequiredDone && examLesson && lesson.id !== examLesson.id ? (
               <div className="mt-10 flex items-center gap-3 rounded-xl border border-border p-4" style={{ background: "var(--primary-soft)" }}>

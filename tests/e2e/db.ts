@@ -72,13 +72,15 @@ export async function createTestStudent(options: {
   companyName?: string;
   memberStatus?: "none" | "pending" | "verified";
   enrollCourseSlug?: string;
+  /** Sin nombre ni apellido: prueba el pedido de nombre antes de emitir el certificado. */
+  withoutName?: boolean;
 }): Promise<{ userId: string; sessionToken: string }> {
   const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
   try {
     const [tenant] = await sql<{ id: string }[]>`select id from tenants where slug = ${options.tenantSlug}`;
     const [user] = await sql<{ id: string }[]>`
       insert into users (email, first_name, last_name, name)
-      values (${options.email}, 'Test', 'Alumno', 'Test Alumno')
+      values (${options.email}, ${options.withoutName ? null : "Test"}, ${options.withoutName ? null : "Alumno"}, ${options.withoutName ? null : "Test Alumno"})
       on conflict (email) do update set email = excluded.email
       returning id`;
     const company = options.companyName
@@ -191,6 +193,86 @@ export async function getChecklistState(
       join lessons l on l.id = lp.lesson_id
       where u.email = ${email} and t.slug = ${tenantSlug} and c.slug = ${courseSlug} and l.key = ${lessonKey}`;
     return row?.checked ?? [];
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Cantidad de certificados (vigentes o no) de un alumno en una cámara. */
+export async function countCertificates(email: string, tenantSlug: string): Promise<number> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [row] = await sql<{ total: number }[]>`
+      select count(*)::int as total from certificates c
+      join users u on u.id = c.user_id join tenants t on t.id = c.tenant_id
+      where u.email = ${email} and t.slug = ${tenantSlug}`;
+    return row?.total ?? 0;
+  } finally {
+    await sql.end();
+  }
+}
+
+export async function getActiveCertificateCode(email: string, tenantSlug: string): Promise<string | null> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [row] = await sql<{ code: string }[]>`
+      select c.code from certificates c
+      join users u on u.id = c.user_id join tenants t on t.id = c.tenant_id
+      where u.email = ${email} and t.slug = ${tenantSlug} and c.revoked_at is null`;
+    return row?.code ?? null;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Cantidad de intentos de examen de un alumno en un curso. */
+export async function countAttempts(email: string, tenantSlug: string, courseSlug: string): Promise<number> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [row] = await sql<{ total: number }[]>`
+      select count(*)::int as total from assessment_attempts a
+      join enrollments e on e.id = a.enrollment_id
+      join users u on u.id = e.user_id join tenants t on t.id = e.tenant_id join courses c on c.id = e.course_id
+      where u.email = ${email} and t.slug = ${tenantSlug} and c.slug = ${courseSlug}`;
+    return row?.total ?? 0;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Hace "viejos" los intentos enviados de un alumno, para saltear la espera entre intentos. */
+export async function ageAttempts(email: string, minutes: number): Promise<void> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    await sql`
+      update assessment_attempts set submitted_at = submitted_at - make_interval(mins => ${minutes})
+      where submitted_at is not null and enrollment_id in (
+        select e.id from enrollments e join users u on u.id = e.user_id where u.email = ${email})`;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Sesión de base de datos para un usuario que ya existe (p. ej. `admin@civa.demo`). */
+export async function createSessionFor(email: string): Promise<string> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [user] = await sql<{ id: string }[]>`select id from users where email = ${email}`;
+    const sessionToken = randomBytes(32).toString("hex");
+    await sql`insert into sessions (session_token, user_id, expires) values (${sessionToken}, ${user.id}, now() + interval '1 day')`;
+    return sessionToken;
+  } finally {
+    await sql.end();
+  }
+}
+
+export async function countAudit(action: string, entityCode: string): Promise<number> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [row] = await sql<{ total: number }[]>`
+      select count(*)::int as total from audit_log
+      where action = ${action} and (data->>'code' = ${entityCode} or data->>'oldCode' = ${entityCode})`;
+    return row?.total ?? 0;
   } finally {
     await sql.end();
   }

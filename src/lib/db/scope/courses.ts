@@ -152,6 +152,9 @@ export function courseScope(tenantId: string) {
     },
 
     enrollments: {
+      async findById(enrollmentId: string) {
+        return ownEnrollment(enrollmentId);
+      },
       async findForCourse(userId: string, courseId: string) {
         const [row] = await db
           .select()

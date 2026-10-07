@@ -25,6 +25,12 @@ export default async function DemoPage({ params }: { params: Promise<{ domain: s
           </Button>
         </form>
         <form action={demoLoginAction}>
+          <input type="hidden" name="role" value="advanced" />
+          <Button type="submit" size="lg" variant="outline">
+            Alumno con curso avanzado
+          </Button>
+        </form>
+        <form action={demoLoginAction}>
           <input type="hidden" name="role" value="admin" />
           <Button type="submit" size="lg" variant="outline">
             Entrar como admin de la cámara

@@ -1,9 +1,11 @@
 import { ClipboardCheck, Video as VideoIcon } from "lucide-react";
 
+import { AssessmentRunner } from "@/components/assessment/assessment-runner";
 import { DownloadButton } from "@/components/mdx/lesson-extras";
 import { LessonContent } from "@/components/mdx/lesson-content";
 import { readCourseFile } from "@/lib/courses/files";
 import type { StructureLesson } from "@/lib/courses/structure";
+import type { AssessmentView } from "@/lib/assessments/service";
 import { getVideoEmbedUrl } from "@/lib/courses/video";
 
 async function loadSource(courseSlug: string, contentRef: string | null) {
@@ -21,17 +23,28 @@ export async function LessonBody({
   lesson,
   checklists,
   readOnly,
-  examReady,
+  assessment,
   previewToken,
 }: {
   courseSlug: string;
   lesson: StructureLesson;
   checklists: Record<string, number[]>;
   readOnly: boolean;
-  examReady?: boolean;
+  /** Estado de la evaluación de esta lección (solo para el alumno inscripto). */
+  assessment?: { view: AssessmentView; nextHref: string | null } | null;
   previewToken?: string;
 }) {
   if (lesson.type === "quiz" || lesson.type === "exam") {
+    if (assessment && !readOnly) {
+      return (
+        <AssessmentRunner
+          courseSlug={courseSlug}
+          lessonKey={lesson.key}
+          initialView={assessment.view}
+          nextHref={assessment.nextHref}
+        />
+      );
+    }
     return (
       <div className="rounded-xl border border-border bg-card p-6 text-center">
         <ClipboardCheck className="mx-auto size-8 text-primary" aria-hidden />
@@ -39,9 +52,7 @@ export async function LessonBody({
           {lesson.type === "exam" ? "Examen final" : "Repaso del módulo"}
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
-          {lesson.type === "exam" && examReady
-            ? "Ya completaste todas las lecciones. Las evaluaciones se habilitan en la próxima actualización de la plataforma."
-            : "Las evaluaciones se habilitan en la próxima actualización de la plataforma."}
+          Las evaluaciones no se pueden rendir en la vista previa.
         </p>
       </div>
     );

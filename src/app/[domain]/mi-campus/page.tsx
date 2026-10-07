@@ -1,4 +1,4 @@
-import { GraduationCap } from "lucide-react";
+import { Download, GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -13,7 +13,7 @@ export const metadata = { title: "Mi campus" };
 
 type Item = Awaited<ReturnType<ReturnType<typeof forTenant>["enrollments"]["listForUser"]>>[number];
 
-function EnrollmentCard({ item }: { item: Item }) {
+function EnrollmentCard({ item, certificateCode }: { item: Item; certificateCode?: string }) {
   const completed = item.status === "completed";
   return (
     <li className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4">
@@ -41,9 +41,18 @@ function EnrollmentCard({ item }: { item: Item }) {
         </div>
         <p className="mt-1 text-xs text-muted-foreground">{completed ? "Completado" : `${item.progressPct}% completado`}</p>
       </div>
-      <Button asChild variant={completed ? "outline" : "default"} className="mt-auto w-full">
-        <Link href={`/aprender/${item.slug}`}>{completed ? "Repasar" : item.progressPct > 0 ? "Continuar" : "Empezar"}</Link>
-      </Button>
+      <div className="mt-auto flex flex-col gap-2">
+        {certificateCode ? (
+          <Button asChild className="w-full">
+            <a href={`/api/certificates/${certificateCode}/pdf`}>
+              <Download className="size-4" aria-hidden /> Descargar certificado
+            </a>
+          </Button>
+        ) : null}
+        <Button asChild variant={completed ? "outline" : "default"} className="w-full">
+          <Link href={`/aprender/${item.slug}`}>{completed ? "Repasar" : item.progressPct > 0 ? "Continuar" : "Empezar"}</Link>
+        </Button>
+      </div>
     </li>
   );
 }
@@ -54,14 +63,23 @@ export default async function MiCampusPage({ params }: { params: Promise<{ domai
   if (!tenant) notFound();
   const { user } = await requireMembership(tenant.id);
 
-  const items = await forTenant(tenant.id).enrollments.listForUser(user.id);
+  const scoped = forTenant(tenant.id);
+  const [items, certificateCodes] = await Promise.all([
+    scoped.enrollments.listForUser(user.id),
+    scoped.certificates.activeCodesForUser(user.id),
+  ]);
   const inProgress = items.filter((i) => i.status === "active");
   const done = items.filter((i) => i.status === "completed");
   const resume = inProgress.find((i) => i.lastLessonKey) ?? inProgress[0];
 
   return (
     <div className="mx-auto w-full max-w-[1200px] px-4 py-10">
-      <h1 className="text-2xl font-semibold">Hola, {user.name ?? user.email}</h1>
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h1 className="text-2xl font-semibold">Hola, {user.name ?? user.email}</h1>
+        <Link href="/mi-campus/certificados" className="text-sm text-primary underline-offset-4 hover:underline">
+          Mis certificados{certificateCodes.size > 0 ? ` (${certificateCodes.size})` : ""}
+        </Link>
+      </div>
 
       {items.length === 0 ? (
         <div className="mt-8 flex flex-col items-center gap-2 rounded-xl border border-dashed border-border p-10 text-center">
@@ -98,7 +116,7 @@ export default async function MiCampusPage({ params }: { params: Promise<{ domai
           {done.length > 0 ? (
             <section className="mt-8">
               <h2 className="mb-3 text-lg font-semibold">Completados</h2>
-              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{done.map((i) => <EnrollmentCard key={i.enrollmentId} item={i} />)}</ul>
+              <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{done.map((i) => <EnrollmentCard key={i.enrollmentId} item={i} certificateCode={certificateCodes.get(i.courseId)} />)}</ul>
             </section>
           ) : null}
         </>

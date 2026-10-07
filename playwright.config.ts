@@ -13,7 +13,7 @@ export default defineConfig({
   // El dev server compila cada ruta en la primera visita: sin esto los
   // timeouts por defecto (5 s) fallan en frío.
   timeout: 60_000,
-  expect: { timeout: 20_000 },
+  expect: { timeout: 45_000 },
   use: {
     trace: "on-first-retry",
   },

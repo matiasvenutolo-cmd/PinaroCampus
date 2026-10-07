@@ -55,3 +55,12 @@ export async function getLessonByKey(courseId: string, key: string) {
     .where(and(eq(lessons.courseId, courseId), eq(lessons.key, key), isNull(lessons.archivedAt)));
   return row ?? null;
 }
+
+/** La lección (quiz o examen) que muestra una evaluación. */
+export async function getLessonByAssessment(courseId: string, assessmentId: string) {
+  const [row] = await db
+    .select()
+    .from(lessons)
+    .where(and(eq(lessons.courseId, courseId), eq(lessons.assessmentId, assessmentId), isNull(lessons.archivedAt)));
+  return row ?? null;
+}

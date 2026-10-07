@@ -6,9 +6,13 @@
  */
 import { and, asc, eq, inArray, sql } from "drizzle-orm";
 
+import { drawAttempt } from "../src/lib/assessments/engine";
+import { maybeIssueCertificate } from "../src/lib/certificates/issue";
 import { syncAllCourses } from "../src/lib/courses/sync";
 import { db } from "../src/lib/db";
 import {
+  assessmentAttempts,
+  assessments,
   categories,
   courses,
   enrollments,
@@ -49,8 +53,20 @@ const DEMO_PRICES: Record<string, { member: number; nonMember: number; featured:
 };
 
 // % de avance de las inscripciones simuladas de CIVA (docs/09: 5 al 0-10%,
-// 8 al 20-60%, 4 al 70-99%; los 5 completados llegan con certificados en la Fase 3).
+// 8 al 20-60%, 4 al 70-99%; 5 completados con certificado; 1 con el examen desaprobado).
 const FILLER_PROGRESS = [0, 3, 5, 8, 10, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 95];
+
+// Aciertos sobre las 15 preguntas del examen (docs/09: notas entre 72 y 96).
+// 11/15 → 73, 12/15 → 80, 13/15 → 87, 14/15 → 93.
+const COMPLETED_STUDENTS = [
+  { correct: 11, daysAgo: 52 },
+  { correct: 12, daysAgo: 38 },
+  { correct: 13, daysAgo: 25 },
+  { correct: 14, daysAgo: 12 },
+  { correct: 13, daysAgo: 4 },
+];
+// Una persona con el examen desaprobado (9/15 → 60) y 2 intentos restantes.
+const FAILED_STUDENT = { correct: 9, daysAgo: 3 };
 
 export async function seedCourses() {
   const results = await syncAllCourses();
@@ -121,15 +137,31 @@ export async function seedCourses() {
     .where(and(eq(tenantMemberships.tenantId, civa.id), eq(tenantMemberships.role, "student")))
     .orderBy(asc(users.email));
   const byEmail = new Map(students.map((s) => [s.email, s.id]));
-  const fillers = students.filter((s) => !s.email.startsWith("alumno@") && !s.email.startsWith("avanzado@"));
+  // Solo los alumnos ficticios del seed (`*.demo`): cualquier cuenta real que haya
+  // entrado a una cámara (p. ej. el superadmin probando) queda afuera.
+  const fillers = students.filter(
+    (s) => s.email.endsWith(".demo") && !s.email.startsWith("alumno@") && !s.email.startsWith("avanzado@"),
+  );
 
-  const plan: { userId: string; pct: number }[] = [
+  const completedStart = FILLER_PROGRESS.length;
+  const failedIndex = completedStart + COMPLETED_STUDENTS.length;
+  const plan: { userId: string; pct: number; exam?: { correct: number; daysAgo: number; passes: boolean } }[] = [
     { userId: byEmail.get("alumno@civa.demo")!, pct: 40 },
     { userId: byEmail.get("avanzado@civa.demo")!, pct: 100 },
     ...FILLER_PROGRESS.map((pct, index) => ({ userId: fillers[index]!.id, pct })),
+    ...COMPLETED_STUDENTS.map((exam, index) => ({
+      userId: fillers[completedStart + index]!.id,
+      pct: 100,
+      exam: { ...exam, passes: true },
+    })),
+    { userId: fillers[failedIndex]!.id, pct: 100, exam: { ...FAILED_STUDENT, passes: false } },
   ];
+  const [finalExam] = await db
+    .select()
+    .from(assessments)
+    .where(and(eq(assessments.courseId, demoCourse.id), eq(assessments.key, "examen-final")));
 
-  for (const [index, { userId, pct }] of plan.entries()) {
+  for (const [index, { userId, pct, exam }] of plan.entries()) {
     const done = Math.min(required.length, Math.round((pct / 100) * required.length));
     const progressPct = required.length === 0 ? 0 : Math.round((done / required.length) * 100);
     const enrolledAt = daysAgo(88 - index * 4);
@@ -172,6 +204,17 @@ export async function seedCourses() {
           set: { status: "completed" },
         });
     }
+
+    if (exam && finalExam) {
+      await seedExamAttempt({
+        tenantId: civa.id,
+        enrollmentId: enrollment.id,
+        assessment: finalExam,
+        correct: exam.correct,
+        submittedAt: daysAgo(exam.daysAgo),
+        passes: exam.passes,
+      });
+    }
   }
 
   // Lista de espera: 12 entradas, la más pedida es IA aplicada a la PyME.
@@ -197,5 +240,70 @@ export async function seedCourses() {
         .values({ tenantId: civa.id, courseId: course.id, email: student.email, userId: student.id })
         .onConflictDoNothing();
     }
+  }
+}
+
+/**
+ * Un intento de examen ya corregido, con respuestas coherentes con la nota
+ * (las primeras `correct` preguntas bien y el resto mal), y el certificado si
+ * aprobó. Idempotente: el intento 1 se pisa y el certificado no se duplica.
+ */
+async function seedExamAttempt({
+  tenantId,
+  enrollmentId,
+  assessment,
+  correct,
+  submittedAt,
+  passes,
+}: {
+  tenantId: string;
+  enrollmentId: string;
+  assessment: typeof assessments.$inferSelect;
+  correct: number;
+  submittedAt: Date;
+  passes: boolean;
+}) {
+  const draw = drawAttempt(assessment.questions, {
+    drawCount: assessment.drawCount,
+    shuffleQuestions: assessment.shuffleQuestions,
+    shuffleOptions: assessment.shuffleOptions,
+  });
+  const byId = new Map(assessment.questions.map((q) => [q.id, q]));
+  const answers: Record<string, string[]> = {};
+  draw.questionIds.forEach((id, index) => {
+    const question = byId.get(id)!;
+    if (index < correct) {
+      answers[id] = question.correct;
+    } else {
+      const wrong = (question.type === "true_false" ? ["true", "false"] : (question.options ?? []).map((o) => o.id)).find(
+        (optionId) => !question.correct.includes(optionId),
+      );
+      if (wrong) answers[id] = [wrong];
+    }
+  });
+  const score = Math.round((100 * correct) / draw.questionIds.length);
+
+  await db
+    .insert(assessmentAttempts)
+    .values({
+      enrollmentId,
+      assessmentId: assessment.id,
+      attemptNumber: 1,
+      questionIds: draw.questionIds,
+      optionOrders: draw.optionOrders,
+      answers,
+      score,
+      passed: score >= (assessment.passingScore ?? 0),
+      startedAt: new Date(submittedAt.getTime() - 25 * 60_000),
+      submittedAt,
+      expiresAt: new Date(submittedAt.getTime() + 5 * 60_000),
+    })
+    .onConflictDoUpdate({
+      target: [assessmentAttempts.enrollmentId, assessmentAttempts.assessmentId, assessmentAttempts.attemptNumber],
+      set: { score, passed: score >= (assessment.passingScore ?? 0), answers, submittedAt },
+    });
+
+  if (passes) {
+    await maybeIssueCertificate(tenantId, enrollmentId, { sendEmail: false, issuedAt: submittedAt });
   }
 }

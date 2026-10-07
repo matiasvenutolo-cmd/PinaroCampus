@@ -9,3 +9,5 @@ export * from "./rate-limits";
 export * from "./email-log";
 export * from "./courses";
 export * from "./enrollments";
+export * from "./assessment-attempts";
+export * from "./certificates";

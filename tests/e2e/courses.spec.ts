@@ -212,13 +212,13 @@ test.describe("reproductor", () => {
     }
   });
 
-  test("los quizzes y el examen muestran un aviso hasta la Fase 3", async ({ page }) => {
+  test("los quizzes se rinden desde la lección y no tienen botón de completar a mano", async ({ page }) => {
     const email = `quiz-${RUN}@test.demo`;
     const { sessionToken } = await createTestStudent({ email, tenantSlug: "civa", enrollCourseSlug: COURSE });
     try {
       await loginAs(page, CIVA, sessionToken);
       await page.goto(`${CIVA}/aprender/${COURSE}/m1-repaso`);
-      await expect(page.getByText("Las evaluaciones se habilitan en la próxima actualización")).toBeVisible();
+      await expect(page.getByRole("button", { name: "Empezar el repaso" })).toBeVisible();
       await expect(page.getByRole("button", { name: "Marcar como completada" })).toHaveCount(0);
     } finally {
       await deleteTestUser(email);

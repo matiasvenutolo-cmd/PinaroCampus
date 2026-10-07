@@ -14,6 +14,9 @@ export function SiteFooter({ tenant }: { tenant: Tenant }) {
           <Link href="/legal/terminos" className="hover:text-foreground">
             Términos
           </Link>
+          <Link href="/verificar" className="hover:text-foreground">
+            Verificar un certificado
+          </Link>
           {tenant.websiteUrl && (
             <a href={tenant.websiteUrl} target="_blank" rel="noreferrer" className="hover:text-foreground">
               Sitio de la cámara

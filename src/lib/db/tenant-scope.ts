@@ -3,6 +3,8 @@
 import { and, eq } from "drizzle-orm";
 
 import { db } from "./index";
+import { assessmentScope } from "./scope/assessments";
+import { certificateScope } from "./scope/certificates";
 import { courseScope } from "./scope/courses";
 import { auditLog, categories, companies, tenantMemberships, users } from "./schema";
 
@@ -23,6 +25,8 @@ export function forTenant(tenantId: TenantId) {
   return {
     tenantId,
     ...courseScope(tenantId),
+    ...assessmentScope(tenantId),
+    ...certificateScope(tenantId),
 
     companies: {
       list() {

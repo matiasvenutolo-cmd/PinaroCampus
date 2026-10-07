@@ -5,6 +5,9 @@ import type { NextConfig } from "next";
 // Next que esos archivos viajan con cada función que los usa.
 const COURSE_CONTENT = ["./content/courses/**/*"];
 
+// El PDF del certificado lee las fuentes (y las firmas de la demo) del filesystem.
+const PDF_ASSETS = ["./src/lib/certificates/fonts/*", "./public/demo/*"];
+
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/[domain]/aprender/[slug]/[lessonKey]": COURSE_CONTENT,
@@ -12,6 +15,8 @@ const nextConfig: NextConfig = {
     "/api/course-files/[slug]/[...path]": COURSE_CONTENT,
     "/superadmin/cursos": COURSE_CONTENT,
     "/superadmin/cursos/[slug]": COURSE_CONTENT,
+    "/api/certificates/[code]/pdf": PDF_ASSETS,
+    "/[domain]/admin/certificados/configuracion/muestra": PDF_ASSETS,
   },
 };
 

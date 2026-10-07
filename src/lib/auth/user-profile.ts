@@ -15,3 +15,17 @@ type ProfileUpdate = Partial<
 export async function updateUserProfile(userId: string, data: ProfileUpdate) {
   await db.update(users).set(data).where(eq(users.id, userId));
 }
+
+export async function getUserProfile(userId: string) {
+  const [row] = await db
+    .select({
+      id: users.id,
+      email: users.email,
+      firstName: users.firstName,
+      lastName: users.lastName,
+      dni: users.dni,
+    })
+    .from(users)
+    .where(eq(users.id, userId));
+  return row ?? null;
+}

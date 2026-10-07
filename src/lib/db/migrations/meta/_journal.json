@@ -22,6 +22,13 @@
       "when": 1791319539183,
       "tag": "0002_loving_daredevil",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791368298858,
+      "tag": "0003_dusty_serpent_society",
+      "breakpoints": true
     }
   ]
 }

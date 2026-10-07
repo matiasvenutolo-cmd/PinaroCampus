@@ -18,7 +18,7 @@ import {
   type PaymentMethod,
 } from "../src/lib/db/schema";
 import { buildValidCuit } from "../src/lib/cuit";
-import { defaultTenantCertificateConfig } from "../src/lib/tenant/types";
+import type { TenantCertificateConfig } from "../src/lib/tenant/types";
 
 // `db` y `resolveMembershipForCuit` importan `src/env.ts` transitivamente, que
 // valida `process.env` apenas se evalúa el módulo. Como los imports estáticos
@@ -189,6 +189,7 @@ async function seedTenant({
   studentCount,
   studentDomain,
   pendingStudent,
+  certificateConfig,
 }: {
   slug: string;
   name: string;
@@ -208,6 +209,7 @@ async function seedTenant({
   studentCount: number;
   studentDomain: string;
   pendingStudent?: { company: string };
+  certificateConfig: TenantCertificateConfig;
 }) {
   const tenant = await upsertTenant({
     slug,
@@ -218,7 +220,7 @@ async function seedTenant({
     isDemo: true,
     theme: { primary: theme.primary, primaryForeground: "auto", accent: theme.accent, accentForeground: "auto", radius: 12 },
     homeContent: { heroTitle, heroSubtitle },
-    certificateConfig: defaultTenantCertificateConfig,
+    certificateConfig,
     memberValidationMode,
     collectionMode,
     platformFeeBps,
@@ -374,6 +376,14 @@ async function main() {
     adminEmail: "admin@civa.demo",
     studentCount: 25,
     studentDomain: "talleresbrisco.demo",
+    certificateConfig: {
+      signatories: [
+        { name: "Ing. Laura Benítez", role: "Presidenta", signatureUrl: "/demo/firma-laura-benitez.svg" },
+        { name: "Lic. Diego Salvatierra", role: "Coordinador de Capacitación", signatureUrl: "/demo/firma-diego-salvatierra.svg" },
+      ],
+      footerText: "Actividad de capacitación de la Cámara Industrial Valle Azul.",
+      showDni: true,
+    },
   });
 
   await seedTenant({
@@ -401,6 +411,10 @@ async function main() {
     studentCount: 8,
     studentDomain: "riberanorte.demo",
     pendingStudent: { company: "Comercial Ribera Norte S.A." },
+    certificateConfig: {
+      signatories: [{ name: "Lic. Marta Quiroga", role: "Presidenta", signatureUrl: "/demo/firma-laura-benitez.svg" }],
+      showDni: false,
+    },
   });
 
   const { seedCourses } = await import("./seed-courses");

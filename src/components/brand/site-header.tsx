@@ -40,6 +40,9 @@ export async function SiteHeader({ tenant }: { tenant: Tenant }) {
               <Link href="/mi-campus" className="text-muted-foreground hover:text-foreground">
                 Mi campus
               </Link>
+              <Link href="/mi-campus/certificados" className="hidden text-muted-foreground hover:text-foreground sm:inline">
+                Mis certificados
+              </Link>
               <form action={signOutAction}>
                 <Button type="submit" variant="ghost" size="sm">
                   Salir
