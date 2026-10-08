@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { requireUser } from "@/lib/auth/permissions";
+import { consumeReturnTo } from "@/lib/auth/return-to";
 import { updateUserProfile } from "@/lib/auth/user-profile";
 import { isValidCuit, normalizeCuit } from "@/lib/cuit";
 import { forTenant } from "@/lib/db/tenant-scope";
@@ -61,5 +62,6 @@ export async function completeOnboarding(formData: FormData) {
     acceptedTermsAt: new Date(),
   });
 
-  redirect("/mi-campus");
+  // Si venía de una compra o de un canje, vuelve ahí.
+  redirect((await consumeReturnTo()) ?? "/mi-campus");
 }

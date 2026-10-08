@@ -29,6 +29,13 @@
       "when": 1791368298858,
       "tag": "0003_dusty_serpent_society",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791412048392,
+      "tag": "0004_mysterious_misty_knight",
+      "breakpoints": true
     }
   ]
 }

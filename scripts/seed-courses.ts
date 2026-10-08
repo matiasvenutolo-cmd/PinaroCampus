@@ -1,7 +1,7 @@
 /**
- * Parte de la Fase 2 del seed (docs/09): categorías, cursos sincronizados y
- * asignados a las cámaras con precios, inscripciones con avance variado y
- * lista de espera. Se importa dinámicamente desde seed.ts, después de cargar
+ * Partes de las Fases 2 a 4 del seed (docs/09): categorías, cursos sincronizados
+ * y asignados a las cámaras con precios, inscripciones con avance variado,
+ * lista de espera, certificados y la actividad comercial (órdenes y vacantes). Se importa dinámicamente desde seed.ts, después de cargar
  * `.env.local` (importa `src/env.ts` transitivamente).
  */
 import { and, asc, eq, inArray, sql } from "drizzle-orm";
@@ -15,9 +15,15 @@ import {
   assessments,
   categories,
   courses,
+  companies,
   enrollments,
   lessonProgress,
   lessons,
+  orderCounters,
+  orderItems,
+  orders,
+  payments,
+  seatCodes,
   tenantCourses,
   tenantMemberships,
   tenants,
@@ -169,6 +175,8 @@ export async function seedCourses() {
     const lastViewed = daysAgo(1 + index * 2);
     const lastLesson = done > 0 ? required[done - 1] : null;
 
+    // El seed no pisa nada de lo que ya existe (otra corrida, o un alumno real que
+    // pasó por la demo): una inscripción existente se deja tal cual.
     const [enrollment] = await db
       .insert(enrollments)
       .values({
@@ -181,11 +189,9 @@ export async function seedCourses() {
         lastLessonId: lastLesson?.id ?? null,
         enrolledAt,
       })
-      .onConflictDoUpdate({
-        target: [enrollments.tenantId, enrollments.userId, enrollments.courseId],
-        set: { progressPct, lastLessonId: lastLesson?.id ?? null, enrolledAt },
-      })
+      .onConflictDoNothing()
       .returning({ id: enrollments.id });
+    if (!enrollment) continue;
 
     if (done > 0) {
       await db
@@ -241,6 +247,8 @@ export async function seedCourses() {
         .onConflictDoNothing();
     }
   }
+
+  await seedCommerce({ tenantId: civa.id, courseId: demoCourse.id, tenantCourseId: tenantCourse.id });
 }
 
 /**
@@ -305,5 +313,189 @@ async function seedExamAttempt({
 
   if (passes) {
     await maybeIssueCertificate(tenantId, enrollmentId, { sendEmail: false, issuedAt: submittedAt });
+  }
+}
+
+// ---- Fase 4: actividad comercial de CIVA (docs/09) ----
+
+const SEED_NOTE = "seed";
+const MEMBER_PRICE_CENTS = 4_500_000;
+const CIVA_FEE_BPS = 3000;
+
+async function seedCommerce({ tenantId, courseId, tenantCourseId }: { tenantId: string; courseId: string; tenantCourseId: string }) {
+  const [already] = await db.select({ id: orders.id }).from(orders).where(and(eq(orders.tenantId, tenantId), eq(orders.notes, SEED_NOTE))).limit(1);
+  if (already) return;
+
+  const [tenant] = await db.select().from(tenants).where(eq(tenants.id, tenantId));
+  const [course] = await db.select().from(courses).where(eq(courses.id, courseId));
+  const [admin] = await db.select().from(users).where(eq(users.email, "admin@civa.demo"));
+  const companyRows = await db.select().from(companies).where(eq(companies.tenantId, tenantId));
+  const byName = (name: string) => companyRows.find((c) => c.legalName === name)!;
+
+  // Alumnos de relleno (`*.demo`) con su inscripción al curso, para etiquetar cómo llegaron.
+  const rows = await db
+    .select({ userId: users.id, email: users.email, enrollmentId: enrollments.id, pct: enrollments.progressPct, source: enrollments.source, enrolledAt: enrollments.enrolledAt, companyId: tenantMemberships.companyId })
+    .from(enrollments)
+    .innerJoin(users, eq(users.id, enrollments.userId))
+    .innerJoin(tenantMemberships, and(eq(tenantMemberships.userId, users.id), eq(tenantMemberships.tenantId, tenantId)))
+    .where(and(eq(enrollments.tenantId, tenantId), eq(enrollments.courseId, courseId), eq(enrollments.source, "free")))
+    .orderBy(asc(users.email));
+  const fillers = rows.filter((r) => r.email.endsWith(".demo") && !r.email.startsWith("alumno@") && !r.email.startsWith("avanzado@"));
+  const partial = fillers.filter((r) => r.pct > 0 && r.pct < 100);
+  const redeemers = partial.slice(0, 9);
+  const buyers = fillers.filter((r) => !redeemers.includes(r)).slice(0, 14);
+
+  async function newOrder(data: {
+    buyerUserId: string;
+    companyId: string | null;
+    type: "individual" | "seat_pack";
+    quantity: number;
+    status: "paid" | "awaiting_payment" | "failed" | "expired";
+    provider: "mock" | "manual";
+    createdAt: Date;
+  }) {
+    const number = await nextOrderNumber();
+    const total = MEMBER_PRICE_CENTS * data.quantity;
+    const paid = data.status === "paid";
+    const [order] = await db
+      .insert(orders)
+      .values({
+        tenantId,
+        buyerUserId: data.buyerUserId,
+        companyId: data.companyId,
+        number,
+        type: data.type,
+        status: data.status,
+        pricingTier: "member",
+        subtotalCents: total,
+        totalCents: total,
+        platformFeeCents: Math.round((total * CIVA_FEE_BPS) / 10_000),
+        collectionMode: tenant.collectionMode,
+        paymentProvider: data.provider,
+        expiresAt: new Date(data.createdAt.getTime() + (data.provider === "manual" ? 7 : 3) * DAY),
+        paidAt: paid ? new Date(data.createdAt.getTime() + 5 * 60_000) : null,
+        fulfilledAt: paid ? new Date(data.createdAt.getTime() + 5 * 60_000) : null,
+        notes: SEED_NOTE,
+        createdAt: data.createdAt,
+        updatedAt: data.createdAt,
+      })
+      .returning();
+    await db.insert(orderItems).values({
+      orderId: order.id,
+      tenantCourseId,
+      courseId,
+      courseTitle: course.title,
+      quantity: data.quantity,
+      unitPriceCents: MEMBER_PRICE_CENTS,
+      totalCents: total,
+    });
+    await db.insert(payments).values({
+      tenantId,
+      orderId: order.id,
+      provider: data.provider,
+      externalId: data.provider === "mock" ? `mock_seed_${number}` : null,
+      externalReference: order.id,
+      status: paid ? "approved" : data.status === "failed" ? "rejected" : "pending",
+      amountCents: total,
+      raw: { seed: true },
+      createdAt: data.createdAt,
+      updatedAt: data.createdAt,
+    });
+    return order;
+  }
+
+  async function nextOrderNumber() {
+    const [row] = await db
+      .insert(orderCounters)
+      .values({ tenantId, lastNumber: 1 })
+      .onConflictDoUpdate({ target: orderCounters.tenantId, set: { lastNumber: sql`${orderCounters.lastNumber} + 1` } })
+      .returning({ n: orderCounters.lastNumber });
+    return `${tenant.shortName.toUpperCase()}-${String(row.n).padStart(6, "0")}`;
+  }
+
+  // 14 compras individuales pagadas con el pago simulado, repartidas en los últimos 90 días.
+  for (const [index, buyer] of buyers.entries()) {
+    const order = await newOrder({
+      buyerUserId: buyer.userId,
+      companyId: buyer.companyId,
+      type: "individual",
+      quantity: 1,
+      status: "paid",
+      provider: "mock",
+      createdAt: new Date(buyer.enrolledAt.getTime() - 5 * 60_000 + index * 0),
+    });
+    await db.update(enrollments).set({ source: "purchase", orderId: order.id }).where(eq(enrollments.id, buyer.enrollmentId));
+  }
+
+  // Tres personas más con su orden sin completar: transferencia pendiente (hace 2 días), rechazada y vencida.
+  const extras: { email: string; first: string; last: string; status: "awaiting_payment" | "failed" | "expired"; provider: "manual" | "mock"; ago: number }[] = [
+    { email: "transferencia@civa.demo", first: "Marcos", last: "Ibarra", status: "awaiting_payment", provider: "manual", ago: 2 },
+    { email: "rechazada@civa.demo", first: "Silvina", last: "Cabrera", status: "failed", provider: "mock", ago: 6 },
+    { email: "vencida@civa.demo", first: "Gabriel", last: "Duarte", status: "expired", provider: "mock", ago: 12 },
+  ];
+  for (const extra of extras) {
+    const [user] = await db
+      .insert(users)
+      .values({ email: extra.email, firstName: extra.first, lastName: extra.last, name: `${extra.first} ${extra.last}` })
+      .onConflictDoUpdate({ target: users.email, set: { firstName: extra.first, lastName: extra.last, name: `${extra.first} ${extra.last}` } })
+      .returning();
+    await db
+      .insert(tenantMemberships)
+      .values({ tenantId, userId: user.id, role: "student", onboardedAt: new Date(), acceptedTermsAt: new Date() })
+      .onConflictDoNothing();
+    await newOrder({ buyerUserId: user.id, companyId: null, type: "individual", quantity: 1, status: extra.status, provider: extra.provider, createdAt: daysAgo(extra.ago) });
+  }
+
+  // Paquete de 10 vacantes de Fundición Los Aromos: 6 canjeadas (avances distintos), 2 enviadas, 2 disponibles.
+  const aromos = byName("Fundición Los Aromos S.R.L.");
+  const aromosBuyer = fillers.find((f) => f.companyId === aromos.id) ?? buyers[0];
+  const pack = await newOrder({ buyerUserId: aromosBuyer.userId, companyId: aromos.id, type: "seat_pack", quantity: 10, status: "paid", provider: "mock", createdAt: daysAgo(40) });
+  await seedSeatCodes({ orderId: pack.id, companyId: aromos.id, createdBy: aromosBuyer.userId, total: 10, redeemers: redeemers.slice(0, 6), sent: 2, sentDomain: "losaromos.demo" });
+
+  // Paquete de 5 creado por la cámara, sin orden, para Metalmecánica Quintana: 3 canjeadas.
+  const quintana = byName("Metalmecánica Quintana Hnos.");
+  await seedSeatCodes({ orderId: null, companyId: quintana.id, createdBy: admin.id, total: 5, redeemers: redeemers.slice(6, 9), sent: 0, sentDomain: "quintanahnos.demo" });
+
+  async function seedSeatCodes(data: { orderId: string | null; companyId: string; createdBy: string; total: number; redeemers: typeof redeemers; sent: number; sentDomain: string }) {
+    const alphabet = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+    const make = (seed: number) => {
+      let n = seed * 7919 + 104729;
+      let out = "";
+      for (let i = 0; i < 8; i++) {
+        n = (n * 1103515245 + 12345) % 2147483648;
+        out += alphabet[n % alphabet.length];
+        if (i === 3) out += "-";
+      }
+      return out;
+    };
+    const base = data.orderId ? 1000 : 2000;
+    for (let i = 0; i < data.total; i++) {
+      const redeemer = data.redeemers[i];
+      const sentTo = !redeemer && i < data.redeemers.length + data.sent ? `empleado${i}@${data.sentDomain}` : null;
+      const [code] = await db
+        .insert(seatCodes)
+        .values({
+          tenantId,
+          courseId,
+          tenantCourseId,
+          orderId: data.orderId,
+          companyId: data.companyId,
+          code: make(base + i),
+          status: redeemer ? "redeemed" : sentTo ? "sent" : "available",
+          sentToEmail: redeemer ? `${redeemer.email}` : sentTo,
+          sentAt: redeemer || sentTo ? daysAgo(30) : null,
+          redeemedByUserId: redeemer?.userId ?? null,
+          redeemedAt: redeemer ? daysAgo(20 - i) : null,
+          createdByUserId: data.createdBy,
+          createdAt: daysAgo(40),
+        })
+        .onConflictDoNothing()
+        .returning();
+      if (code && redeemer) {
+        await db.update(enrollments).set({ source: "seat_code", seatCodeId: code.id }).where(eq(enrollments.id, redeemer.enrollmentId));
+        // La empresa del comprador queda asociada a quien canjeó.
+        await db.update(tenantMemberships).set({ companyId: data.companyId }).where(and(eq(tenantMemberships.tenantId, tenantId), eq(tenantMemberships.userId, redeemer.userId)));
+      }
+    }
   }
 }

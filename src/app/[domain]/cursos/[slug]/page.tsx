@@ -67,7 +67,6 @@ export default async function CourseDetailPage({
     loggedIn: Boolean(session?.user),
     enrolled: Boolean(enrollment),
     progressPct: enrollment?.progressPct ?? 0,
-    contactEmail: tenant.contactEmail,
     error,
     waitlistState,
     viewerEmail: viewer?.user.email ?? "",

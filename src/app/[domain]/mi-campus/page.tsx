@@ -76,9 +76,17 @@ export default async function MiCampusPage({ params }: { params: Promise<{ domai
     <div className="mx-auto w-full max-w-[1200px] px-4 py-10">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
         <h1 className="text-2xl font-semibold">Hola, {user.name ?? user.email}</h1>
-        <Link href="/mi-campus/certificados" className="text-sm text-primary underline-offset-4 hover:underline">
-          Mis certificados{certificateCodes.size > 0 ? ` (${certificateCodes.size})` : ""}
-        </Link>
+        <div className="flex gap-4 text-sm">
+          <Link href="/mi-campus/certificados" className="text-primary underline-offset-4 hover:underline">
+            Mis certificados{certificateCodes.size > 0 ? ` (${certificateCodes.size})` : ""}
+          </Link>
+          <Link href="/mis-compras" className="text-primary underline-offset-4 hover:underline">
+            Mis compras
+          </Link>
+          <Link href="/canjear" className="text-primary underline-offset-4 hover:underline">
+            Canjear un código
+          </Link>
+        </div>
       </div>
 
       {items.length === 0 ? (

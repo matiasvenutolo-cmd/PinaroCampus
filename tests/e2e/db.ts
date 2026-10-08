@@ -44,6 +44,12 @@ export async function getMembershipOf(
 export async function deleteTestUser(email: string): Promise<void> {
   const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
   try {
+    // Compras y vacantes referencian al usuario con `on delete restrict`: primero lo suyo.
+    await sql`
+      delete from seat_codes
+      where created_by_user_id in (select id from users where email = ${email})
+         or order_id in (select o.id from orders o join users u on u.id = o.buyer_user_id where u.email = ${email})`;
+    await sql`delete from orders where buyer_user_id in (select id from users where email = ${email})`;
     await sql`delete from users where email = ${email}`;
   } finally {
     await sql.end();
@@ -273,6 +279,83 @@ export async function countAudit(action: string, entityCode: string): Promise<nu
       select count(*)::int as total from audit_log
       where action = ${action} and (data->>'code' = ${entityCode} or data->>'oldCode' = ${entityCode})`;
     return row?.total ?? 0;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Estado de una orden por número (para los e2e de compras). */
+export async function getOrderByEmail(email: string, tenantSlug: string) {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const rows = await sql<{ id: string; number: string; status: string; total_cents: string; type: string; fulfilled: boolean; codes: number }[]>`
+      select o.id, o.number, o.status, o.total_cents::text, o.type, (o.fulfilled_at is not null) as fulfilled,
+        (select count(*)::int from seat_codes sc where sc.order_id = o.id) as codes
+      from orders o join users u on u.id = o.buyer_user_id join tenants t on t.id = o.tenant_id
+      where u.email = ${email} and t.slug = ${tenantSlug} order by o.created_at desc`;
+    return rows.map((r) => ({ id: r.id, number: r.number, status: r.status, totalCents: Number(r.total_cents), type: r.type, fulfilled: r.fulfilled, codes: r.codes }));
+  } finally {
+    await sql.end();
+  }
+}
+
+export async function countEmailsTo(email: string): Promise<number> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    const [row] = await sql<{ total: number }[]>`select count(*)::int as total from email_log where to_email = ${email}`;
+    return row?.total ?? 0;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Código de vacante disponible de una orden (para canjearlo en un e2e). */
+export async function getSeatCodes(orderId: string) {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    return await sql<{ code: string; status: string; sent_to_email: string | null }[]>`
+      select code, status, sent_to_email from seat_codes where order_id = ${orderId} order by code`;
+  } finally {
+    await sql.end();
+  }
+}
+
+/** Deja el pedido de socio de un alumno de prueba como `pending` (para probar la aprobación). */
+export async function setMemberStatus(email: string, tenantSlug: string, status: "none" | "pending" | "verified" | "rejected") {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    await sql`
+      update tenant_memberships set member_status = ${status}
+      where user_id in (select id from users where email = ${email}) and tenant_id in (select id from tenants where slug = ${tenantSlug})`;
+  } finally {
+    await sql.end();
+  }
+}
+
+export async function deleteCompanyByName(tenantSlug: string, legalName: string): Promise<void> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    await sql`delete from companies where legal_name = ${legalName} and tenant_id in (select id from tenants where slug = ${tenantSlug})`;
+  } finally {
+    await sql.end();
+  }
+}
+
+/**
+ * El alumno de la demo (`alumno@civa.demo`) es compartido: cada test que abre
+ * lecciones con esa cuenta mueve su "dónde seguir". Lo devuelve a la última
+ * lección que tiene completada, que es como lo deja el seed.
+ */
+export async function resetDemoStudentPosition(email = "alumno@civa.demo", tenantSlug = "civa"): Promise<void> {
+  const sql = postgres(process.env.DATABASE_URL_UNPOOLED!, { max: 1 });
+  try {
+    await sql`
+      update enrollments set last_lesson_id = (
+        select l.id from lesson_progress lp join lessons l on l.id = lp.lesson_id
+        where lp.enrollment_id = enrollments.id and lp.status = 'completed'
+        order by l.sort_order desc limit 1)
+      where user_id in (select id from users where email = ${email})
+        and tenant_id in (select id from tenants where slug = ${tenantSlug})`;
   } finally {
     await sql.end();
   }

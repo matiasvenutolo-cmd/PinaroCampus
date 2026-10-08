@@ -4,7 +4,8 @@ import { CoursePrice } from "@/components/catalog/course-price";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { enrollInCourse, joinWaitlist } from "@/lib/courses/actions";
+import { joinWaitlist } from "@/lib/courses/actions";
+import { startPurchase } from "@/lib/payments/actions";
 import type { CatalogCourse } from "@/lib/db/scope/courses";
 import type { PricingTier } from "@/lib/pricing";
 
@@ -12,7 +13,8 @@ const ERRORS: Record<string, string> = {
   "no-disponible": "Este curso no está disponible en este momento.",
   "inscripcion-cerrada": "La inscripción a este curso está cerrada.",
   "solo-socios": "Este curso es solo para socios verificados de la cámara.",
-  "pago-pendiente": "El pago online todavía no está habilitado. Escribinos y te inscribimos a mano.",
+  "ya-inscripto": "Ya estás inscripto en este curso.",
+  "orden-no-disponible": "Esa orden ya no se puede pagar. Empezá de nuevo desde el curso.",
 };
 
 /** Estado de acción de un curso: continuar, inscribirse gratis, esperar el pago, lista de espera. */
@@ -23,7 +25,6 @@ export function CourseCta({
   loggedIn,
   enrolled,
   progressPct,
-  contactEmail,
   error,
   waitlistState,
   viewerEmail,
@@ -35,18 +36,17 @@ export function CourseCta({
   loggedIn: boolean;
   enrolled: boolean;
   progressPct: number;
-  contactEmail: string;
   error?: string;
   waitlistState: "ok" | "email-invalido" | "ya-anotado" | null;
   viewerEmail: string;
   variant: "card" | "bar";
 }) {
   const comingSoon = course.status === "coming_soon";
-  const price = tier === "member" ? course.priceMemberCents : course.priceNonMemberCents;
   const membersOnlyBlocked = course.visibility === "members_only" && tier !== "member";
 
   let action: React.ReactNode;
   let note: React.ReactNode = null;
+  let secondary: React.ReactNode = null;
 
   if (enrolled) {
     action = (
@@ -85,20 +85,21 @@ export function CourseCta({
     note = ERRORS["inscripcion-cerrada"];
   } else if (membersOnlyBlocked) {
     note = ERRORS["solo-socios"];
-  } else if (price > 0) {
-    action = (
-      <Button size="lg" className="h-10 w-full" disabled>
-        Inscribirme
-      </Button>
-    );
-    note = "El pago online se habilita pronto. Mientras tanto, escribinos a " + contactEmail + " y te inscribimos.";
   } else {
     action = (
-      <form action={enrollInCourse.bind(null, course.slug)}>
+      <form action={startPurchase.bind(null, course.slug)}>
         <Button type="submit" size="lg" className="h-10 w-full">
           {loggedIn ? "Inscribirme" : "Ingresar e inscribirme"}
         </Button>
       </form>
+    );
+    secondary = (
+      <Link
+        href={`/empresas/comprar?curso=${course.slug}`}
+        className="text-center text-sm font-medium text-primary underline-offset-4 hover:underline"
+      >
+        Comprar para mi equipo
+      </Link>
     );
   }
 
@@ -127,6 +128,7 @@ export function CourseCta({
       {priceBlock}
       {errorText ? <p role="alert" className="text-sm text-danger">{errorText}</p> : null}
       {action}
+      {secondary}
       {note ? <p className="text-sm text-muted-foreground">{note}</p> : null}
     </div>
   );

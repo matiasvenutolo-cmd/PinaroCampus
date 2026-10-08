@@ -55,3 +55,33 @@ export const enrollmentStatus = pgEnum("enrollment_status", [
 ]);
 
 export const lessonProgressStatus = pgEnum("lesson_progress_status", ["started", "completed"]);
+
+// ---- Comercial (Fase 4) ----
+
+export const orderType = pgEnum("order_type", ["individual", "seat_pack"]);
+
+export const orderStatus = pgEnum("order_status", [
+  "pending",
+  "awaiting_payment",
+  "paid",
+  "failed",
+  "cancelled",
+  "expired",
+  "refunded",
+]);
+
+export const pricingTier = pgEnum("pricing_tier", ["member", "non_member"]);
+
+export const paymentProviderEnum = pgEnum("payment_provider", ["mock", "manual", "mercadopago"]);
+
+export const paymentStatus = pgEnum("payment_status", [
+  "created",
+  "pending",
+  "in_process",
+  "approved",
+  "rejected",
+  "cancelled",
+  "refunded",
+]);
+
+export const seatCodeStatus = pgEnum("seat_code_status", ["available", "sent", "redeemed", "revoked"]);

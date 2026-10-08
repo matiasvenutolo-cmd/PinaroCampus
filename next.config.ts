@@ -9,6 +9,9 @@ const COURSE_CONTENT = ["./content/courses/**/*"];
 const PDF_ASSETS = ["./src/lib/certificates/fonts/*", "./public/demo/*"];
 
 const nextConfig: NextConfig = {
+  // La importación del padrón reenvía el CSV (hasta 1 MB) al confirmar.
+  experimental: { serverActions: { bodySizeLimit: "2mb" } },
+
   outputFileTracingIncludes: {
     "/[domain]/aprender/[slug]/[lessonKey]": COURSE_CONTENT,
     "/preview/[slug]/[lessonKey]": COURSE_CONTENT,

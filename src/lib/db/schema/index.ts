@@ -11,3 +11,4 @@ export * from "./courses";
 export * from "./enrollments";
 export * from "./assessment-attempts";
 export * from "./certificates";
+export * from "./commerce";

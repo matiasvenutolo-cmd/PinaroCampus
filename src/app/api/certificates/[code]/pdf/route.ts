@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth/config";
 import { normalizeCertificateCode } from "@/lib/certificates/code";
 import { renderCertificatePdf } from "@/lib/certificates/render";
 import { forTenant } from "@/lib/db/tenant-scope";
+import { redirectToPath } from "@/lib/tenant/redirect";
 import { lookupCertificateByCode } from "@/lib/db/scope/certificates";
 
 export const runtime = "nodejs";
@@ -14,13 +15,13 @@ export const runtime = "nodejs";
  * Revocado → 410. El permiso se decide con el dueño del certificado, no con el
  * host del request (así el link sirve desde cualquier dominio de la cámara).
  */
-export async function GET(request: Request, { params }: { params: Promise<{ code: string }> }) {
+export async function GET(_request: Request, { params }: { params: Promise<{ code: string }> }) {
   const code = normalizeCertificateCode((await params).code);
   if (!code) return new NextResponse("No encontrado", { status: 404 });
 
   const session = await auth();
   if (!session?.user?.id) {
-    return NextResponse.redirect(new URL("/ingresar", request.url));
+    return redirectToPath("/ingresar");
   }
 
   const found = await lookupCertificateByCode(code);

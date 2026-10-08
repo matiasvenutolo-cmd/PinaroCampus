@@ -142,6 +142,7 @@ test.describe("examen final y certificado", () => {
       // Anónimo no baja el PDF.
       const anonPdf = await anonymous.request.get(`${CIVA}/api/certificates/${code}/pdf`, { maxRedirects: 0 });
       expect([302, 307, 308]).toContain(anonPdf.status());
+      expect(anonPdf.headers().location).toBe(`${CIVA}/ingresar`);
 
       // El admin lo revoca desde el panel: la verificación dice "Revocado" y el PDF da 410.
       const admin = await createSessionFor("admin@civa.demo");

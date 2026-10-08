@@ -1,12 +1,13 @@
 // Sin `server-only`: a propósito, para que scripts/seed.ts pueda reusar estos
 // helpers fuera del bundler de Next (donde ese guard siempre tira error).
-import { and, eq } from "drizzle-orm";
+import { and, asc, count, eq, ilike, or, sql } from "drizzle-orm";
 
 import { db } from "./index";
 import { assessmentScope } from "./scope/assessments";
 import { certificateScope } from "./scope/certificates";
+import { orderScope } from "./scope/orders";
 import { courseScope } from "./scope/courses";
-import { auditLog, categories, companies, tenantMemberships, users } from "./schema";
+import { auditLog, categories, companies, enrollments, tenantMemberships, users } from "./schema";
 
 export type TenantId = string;
 
@@ -27,6 +28,7 @@ export function forTenant(tenantId: TenantId) {
     ...courseScope(tenantId),
     ...assessmentScope(tenantId),
     ...certificateScope(tenantId),
+    ...orderScope(tenantId),
 
     companies: {
       list() {
@@ -52,6 +54,101 @@ export function forTenant(tenantId: TenantId) {
           .values({ ...data, tenantId })
           .returning()
           .then((rows) => rows[0]);
+      },
+      update(id: string, data: Partial<Omit<typeof companies.$inferInsert, "tenantId" | "id">>) {
+        return db
+          .update(companies)
+          .set(data)
+          .where(and(eq(companies.tenantId, tenantId), eq(companies.id, id)))
+          .returning()
+          .then((rows) => rows[0] ?? null);
+      },
+      /** Marca una empresa como socia (al aprobar a alguien de ella). */
+      async markMember(id: string) {
+        await db
+          .update(companies)
+          .set({ isMember: true, memberSince: sql`coalesce(${companies.memberSince}, current_date)` })
+          .where(and(eq(companies.tenantId, tenantId), eq(companies.id, id)));
+      },
+      /** Padrón con cuántas personas y cuántas inscripciones tiene cada empresa; búsqueda por razón social, fantasía o CUIT. */
+      listWithStats(q?: string) {
+        const search = q?.trim();
+        const like = search ? `%${search.replace(/[\\%_]/g, (c) => `\\${c}`)}%` : null;
+        return db
+          .select({
+            id: companies.id,
+            cuit: companies.cuit,
+            legalName: companies.legalName,
+            tradeName: companies.tradeName,
+            isMember: companies.isMember,
+            memberSince: companies.memberSince,
+            emailDomains: companies.emailDomains,
+            source: companies.source,
+            people: sql<number>`(select count(*)::int from ${tenantMemberships} tm where tm.company_id = "companies"."id" and tm.tenant_id = ${tenantId})`,
+            enrolled: sql<number>`(select count(*)::int from ${enrollments} e join ${tenantMemberships} tm on tm.user_id = e.user_id and tm.tenant_id = e.tenant_id where tm.company_id = "companies"."id" and e.tenant_id = ${tenantId})`,
+          })
+          .from(companies)
+          .where(
+            and(
+              eq(companies.tenantId, tenantId),
+              like
+                ? or(ilike(companies.legalName, like), ilike(companies.tradeName, like), ilike(companies.cuit, like))
+                : undefined,
+            ),
+          )
+          .orderBy(asc(companies.legalName));
+      },
+      /**
+       * Importación del padrón (CSV): crea las empresas nuevas y actualiza las
+       * que ya existen por CUIT. Devuelve cuántas de cada una.
+       */
+      async importRoster(
+        rows: {
+          cuit: string;
+          legalName: string;
+          tradeName: string | null;
+          isMember: boolean;
+          emailDomains: string[];
+        }[],
+      ) {
+        const existing = new Set(
+          (await db.select({ cuit: companies.cuit }).from(companies).where(eq(companies.tenantId, tenantId))).map(
+            (r) => r.cuit,
+          ),
+        );
+        let created = 0;
+        let updated = 0;
+        for (const row of rows) {
+          await db
+            .insert(companies)
+            .values({
+              tenantId,
+              cuit: row.cuit,
+              legalName: row.legalName,
+              tradeName: row.tradeName,
+              isMember: row.isMember,
+              memberSince: row.isMember ? sql`current_date` : null,
+              emailDomains: row.emailDomains,
+              source: "roster",
+            })
+            .onConflictDoUpdate({
+              target: [companies.tenantId, companies.cuit],
+              set: {
+                legalName: row.legalName,
+                tradeName: row.tradeName,
+                isMember: row.isMember,
+                memberSince: row.isMember ? sql`coalesce(${companies.memberSince}, current_date)` : sql`null`,
+                emailDomains: row.emailDomains,
+                source: "roster",
+              },
+            });
+          if (existing.has(row.cuit)) updated++;
+          else {
+            created++;
+            existing.add(row.cuit);
+          }
+        }
+        return { created, updated };
       },
     },
 
@@ -95,6 +192,45 @@ export function forTenant(tenantId: TenantId) {
           .values({ ...data, tenantId })
           .returning()
           .then((rows) => rows[0]);
+      },
+      /** Pedido de socio pendiente de aprobación. */
+      findPendingById(membershipId: string) {
+        return db
+          .select()
+          .from(tenantMemberships)
+          .where(
+            and(
+              eq(tenantMemberships.tenantId, tenantId),
+              eq(tenantMemberships.id, membershipId),
+              eq(tenantMemberships.memberStatus, "pending"),
+            ),
+          )
+          .then((rows) => rows[0] ?? null);
+      },
+      listPending() {
+        return db
+          .select({
+            membershipId: tenantMemberships.id,
+            email: users.email,
+            name: users.name,
+            jobTitle: tenantMemberships.jobTitle,
+            companyName: companies.legalName,
+            companyCuit: companies.cuit,
+            companyIsMember: companies.isMember,
+            requestedAt: tenantMemberships.createdAt,
+          })
+          .from(tenantMemberships)
+          .innerJoin(users, eq(users.id, tenantMemberships.userId))
+          .leftJoin(companies, eq(companies.id, tenantMemberships.companyId))
+          .where(and(eq(tenantMemberships.tenantId, tenantId), eq(tenantMemberships.memberStatus, "pending")))
+          .orderBy(asc(tenantMemberships.createdAt));
+      },
+      countPending() {
+        return db
+          .select({ total: count() })
+          .from(tenantMemberships)
+          .where(and(eq(tenantMemberships.tenantId, tenantId), eq(tenantMemberships.memberStatus, "pending")))
+          .then((rows) => rows[0]?.total ?? 0);
       },
       update(membershipId: string, data: Partial<typeof tenantMemberships.$inferInsert>) {
         return db

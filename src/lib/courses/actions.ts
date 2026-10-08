@@ -4,10 +4,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 
 import { auth } from "@/lib/auth/config";
-import { requireMembership } from "@/lib/auth/permissions";
-import { getViewer } from "@/lib/auth/viewer";
 import { forTenant } from "@/lib/db/tenant-scope";
-import { getUnitPrice } from "@/lib/pricing";
 import { getCurrentTenant } from "@/lib/tenant/context";
 
 import { maybeIssueCertificate } from "@/lib/certificates/issue";
@@ -66,34 +63,6 @@ export async function completeLesson(input: z.infer<typeof completeSchema>): Pro
   // Si ya tenía el examen aprobado (p. ej. se agregó una lección después), completar la última emite el certificado.
   if (progressPct === 100) await maybeIssueCertificate(ctx.tenant.id, ctx.enrollment.id);
   return { ok: true, progressPct: progressPct ?? 0 };
-}
-
-/** Inscripción gratuita (precio 0). El cobro llega con la Fase 4. */
-export async function enrollInCourse(courseSlug: string) {
-  const tenant = await getCurrentTenant();
-  const { user } = await requireMembership(tenant.id);
-  const viewer = await getViewer(tenant);
-  const back = `/cursos/${encodeURIComponent(courseSlug)}`;
-
-  const access = await getCourseAccess(tenant.id, user.id, courseSlug);
-  const tc = access?.tenantCourse;
-  if (!tc || tc.status !== "published" || tc.visibility === "hidden") redirect(`${back}?error=no-disponible`);
-  if (access.enrollment) redirect(`/aprender/${courseSlug}`);
-  if (!tc.enrollmentOpen) redirect(`${back}?error=inscripcion-cerrada`);
-
-  const tier = viewer?.tier ?? "non_member";
-  if (tc.visibility === "members_only" && tier !== "member") redirect(`${back}?error=solo-socios`);
-  if (getUnitPrice(tc, tier) > 0) redirect(`${back}?error=pago-pendiente`);
-
-  const expiresAt = tc.accessDays ? new Date(Date.now() + tc.accessDays * 24 * 60 * 60 * 1000) : null;
-  await forTenant(tenant.id).enrollments.create({
-    userId: user.id,
-    courseId: tc.courseId,
-    tenantCourseId: tc.tenantCourseId,
-    source: "free",
-    expiresAt,
-  });
-  redirect(`/aprender/${courseSlug}`);
 }
 
 const waitlistSchema = z.object({ email: z.email(), companyName: z.string().trim().max(200).optional() });

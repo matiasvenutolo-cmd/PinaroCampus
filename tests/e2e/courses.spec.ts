@@ -10,6 +10,7 @@ import {
   getChecklistState,
   getEnrollment,
   makeCoursePreviewToken,
+  resetDemoStudentPosition,
   seedProgress,
 } from "./db";
 
@@ -56,8 +57,9 @@ test.describe("catálogo y detalle (sin sesión)", () => {
     await expect(page.getByRole("heading", { name: "Qué vas a aprender" })).toBeVisible();
     await expect(page.getByText("19 lecciones")).toBeVisible();
     await expect(page.getByText("Módulo 5", { exact: true })).toBeVisible();
-    // Pago online todavía no existe (Fase 4): el botón está deshabilitado con aviso.
-    await expect(page.getByRole("button", { name: "Inscribirme" }).first()).toBeDisabled();
+    // Sin sesión, "Inscribirme" lleva a ingresar y volver a comprar (Fase 4).
+    await expect(page.getByRole("button", { name: /inscribirme/i }).first()).toBeEnabled();
+    await expect(page.getByRole("link", { name: "Comprar para mi equipo" }).first()).toBeVisible();
   });
 
   test("curso Próximamente: se anota en la lista de espera", async ({ page }) => {
@@ -120,15 +122,17 @@ test.describe("precios e inscripción", () => {
     }
   });
 
-  test("un no socio de Ribera ve el precio completo y no puede inscribirse sin pagar", async ({ page }) => {
+  test("un no socio de Ribera ve el precio completo y el botón lo lleva a pagar", async ({ page }) => {
     await page.goto(`${RIBERA}/cursos/${COURSE}`);
     await expect(page.getByText("$ 60.000").first()).toBeVisible();
-    await expect(page.getByRole("button", { name: "Inscribirme" }).first()).toBeDisabled();
+    await expect(page.getByRole("button", { name: /inscribirme/i }).first()).toBeEnabled();
   });
 });
 
 test.describe("mi campus y continuar", () => {
   test("el alumno demo ve su avance y 'Continuar' lo lleva a la lección que sigue", async ({ page }) => {
+    // La cuenta demo es compartida: otros tests (y las demos en vivo) mueven su "dónde seguir".
+    await resetDemoStudentPosition();
     await page.goto(`${CIVA}/demo`);
     await page.getByRole("button", { name: "Entrar como alumno" }).click();
     await page.waitForURL("**/mi-campus");

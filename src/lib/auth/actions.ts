@@ -28,7 +28,8 @@ export async function requestMagicLink(formData: FormData) {
 
   // `signIn` redirige a `pages.verifyRequest` ("/ingresar/revisa-tu-email")
   // una vez que el provider de email manda el link.
-  await signIn("resend", { email });
+  // `/entrar` decide adónde sigue (la compra que había empezado, el onboarding o Mi campus).
+  await signIn("resend", { email, redirectTo: "/entrar" });
 }
 
 export async function signOutAction() {

@@ -14,6 +14,7 @@ import {
 
 import { users } from "./auth";
 import { categories } from "./categories";
+import { orders, seatCodes } from "./commerce";
 import { courses, lessons } from "./courses";
 import {
   courseVisibility,
@@ -52,8 +53,7 @@ export const tenantCourses = pgTable(
   ],
 );
 
-// 🔒 tenant_id. `order_id` y `seat_code_id` son uuid sin FK todavía: las
-// tablas `orders` y `seat_codes` llegan en la Fase 4 y ahí se agregan las FK.
+// 🔒 tenant_id.
 export const enrollments = pgTable(
   "enrollments",
   {
@@ -71,8 +71,8 @@ export const enrollments = pgTable(
       .notNull()
       .references(() => tenantCourses.id, { onDelete: "cascade" }),
     source: enrollmentSource("source").notNull(),
-    orderId: uuid("order_id"),
-    seatCodeId: uuid("seat_code_id"),
+    orderId: uuid("order_id").references(() => orders.id, { onDelete: "set null" }),
+    seatCodeId: uuid("seat_code_id").references(() => seatCodes.id, { onDelete: "set null" }),
     status: enrollmentStatus("status").notNull().default("active"),
     progressPct: integer("progress_pct").notNull().default(0),
     lastLessonId: uuid("last_lesson_id").references(() => lessons.id, { onDelete: "set null" }),
