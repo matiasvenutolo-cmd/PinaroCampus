@@ -1,6 +1,8 @@
 import { formatNumber, formatPesos } from "@/lib/format";
 import type { CalculatorId } from "@/lib/courses/schema";
 
+import type { AdvancedCalculatorId } from "./advanced";
+
 import {
   airLeaks,
   capacitorSizing,
@@ -32,8 +34,11 @@ export interface CalcResult {
   note?: string;
 }
 
+/** Calculadoras de solo números; las de fechas y selectores están en `advanced.ts`. */
+export type SimpleCalculatorId = Exclude<CalculatorId, AdvancedCalculatorId>;
+
 export interface CalcDefinition {
-  id: CalculatorId;
+  id: SimpleCalculatorId;
   title: string;
   fields: CalcField[];
   compute(values: CalcValues): CalcResult;
@@ -66,7 +71,7 @@ const VERDICT_LABEL: Record<PaybackTone, string> = {
   gray: "Evaluá financiamiento",
 };
 
-export const CALCULATORS: Record<CalculatorId, CalcDefinition> = {
+export const CALCULATORS: Record<SimpleCalculatorId, CalcDefinition> = {
   "energy-cost": {
     id: "energy-cost",
     title: "Costo anual de un equipo",

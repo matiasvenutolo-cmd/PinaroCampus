@@ -1,0 +1,135 @@
+{
+  "id": "m2-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 2",
+  "description": "5 preguntas para repasar el módulo 2. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m2-q1",
+      "type": "single",
+      "prompt": "Durante una visita escuchás un ruido nuevo y fuerte en el reductor. ¿Qué indica el fabricante?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hacer algunos viajes más para ver si desaparece"
+        },
+        {
+          "id": "b",
+          "text": "Completar aceite y seguir en servicio"
+        },
+        {
+          "id": "c",
+          "text": "Sacar la máquina de servicio hasta resolver el problema"
+        },
+        {
+          "id": "d",
+          "text": "Ajustar los resortes del freno"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Ante una condición anormal, la máquina se saca de servicio y vuelve a conectarse cuando el problema está resuelto."
+    },
+    {
+      "id": "m2-q2",
+      "type": "single",
+      "prompt": "¿En qué posición está la palanca de accionamiento manual cuando el freno queda abierto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Posición A, vertical"
+        },
+        {
+          "id": "b",
+          "text": "Posición B, horizontal"
+        },
+        {
+          "id": "c",
+          "text": "Cualquiera, mientras el electroimán esté energizado"
+        },
+        {
+          "id": "d",
+          "text": "No tiene posiciones: se mantiene apretada"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "La posición B (palanca horizontal) abre el freno a mano. La posición A es la de funcionamiento normal."
+    },
+    {
+      "id": "m2-q3",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estas verificaciones indica el fabricante antes de poner en marcha la máquina? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Conexión eléctrica correcta, incluido el ventilador del motor"
+        },
+        {
+          "id": "b",
+          "text": "Polea de tracción y tambor de freno limpios"
+        },
+        {
+          "id": "c",
+          "text": "Freno funcionando y bien regulado"
+        },
+        {
+          "id": "d",
+          "text": "Pintar la base de la máquina"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "Las verificaciones son instalación y conexión eléctrica, limpieza de máquina, polea y tambor, freno regulado y nivel de lubricante. Pintar la base no es parte de la puesta en marcha."
+    },
+    {
+      "id": "m2-q4",
+      "type": "single",
+      "prompt": "En una sala de máquinas encontrás la reja de ventilación tapada con cajas. ¿Por qué es un problema para la máquina?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Porque impide ver el visor de aceite"
+        },
+        {
+          "id": "b",
+          "text": "Porque la máquina y el motor necesitan ventilación para refrigerarse"
+        },
+        {
+          "id": "c",
+          "text": "Porque afecta la fricción de los cables"
+        },
+        {
+          "id": "d",
+          "text": "No es un problema mientras la sala esté seca"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "La sala tiene que estar seca, sin polvo y bien ventilada. Sin ventilación, el motor trabaja caliente y su protección térmica puede detener el equipo."
+    },
+    {
+      "id": "m2-q5",
+      "type": "true_false",
+      "prompt": "Según las condiciones del manual, si un técnico ajeno al fabricante desarma parcialmente una máquina en garantía, la garantía se mantiene siempre que use repuestos originales.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "El desarme parcial o total por personal ajeno al fabricante implica la pérdida total de la garantía, sin excepción."
+    }
+  ]
+}

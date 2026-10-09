@@ -1,0 +1,135 @@
+{
+  "id": "m5-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 5",
+  "description": "5 preguntas para repasar el módulo 5. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m5-q1",
+      "type": "single",
+      "prompt": "En la bornera de un motor de 2 velocidades, ¿dónde está la conexión de alta velocidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Siempre del lado izquierdo de la caja bornera, mirando desde la tapa de motor o la ventilación forzada"
+        },
+        {
+          "id": "b",
+          "text": "Siempre del lado derecho"
+        },
+        {
+          "id": "c",
+          "text": "Depende del modelo de máquina"
+        },
+        {
+          "id": "d",
+          "text": "En la bornera del ventilador"
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "El manual indica que la bornera de alta velocidad está siempre del lado izquierdo, mirando desde el lado de la tapa de motor y/o de la ventilación forzada."
+    },
+    {
+      "id": "m5-q2",
+      "type": "single",
+      "prompt": "El motor de un ascensor se detiene por temperatura varias veces en verano. ¿Qué no corresponde hacer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Verificar que el ventilador forzado arranque"
+        },
+        {
+          "id": "b",
+          "text": "Revisar la ventilación de la sala"
+        },
+        {
+          "id": "c",
+          "text": "Puentear el térmico del motor para que no corte"
+        },
+        {
+          "id": "d",
+          "text": "Revisar el capacitor del ventilador"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Puentear el térmico deja al motor sin protección. Hay que buscar la causa: ventilación de la sala, ventilador forzado, capacitor, frecuencia de arranques."
+    },
+    {
+      "id": "m5-q3",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estas prácticas están prohibidas durante el traslado de una máquina ADSUR? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sostenerla desde la ventilación forzada o el volante"
+        },
+        {
+          "id": "b",
+          "text": "Trasladarla desarmada en partes"
+        },
+        {
+          "id": "c",
+          "text": "Levantar una M-194 con autoelevador desde la base perfilada"
+        },
+        {
+          "id": "d",
+          "text": "Golpearla"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "Levantar las M-137, M-194 y M-202 desde la base perfilada con autoelevador es el método correcto. Golpearla, sostenerla de partes frágiles o trasladarla por partes está prohibido."
+    },
+    {
+      "id": "m5-q4",
+      "type": "single",
+      "prompt": "Durante el cambio de polea tractora, ¿dónde se golpea para desclavarla del encastre cónico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sobre la banda de canaletas"
+        },
+        {
+          "id": "b",
+          "text": "Sobre una cuña o planchuela que hace palanca contra la masa de la polea"
+        },
+        {
+          "id": "c",
+          "text": "Sobre el eje de tracción"
+        },
+        {
+          "id": "d",
+          "text": "Sobre el tercer apoyo"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Se golpea con cuidado sobre la planchuela. La banda de canaletas es frágil y puede romperse."
+    },
+    {
+      "id": "m5-q5",
+      "type": "true_false",
+      "prompt": "Al retirar el tercer apoyo para cambiar la polea, se pueden quitar los suplementos de nivelación excéntrica y volver a ajustarlos después a ojo.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "El manual pide no modificar la nivelación excéntrica entre el soporte del rodamiento y la bancada. Alterarla desalinea el eje de tracción."
+    }
+  ]
+}

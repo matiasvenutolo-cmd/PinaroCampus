@@ -1,0 +1,61 @@
+La parte eléctrica de la máquina no es solo "conectar el motor". Hay dos protecciones térmicas y una ventilación forzada que, mal conectadas, dejan al motor sin protección o detienen el ascensor sin motivo aparente.
+
+## El motor
+
+El manual define las características estándar del motor:
+
+<KeyFigures>
+  <KeyFigure value="IP 21" label="grado de protección" />
+  <KeyFigure value="Clase F" label="clase de aislamiento" />
+  <KeyFigure value="3 × 380 V 50 Hz" label="tensión estándar (otras a pedido)" />
+  <KeyFigure value="105 °C" label="temperatura de control del motor" />
+</KeyFigures>
+
+El motor tiene un **dispositivo térmico** que controla su temperatura todo el tiempo y da aviso cuando supera la temperatura admisible de control: **105 °C**. Todos los modelos admiten **ventilación forzada**.
+
+Según el manual, el sistema de ventilación normal permite usar los motores en **120 A/h**. (Probablemente se refiera a 120 arranques por hora: dato a confirmar con el fabricante.)
+
+## La bornera del motor
+
+<Figure src="assets/conexiones-electricas-motor.png" alt="Conexiones eléctricas para 1 velocidad o VVVF (arriba) y para motor de 2 velocidades (abajo)" caption="Conexiones eléctricas para 1 velocidad o VVVF (arriba) y para motor de 2 velocidades (abajo) (manual p. 13)." />
+
+En la bornera hay tres grupos de conexiones:
+
+- **Potencia del motor**: U1, V1, W1 en motores de 1 velocidad o VVVF. En los de **2 velocidades** hay dos grupos: U1-V1-W1 (alta velocidad) y U2-V2-W2 (baja velocidad).
+- **Terminal de tierra.**
+- **Detalle A**: los contactos de los térmicos y la alimentación del motor ventilador.
+
+<Callout type="tip" title="Alta a la izquierda">
+En los motores de 2 velocidades, la bornera de alta velocidad está siempre del lado izquierdo de la caja bornera, mirando desde el lado de la tapa de motor o de la ventilación forzada.
+</Callout>
+
+## Los dos térmicos
+
+En el detalle A hay dos contactos térmicos que funcionan al revés uno del otro:
+
+| Térmico | Cables | Estado normal | Qué indica |
+|---|---|---|---|
+| Térmico del ventilador | Rojo y celeste | **Normal abierto** | Se cierra cuando el motor se calienta, para encender la ventilación forzada |
+| Térmico del motor | Verde y blanco | **Normal cerrado** | Se abre cuando el motor supera la temperatura de control |
+
+<Callout type="warning" title="Un térmico puenteado es un motor sin protección">
+Si el térmico del motor (normal cerrado) se puentea "para que no corte", el motor puede seguir funcionando sobrecalentado hasta dañarse. Si el motor corta por temperatura, buscá la causa: ventilación, frecuencia de arranques, freno que roza o tensión.
+</Callout>
+
+## La ventilación forzada
+
+<Figure src="assets/conexion-ventilador.png" alt="Conexión del ventilador: bornera, capacitor de arranque de 2 µF 450 V, térmico del ventilador de 60 °C y alimentación de 230 V" caption="Conexión del ventilador: bornera, capacitor de arranque de 2 µF 450 V, térmico del ventilador de 60 °C y alimentación de 230 V (manual p. 14)." />
+
+- El ventilador es **monofásico, 230 V, 50/60 Hz**.
+- Tiene un **capacitor de arranque de 2 µF 450 V**, externo.
+- Su bornera, con el capacitor, está **fuera de la carcasa** de la ventilación y se conecta con los térmicos de la bornera del motor.
+- El **térmico del ventilador** actúa a **60 °C** (cables rojo y celeste).
+- La bornera del ventilador tiene bornes celeste, negro, marrón y amarillo-verde (tierra).
+
+<Callout type="case" title="Por qué cortaba el motor de Las Tipas">
+Antes de que Nico llegara, el ascensor de Las Tipas se había detenido dos veces en verano por "térmico del motor". Con lo aprendido, Nico revisa: la sala estaba sin ventilación (las cajas tapaban la reja) y el ventilador forzado no arrancaba porque su capacitor estaba en mal estado. Cambia el capacitor, verifica que el ventilador arranque cuando cierra su térmico y deja la sala ventilada.
+</Callout>
+
+## Qué hacer el lunes
+
+<Checklist id="m5-l1-motor-ventilacion-lista" items={["Verificá en cada máquina que el ventilador forzado funcione", "Revisá el estado del capacitor del ventilador", "Verificá que ningún térmico esté puenteado", "En motores de 2 velocidades, comprobá que alta velocidad esté a la izquierda de la bornera"]} />

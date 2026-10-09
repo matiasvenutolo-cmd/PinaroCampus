@@ -417,8 +417,13 @@ async function main() {
     },
   });
 
+  // Campus ADS: el tenant tiene que existir antes del sync de cursos (el curso de ADS es propio de esa cámara).
+  const { seedAdsCatalog, seedAdsTenant } = await import("./seed-ads");
+  await seedAdsTenant();
+
   const { seedCourses } = await import("./seed-courses");
   await seedCourses();
+  await seedAdsCatalog();
 
   console.log("Seed completo.");
   process.exit(0);

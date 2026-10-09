@@ -1,0 +1,16 @@
+﻿Grupo;Control;Criterio;Frecuencia;Última fecha;Resultado (OK / Observado);Observaciones
+Sala de máquinas;Ambiente;Seca, sin polvo y con ventilación libre;Cada visita;;;Frecuencias según el manual de mantenimiento ADSUR, versión 01.2014.
+Limpieza;Máquina, polea tractora y tambor de freno;Limpios, sin grasa ni aceite sobre el tambor;Cada visita;;;
+Marcha;Ruido;Sin ruidos anormales;Cada visita;;;
+Marcha;Temperatura;Sin calentamiento anormal de motor ni reductor;Cada visita;;;
+Lubricación;Nivel de aceite;En el centro del visor, con la máquina detenida;Cada visita;;;
+Lubricación;Pérdidas;Sin pérdidas ni transpiraciones por juntas y tapones;Cada visita;;;
+Lubricación;Engrase del tercer apoyo;Grasa 62EP;Cada 6 meses;;;
+Lubricación;Primer cambio de aceite;ISO 320 EP según el modelo;4.000 h o 12 meses (lo primero);;;
+Lubricación;Cambios siguientes de aceite;ISO 320 EP según el modelo;Cada 18 a 24 meses;;;
+Freno;Respuesta del freno;Sensibilidad normal, sin golpe;Cada visita;;;
+Freno;Espesor de revestimientos;Más de 4 mm y desgaste uniforme;Cada visita;;;
+Freno;Antigüedad de zapatas;Menos de 3 años;Anual;;;
+Reductor;Juego sinfín-corona (distancia A);Dentro de la tabla del modelo;3.000 h o 1 vez por año;;;
+Eléctrico;Ventilación forzada;Arranca y funciona;Cada visita;;;
+Eléctrico;Térmicos;Conectados, ninguno puenteado;Cada visita;;;

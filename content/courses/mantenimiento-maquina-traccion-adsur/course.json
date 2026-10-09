@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "slug": "mantenimiento-maquina-traccion-adsur",
+  "status": "published",
+  "ownerTenant": "ads",
+  "title": "Mantenimiento de la máquina de tracción ADSUR",
+  "subtitle": "Lubricación, freno, reductor y montaje de las máquinas M-137, M-194, M-202 y RHINO, paso a paso y con seguridad",
+  "description": "La máquina de tracción es el corazón del ascensor eléctrico a fricción: motor, reductor, freno y polea en un solo conjunto. Un nivel de aceite descuidado, unas zapatas de freno mal reguladas o un reductor con demasiado juego no avisan hasta que se convierten en una falla, una parada larga o un riesgo para los pasajeros. Este curso ordena, paso a paso, las tareas de mantenimiento preventivo que indica el fabricante para las máquinas M-137, M-194, M-202 y RHINO.\n\nVas a aprender a reconocer cada componente, a lubricar con el aceite y la frecuencia correctos, a regular y recambiar las zapatas del freno, a medir el juego entre sinfín y corona y a decidir si la máquina está dentro de tolerancia. También vas a repasar las conexiones eléctricas del motor y de la ventilación forzada, los rodamientos de cada modelo y los procedimientos para trasladar la máquina y cambiar la polea tractora. Una empresa conservadora ficticia te acompaña en todo el recorrido.",
+  "level": "intermedio",
+  "language": "es-AR",
+  "durationMinutes": 265,
+  "suggestedCategory": {
+    "slug": "mantenimiento-tecnico",
+    "name": "Mantenimiento técnico"
+  },
+  "tags": [
+    "ascensores",
+    "mantenimiento",
+    "máquina de tracción",
+    "lubricación",
+    "freno",
+    "ADSUR"
+  ],
+  "cover": null,
+  "instructors": [
+    {
+      "name": "Equipo técnico ADSUR",
+      "bio": "Docente de demostración: se reemplaza por quien valide el curso.",
+      "photo": null
+    }
+  ],
+  "outcomes": [
+    "Identificar los componentes de la máquina de tracción y las diferencias entre los modelos M-137, M-194, M-202 y RHINO.",
+    "Verificar el nivel de aceite, elegir un lubricante equivalente y planificar el engrase y los cambios de aceite.",
+    "Regular el freno, evaluar el desgaste de las zapatas y recambiarlas con el procedimiento del fabricante.",
+    "Medir el juego entre sinfín y corona y decidir si la máquina está dentro de tolerancia.",
+    "Interpretar las conexiones eléctricas del motor, los térmicos y la ventilación forzada.",
+    "Planificar en forma segura el traslado de una máquina y el cambio de la polea tractora."
+  ],
+  "audience": [
+    "técnicos y ayudantes de mantenimiento de ascensores, y supervisores de servicio técnico que trabajan con máquinas ADSUR."
+  ],
+  "prerequisites": [
+    "Conocimientos básicos de mecánica (rodamientos, lubricación, ajustes con llaves y comparador) y de electricidad (borneras, tensión trifásica).",
+    "Este curso no habilita para intervenir ascensores. Las tareas las realiza personal capacitado de una empresa con permiso de conservación vigente, según la normativa de cada jurisdicción."
+  ],
+  "certificate": {
+    "enabled": true,
+    "hours": 4.5,
+    "title": "Certificado de aprobación"
+  },
+  "completion": {
+    "requireAllRequiredLessons": true,
+    "finalAssessment": "examen-final"
+  },
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Conocer la máquina",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "m1-video-bienvenida",
+          "type": "video",
+          "title": "Bienvenida",
+          "durationMinutes": 3,
+          "file": "lessons/m1-video-bienvenida.mdx",
+          "video": {
+            "provider": "youtube",
+            "url": null
+          }
+        },
+        {
+          "id": "m1-l1-anatomia",
+          "type": "text",
+          "title": "Anatomía de la máquina de tracción",
+          "durationMinutes": 15,
+          "file": "lessons/m1-l1-anatomia.mdx"
+        },
+        {
+          "id": "m1-l2-modelos",
+          "type": "text",
+          "title": "Modelos y variantes",
+          "durationMinutes": 15,
+          "file": "lessons/m1-l2-modelos.mdx"
+        },
+        {
+          "id": "m1-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 1",
+          "durationMinutes": 7,
+          "assessment": "m1-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Antes de intervenir",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "m2-l1-reglas-seguridad",
+          "type": "text",
+          "title": "Reglas básicas de trabajo y seguridad",
+          "durationMinutes": 15,
+          "file": "lessons/m2-l1-reglas-seguridad.mdx"
+        },
+        {
+          "id": "m2-l2-puesta-en-marcha",
+          "type": "text",
+          "title": "Puesta en marcha, sala de máquinas e inspección periódica",
+          "durationMinutes": 15,
+          "file": "lessons/m2-l2-puesta-en-marcha.mdx"
+        },
+        {
+          "id": "m2-recursos-checklist",
+          "type": "resource",
+          "title": "Lista de verificación de la máquina",
+          "durationMinutes": 5,
+          "file": "lessons/m2-recursos-checklist.mdx",
+          "resources": [
+            {
+              "title": "Lista de verificación de la máquina de tracción",
+              "file": "resources/lista-verificacion-maquina-traccion.csv",
+              "description": "Planilla para usar en cada visita: control, criterio, frecuencia, fecha, resultado y observaciones."
+            }
+          ]
+        },
+        {
+          "id": "m2-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 2",
+          "durationMinutes": 5,
+          "assessment": "m2-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Lubricación",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "m3-l1-nivel-y-aceites",
+          "type": "text",
+          "title": "Nivel de aceite y lubricantes equivalentes",
+          "durationMinutes": 15,
+          "file": "lessons/m3-l1-nivel-y-aceites.mdx"
+        },
+        {
+          "id": "m3-l2-engrase-y-cambio",
+          "type": "text",
+          "title": "Engrase del tercer apoyo y cambio de aceite",
+          "durationMinutes": 15,
+          "file": "lessons/m3-l2-engrase-y-cambio.mdx"
+        },
+        {
+          "id": "m3-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 3",
+          "durationMinutes": 10,
+          "assessment": "m3-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Freno y reductor",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "m4-l1-freno-regulacion",
+          "type": "text",
+          "title": "El freno: desgaste y regulación",
+          "durationMinutes": 20,
+          "file": "lessons/m4-l1-freno-regulacion.mdx"
+        },
+        {
+          "id": "m4-l2-recambio-zapatas",
+          "type": "text",
+          "title": "Recambio de zapatas",
+          "durationMinutes": 10,
+          "file": "lessons/m4-l2-recambio-zapatas.mdx"
+        },
+        {
+          "id": "m4-l3-juego-sinfin-corona",
+          "type": "text",
+          "title": "Juego entre sinfín y corona",
+          "durationMinutes": 20,
+          "file": "lessons/m4-l3-juego-sinfin-corona.mdx"
+        },
+        {
+          "id": "m4-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 4",
+          "durationMinutes": 10,
+          "assessment": "m4-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "title": "Electricidad, rodamientos, traslado y polea",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "m5-l1-motor-ventilacion",
+          "type": "text",
+          "title": "Motor, térmicos y ventilación forzada",
+          "durationMinutes": 15,
+          "file": "lessons/m5-l1-motor-ventilacion.mdx"
+        },
+        {
+          "id": "m5-recursos-rodamientos",
+          "type": "resource",
+          "title": "Rodamientos por modelo",
+          "durationMinutes": 5,
+          "file": "lessons/m5-recursos-rodamientos.mdx",
+          "resources": [
+            {
+              "title": "Tabla de rodamientos por modelo",
+              "file": "resources/rodamientos-por-modelo.csv",
+              "description": "Rodamientos y bujes de cada eje en las M-137, MV-137 RHINO, M-194 y M-202."
+            }
+          ]
+        },
+        {
+          "id": "m5-l2-traslado",
+          "type": "text",
+          "title": "Traslado e instalación de la máquina",
+          "durationMinutes": 15,
+          "file": "lessons/m5-l2-traslado.mdx"
+        },
+        {
+          "id": "m5-l3-cambio-polea",
+          "type": "text",
+          "title": "Cambio de la polea tractora",
+          "durationMinutes": 15,
+          "file": "lessons/m5-l3-cambio-polea.mdx"
+        },
+        {
+          "id": "m5-repaso",
+          "type": "quiz",
+          "title": "Repaso del módulo 5",
+          "durationMinutes": 5,
+          "assessment": "m5-quiz"
+        }
+      ]
+    },
+    {
+      "id": "m6-cierre",
+      "title": "Cierre",
+      "summary": "",
+      "lessons": [
+        {
+          "id": "cierre-examen-final",
+          "type": "exam",
+          "title": "Examen final",
+          "durationMinutes": 30,
+          "assessment": "examen-final"
+        }
+      ]
+    }
+  ]
+}

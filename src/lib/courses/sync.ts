@@ -1,7 +1,7 @@
 import { and, eq, inArray, isNull, notInArray, sql } from "drizzle-orm";
 
 import { db } from "@/lib/db";
-import { assessments, courseModules, courses, lessons } from "@/lib/db/schema";
+import { assessments, courseModules, courses, lessons, tenants } from "@/lib/db/schema";
 
 import { listCourseSlugs } from "./files";
 import { isLessonRequired } from "./rules";
@@ -27,8 +27,21 @@ export async function syncLoadedCourse(
 ): Promise<"created" | "updated" | "unchanged"> {
   const { json, slug, contentHash } = course;
 
+  // Curso propio de una cámara: se resuelve el slug a su id. Si la cámara todavía no existe
+  // queda sin dueño y el próximo sync lo completa (el hash no cambia, pero el dueño sí).
+  const [owner] = json.ownerTenant
+    ? await db.select({ id: tenants.id }).from(tenants).where(eq(tenants.slug, json.ownerTenant))
+    : [];
+  const ownerTenantId = owner?.id ?? null;
+
   const [existing] = await db.select().from(courses).where(eq(courses.slug, slug));
-  if (existing && existing.contentHash === contentHash && existing.status !== "archived" && !force) {
+  if (
+    existing &&
+    existing.contentHash === contentHash &&
+    existing.status !== "archived" &&
+    existing.ownerTenantId === ownerTenantId &&
+    !force
+  ) {
     return "unchanged";
   }
 
@@ -47,6 +60,7 @@ export async function syncLoadedCourse(
   await db.transaction(async (tx) => {
     const courseValues = {
       slug,
+      ownerTenantId,
       title: json.title,
       subtitle: json.subtitle,
       description: json.description,

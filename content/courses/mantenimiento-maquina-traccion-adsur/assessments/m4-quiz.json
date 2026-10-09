@@ -1,0 +1,162 @@
+{
+  "id": "m4-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 4",
+  "description": "6 preguntas para repasar el módulo 4. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m4-q1",
+      "type": "single",
+      "prompt": "Las zapatas de un freno tienen 2 años de uso y uno de los revestimientos mide 3,8 mm. ¿Qué corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Esperar a que cumplan 3 años"
+        },
+        {
+          "id": "b",
+          "text": "Reemplazar las zapatas, porque el revestimiento está por debajo del espesor mínimo de 4 mm"
+        },
+        {
+          "id": "c",
+          "text": "Ajustar 2 vueltas más los resortes"
+        },
+        {
+          "id": "d",
+          "text": "Regular el tornillo (3) para compensar el desgaste"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Las zapatas se reemplazan a los 3 años o cuando el revestimiento llega a 4 mm, lo que ocurra primero. Con 3,8 mm ya corresponde el recambio."
+    },
+    {
+      "id": "m4-q2",
+      "type": "single",
+      "prompt": "En la regulación del freno, después de hacer contacto con el perno del electroimán y volver la palanca a la posición A, ¿qué se hace con el tornillo (3)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se gira ½ vuelta en sentido horario (0,75 mm) y se ajusta la contratuerca"
+        },
+        {
+          "id": "b",
+          "text": "Se gira 5 vueltas"
+        },
+        {
+          "id": "c",
+          "text": "Se retira"
+        },
+        {
+          "id": "d",
+          "text": "Se gira 2 vueltas en sentido antihorario"
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "La media vuelta en sentido horario deja la apertura de 0,75 mm, y la contratuerca (5) fija esa posición. Las 5 vueltas corresponden a la tuerca (1) del resorte."
+    },
+    {
+      "id": "m4-q3",
+      "type": "true_false",
+      "prompt": "Para aumentar el momento de frenado, las tuercas de los resortes se pueden ajustar todo lo necesario hasta que el freno retenga bien.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "El manual permite ajustar las tuercas (1) como máximo 2 vueltas. Más ajuste puede impedir que el electroimán abra bien el freno."
+    },
+    {
+      "id": "m4-q4",
+      "type": "multiple",
+      "prompt": "¿Qué condiciones tienen que darse antes de medir el juego entre sinfín y corona? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Instalación detenida y sin alimentación eléctrica"
+        },
+        {
+          "id": "b",
+          "text": "Esfuerzos liberados: contrapeso apoyado en el paragolpes o cables retirados de la polea"
+        },
+        {
+          "id": "c",
+          "text": "Freno abierto a mano, con la manija en posición B"
+        },
+        {
+          "id": "d",
+          "text": "Cabina en la parada más baja"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "El procedimiento pide desconectar con la cabina en la parada más alta, liberar los esfuerzos y abrir el freno en posición B."
+    },
+    {
+      "id": "m4-q5",
+      "type": "single",
+      "prompt": "Al medir el juego de una M-202, la distancia A entre marcas es de 26,4 mm. ¿Cómo está el reductor?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fuera de tolerancia"
+        },
+        {
+          "id": "b",
+          "text": "Dentro de tolerancia, con aproximadamente la mitad del margen consumido"
+        },
+        {
+          "id": "c",
+          "text": "Como nuevo"
+        },
+        {
+          "id": "d",
+          "text": "No se puede saber sin desarmarlo"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Para la M-202, el rango va de 4,8 a 52,8 mm. (26,4 − 4,8) ÷ (52,8 − 4,8) = 45%: dentro de tolerancia, con casi la mitad del margen consumido."
+    },
+    {
+      "id": "m4-q6",
+      "type": "single",
+      "prompt": "Durante la medición del juego, el comparador apoyado sobre la polea tractora se mueve. ¿Qué significa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el juego es excesivo"
+        },
+        {
+          "id": "b",
+          "text": "Que la medición no es válida, porque la polea tiene que permanecer quieta"
+        },
+        {
+          "id": "c",
+          "text": "Que el freno está mal regulado"
+        },
+        {
+          "id": "d",
+          "text": "Nada: es normal"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Se mide el giro libre del sinfín sin que gire la polea. Si la polea se mueve, se está midiendo otra cosa y hay que repetir."
+    }
+  ]
+}

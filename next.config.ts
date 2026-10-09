@@ -6,7 +6,7 @@ import type { NextConfig } from "next";
 const COURSE_CONTENT = ["./content/courses/**/*"];
 
 // El PDF del certificado lee las fuentes (y las firmas de la demo) del filesystem.
-const PDF_ASSETS = ["./src/lib/certificates/fonts/*", "./public/demo/*"];
+const PDF_ASSETS = ["./src/lib/certificates/fonts/*", "./public/demo/*", "./public/brand/*"];
 
 const nextConfig: NextConfig = {
   // La importación del padrón reenvía el CSV (hasta 1 MB) al confirmar.

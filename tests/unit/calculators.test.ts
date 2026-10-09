@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { airLeaks, capacitorSizing, energyCost, ledSavings, payback, vfdSavings } from "@/lib/calculators/compute";
-import { CALCULATORS, type CalcValues } from "@/lib/calculators/definitions";
+import { ADVANCED_CALCULATORS } from "@/lib/calculators/advanced";
+import { CALCULATORS, type CalcValues, type SimpleCalculatorId } from "@/lib/calculators/definitions";
 import { CALCULATOR_IDS } from "@/lib/courses/schema";
 
 // Los valores por defecto son los del caso práctico del curso (docs/05).
@@ -65,10 +66,10 @@ describe("calculadoras: fórmulas con los valores por defecto", () => {
 
 describe("calculadoras: definiciones", () => {
   it("hay una definición por cada id permitido en las lecciones", () => {
-    expect(Object.keys(CALCULATORS).sort()).toEqual([...CALCULATOR_IDS].sort());
+    expect([...Object.keys(CALCULATORS), ...Object.keys(ADVANCED_CALCULATORS)].sort()).toEqual([...CALCULATOR_IDS].sort());
   });
 
-  it.each(CALCULATOR_IDS)("%s: calcula con sus valores por defecto", (id) => {
+  it.each(Object.keys(CALCULATORS) as SimpleCalculatorId[])("%s: calcula con sus valores por defecto", (id) => {
     const definition = CALCULATORS[id];
     const values: CalcValues = Object.fromEntries(definition.fields.map((f) => [f.key, f.defaultValue]));
     const result = definition.compute(values);

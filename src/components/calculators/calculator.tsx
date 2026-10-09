@@ -4,9 +4,12 @@ import { useId, useMemo, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CALCULATORS, type CalcField, type CalcValues } from "@/lib/calculators/definitions";
+import { isAdvancedCalculator } from "@/lib/calculators/advanced";
+import { CALCULATORS, type CalcField, type CalcValues, type SimpleCalculatorId } from "@/lib/calculators/definitions";
 import type { CalculatorId } from "@/lib/courses/schema";
 import { cn } from "@/lib/utils";
+
+import { AdvancedCalculator } from "./advanced-calculator";
 
 const TONE_CLASS = {
   green: "bg-success/15 text-success",
@@ -26,7 +29,12 @@ function parseField(field: CalcField, raw: string): { value: number | null; erro
   return { value };
 }
 
+/** Una calculadora de las lecciones, por id (`<Calculator id="…" />`). */
 export function Calculator({ id }: { id: CalculatorId }) {
+  return isAdvancedCalculator(id) ? <AdvancedCalculator id={id} /> : <SimpleCalculator id={id} />;
+}
+
+function SimpleCalculator({ id }: { id: SimpleCalculatorId }) {
   const definition = CALCULATORS[id];
   const formId = useId();
   const [raw, setRaw] = useState<Record<string, string>>(() =>

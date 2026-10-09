@@ -50,6 +50,9 @@ export async function proxy(request: NextRequest) {
     return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
+  // Imágenes de marca de las cámaras (`public/brand/`): archivos estáticos, no páginas del tenant.
+  if (pathname.startsWith("/brand/")) return NextResponse.next();
+
   // Las rutas de API y la vista previa de cursos (/preview, con token firmado,
   // fuera de [domain]) resuelven el tenant por su cuenta a partir de x-pc-host.
   if (isApiRoute || pathname.startsWith("/preview/")) {

@@ -1,0 +1,618 @@
+{
+  "id": "examen-final",
+  "kind": "exam",
+  "title": "Examen final",
+  "description": "15 preguntas elegidas al azar entre las 24 del banco. Tenés 30 minutos y necesitás 70 puntos para aprobar. Podés rendir hasta 3 veces, con una espera de 1 hora entre intentos. Las explicaciones se muestran cuando aprobás.",
+  "passingScore": 70,
+  "maxAttempts": 3,
+  "cooldownMinutes": 60,
+  "timeLimitMinutes": 30,
+  "drawCount": 15,
+  "shuffleQuestions": true,
+  "shuffleOptions": true,
+  "showExplanations": "after_pass",
+  "questions": [
+    {
+      "id": "ef-01",
+      "type": "single",
+      "prompt": "Un técnico nuevo, sin experiencia con máquinas ADSUR, tiene que regular un freno solo. ¿Qué indica el manual sobre quién puede hacer el mantenimiento?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cualquier técnico con herramientas adecuadas"
+        },
+        {
+          "id": "b",
+          "text": "Alguien con conocimientos mecánicos de la máquina, entrenamiento y que conozca su estructura y métodos de ajuste"
+        },
+        {
+          "id": "c",
+          "text": "Solo el personal de la administración del edificio"
+        },
+        {
+          "id": "d",
+          "text": "Cualquiera, si sigue los pasos del manual"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El encargado tiene que tener conocimientos mecánicos de la máquina, experiencia y entrenamiento, y estar familiarizado con su estructura y métodos de ajuste. Quien no la conoce no puede intervenirla."
+    },
+    {
+      "id": "ef-02",
+      "type": "single",
+      "prompt": "Al llegar a una sala de máquinas encontrás grasa sobre el tambor de freno. ¿Por qué hay que limpiarlo antes de poner en marcha?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Por estética"
+        },
+        {
+          "id": "b",
+          "text": "Porque la suciedad reduce la fricción entre zapatas y tambor y el freno puede frenar mal"
+        },
+        {
+          "id": "c",
+          "text": "Porque la grasa enfría demasiado el tambor"
+        },
+        {
+          "id": "d",
+          "text": "Porque el visor de aceite se ensucia"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El tambor tiene que estar limpio: grasa, aceite o polvo reducen la fricción y comprometen el frenado aunque el freno esté bien regulado."
+    },
+    {
+      "id": "ef-03",
+      "type": "multiple",
+      "prompt": "¿Qué controles incluye el chequeo periódico de la máquina según el manual? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ruido"
+        },
+        {
+          "id": "b",
+          "text": "Temperatura elevada"
+        },
+        {
+          "id": "c",
+          "text": "Sensibilidad de la contracción del freno y desgaste de piezas"
+        },
+        {
+          "id": "d",
+          "text": "Color de la pintura de la base"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "El chequeo incluye ruido, temperatura, sensibilidad del freno, desgaste de piezas, nivel de aceite y condiciones de montaje. El color de la pintura no es un control."
+    },
+    {
+      "id": "ef-04",
+      "type": "single",
+      "prompt": "Una M-194 nueva se entregó hace 10 meses a una conservadora que no le hace mantenimiento mensual. ¿Qué pasa con la garantía, según las condiciones del manual?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sigue vigente porque no pasaron 12 meses"
+        },
+        {
+          "id": "b",
+          "text": "Está comprometida, porque la garantía está supeditada al mantenimiento preventivo mensual"
+        },
+        {
+          "id": "c",
+          "text": "Se extiende a 24 meses"
+        },
+        {
+          "id": "d",
+          "text": "Depende del aceite usado"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "La garantía es de 12 meses, pero está supeditada al correcto mantenimiento preventivo mensual a cargo de una empresa con permiso de conservación vigente."
+    },
+    {
+      "id": "ef-05",
+      "type": "single",
+      "prompt": "Revisás una M-202 detenida y el nivel de aceite está claramente por debajo del centro del visor. No hay pérdidas. Es la tercera vez en el año que hay que completar. ¿Qué corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Completar y no hacer nada más"
+        },
+        {
+          "id": "b",
+          "text": "Completar con un aceite equivalente y consultar al servicio técnico por el consumo sin pérdidas"
+        },
+        {
+          "id": "c",
+          "text": "Cambiar a un aceite de mayor viscosidad"
+        },
+        {
+          "id": "d",
+          "text": "Llenar por encima del visor para tener reserva"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Si no hay pérdidas y el consumo continúa, el manual indica consultar al servicio técnico."
+    },
+    {
+      "id": "ef-06",
+      "type": "single",
+      "prompt": "¿Cuántos litros de aceite lleva el reductor de una M-202?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3,5 litros"
+        },
+        {
+          "id": "b",
+          "text": "4,0 litros"
+        },
+        {
+          "id": "c",
+          "text": "5,0 litros"
+        },
+        {
+          "id": "d",
+          "text": "6,0 litros"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "La M-137 y la RHINO llevan 3,5 litros, la M-194 4,0 litros y la M-202 5,0 litros. Es un dato que conviene tener en la ficha de cada equipo."
+    },
+    {
+      "id": "ef-07",
+      "type": "true_false",
+      "prompt": "Si una máquina tiene aceite sintético equivalente, se puede completar con aceite mineral de la tabla de equivalencias.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "El fabricante prohíbe mezclar lubricante sintético con mineral. Para cambiar de tipo, hay que hacer un cambio completo."
+    },
+    {
+      "id": "ef-08",
+      "type": "single",
+      "prompt": "Una máquina se puso en servicio hace 9 meses y ya acumula 4.100 horas porque está en un edificio de oficinas con mucho tránsito. ¿Le corresponde el primer cambio de aceite?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No, hay que esperar a los 12 meses"
+        },
+        {
+          "id": "b",
+          "text": "Sí, porque superó las 4.000 horas, que llegaron antes que los 12 meses"
+        },
+        {
+          "id": "c",
+          "text": "No, el primer cambio es a los 18 meses"
+        },
+        {
+          "id": "d",
+          "text": "Solo si el aceite se ve oscuro"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El primer cambio corresponde a las 4.000 horas o a los 12 meses, lo que ocurra primero. En este caso, las horas llegaron primero."
+    },
+    {
+      "id": "ef-09",
+      "type": "single",
+      "prompt": "Después del primer cambio de aceite, una máquina en un edificio comercial con servicio muy exigido, ¿cada cuánto debería cambiar el aceite?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cada 6 meses"
+        },
+        {
+          "id": "b",
+          "text": "Más cerca de los 18 meses"
+        },
+        {
+          "id": "c",
+          "text": "Cada 36 meses"
+        },
+        {
+          "id": "d",
+          "text": "Nunca más"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Los cambios siguientes se hacen en un lapso no mayor a 18 a 24 meses según el tipo de servicio. Un servicio exigido se acerca al límite inferior."
+    },
+    {
+      "id": "ef-10",
+      "type": "multiple",
+      "prompt": "¿Qué tareas de lubricación tienen una frecuencia fija según el manual? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Engrase del tercer apoyo cada 6 meses"
+        },
+        {
+          "id": "b",
+          "text": "Primer cambio de aceite a las 4.000 h o 12 meses"
+        },
+        {
+          "id": "c",
+          "text": "Cambios siguientes cada 18 a 24 meses"
+        },
+        {
+          "id": "d",
+          "text": "Engrase de las zapatas del freno cada mes"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "El manual fija el engrase del tercer apoyo y los cambios de aceite. Las zapatas nunca se engrasan: grasa en el freno reduce la fricción."
+    },
+    {
+      "id": "ef-11",
+      "type": "single",
+      "prompt": "Al terminar un cambio de aceite, ¿cuál es el último paso del procedimiento?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Abrir el tapón de vaciado"
+        },
+        {
+          "id": "b",
+          "text": "Revisar que no existan pérdidas de lubricante"
+        },
+        {
+          "id": "c",
+          "text": "Engrasar los tapones"
+        },
+        {
+          "id": "d",
+          "text": "Girar la máquina para escurrir"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El procedimiento termina con la revisión de pérdidas, después de colocar el tapón de llenado."
+    },
+    {
+      "id": "ef-12",
+      "type": "single",
+      "prompt": "¿Por qué el fabricante pide que las zapatas se abran lo menos posible cuando actúa el electroimán?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para que el freno actúe rápido y sin golpe, sin que las zapatas rocen"
+        },
+        {
+          "id": "b",
+          "text": "Para que el revestimiento dure más de 10 años"
+        },
+        {
+          "id": "c",
+          "text": "Para que el motor no necesite ventilación"
+        },
+        {
+          "id": "d",
+          "text": "Para poder ajustar los resortes más de 2 vueltas"
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "Una apertura mínima, sin roce, permite que el freno cierre rápido y parejo. Si abren de más, el freno tarda y actúa con golpe."
+    },
+    {
+      "id": "ef-13",
+      "type": "single",
+      "prompt": "Medís los revestimientos de un freno: 7 mm y 4,5 mm. Las zapatas tienen 1 año de uso. ¿Qué corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nada, ambos superan los 4 mm"
+        },
+        {
+          "id": "b",
+          "text": "Cambiar solo la zapata de 4,5 mm"
+        },
+        {
+          "id": "c",
+          "text": "Regular el freno por desgaste desparejo y controlar más seguido la zapata más gastada"
+        },
+        {
+          "id": "d",
+          "text": "Ajustar 3 vueltas los resortes"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "Ambos superan el mínimo, pero el desgaste no es uniforme. El manual indica regular o recambiar; además, la más gastada está cerca del límite."
+    },
+    {
+      "id": "ef-14",
+      "type": "multiple",
+      "prompt": "En la regulación del freno, ¿qué funciones cumplen estos elementos? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tuerca (1) comprime el resorte que cierra la zapata"
+        },
+        {
+          "id": "b",
+          "text": "El tornillo (3) define cuánto se abre la zapata"
+        },
+        {
+          "id": "c",
+          "text": "La contratuerca (5) fija el tornillo de regulación"
+        },
+        {
+          "id": "d",
+          "text": "La palanca (2) en posición A deja el freno abierto"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "La palanca en posición A deja el freno actuando; es la posición B la que lo abre."
+    },
+    {
+      "id": "ef-15",
+      "type": "single",
+      "prompt": "¿Por qué el recambio de zapatas empieza por asentar el contrapeso?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para que la cabina quede a nivel del piso"
+        },
+        {
+          "id": "b",
+          "text": "Porque se retiran los resortes del freno, y sin ellos la máquina no retiene la carga"
+        },
+        {
+          "id": "c",
+          "text": "Para poder medir el juego del reductor"
+        },
+        {
+          "id": "d",
+          "text": "Porque así se cambia el aceite al mismo tiempo"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Al retirar los resortes, el freno deja de retener. Con el contrapeso asentado, la máquina no soporta la carga mientras se trabaja."
+    },
+    {
+      "id": "ef-16",
+      "type": "single",
+      "prompt": "Una máquina trabaja unas 150 horas por mes y su último control de juego fue hace 14 meses. ¿Está vencido el control?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No, porque no llegó a 3.000 horas"
+        },
+        {
+          "id": "b",
+          "text": "Sí, porque pasó más de un año desde el último control"
+        },
+        {
+          "id": "c",
+          "text": "No, el control es cada 2 años"
+        },
+        {
+          "id": "d",
+          "text": "Solo si el reductor hace ruido"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El control es cada 3.000 horas o, como mínimo, una vez por año. Con 150 h/mes, en 14 meses acumuló 2.100 h, pero ya pasó el año."
+    },
+    {
+      "id": "ef-17",
+      "type": "single",
+      "prompt": "En una M-137 medís una distancia A de 40 mm entre marcas. ¿Qué concluís?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Está dentro de tolerancia"
+        },
+        {
+          "id": "b",
+          "text": "Supera el valor de máquina desgastada (38,5 mm): está fuera de tolerancia y hay que consultar al servicio técnico"
+        },
+        {
+          "id": "c",
+          "text": "Es el valor de una máquina nueva"
+        },
+        {
+          "id": "d",
+          "text": "Hay que medir en la polea tractora"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Para la M-137, el valor de máquina desgastada es 38,5 mm. Con 40 mm, se superó ese valor."
+    },
+    {
+      "id": "ef-18",
+      "type": "single",
+      "prompt": "¿Para qué se marca la campana de freno frente a un punto fijo de la carcasa durante la medición del juego?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para identificar el modelo de máquina"
+        },
+        {
+          "id": "b",
+          "text": "Para medir el arco recorrido entre los dos extremos del juego"
+        },
+        {
+          "id": "c",
+          "text": "Para saber dónde engrasar"
+        },
+        {
+          "id": "d",
+          "text": "Para regular las zapatas"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Las dos marcas, hechas frente al mismo punto fijo en cada extremo del juego, permiten medir el arco entre ellas: la distancia A."
+    },
+    {
+      "id": "ef-19",
+      "type": "true_false",
+      "prompt": "Una medición de juego de 20 mm en una M-194 es útil por sí sola, pero guardarla junto con la fecha y las horas de servicio permite además ver la velocidad de desgaste del reductor.",
+      "correct": [
+        "true"
+      ],
+      "explanation": "Una medición indica si se está en tolerancia; la serie de mediciones muestra la tendencia y permite anticipar la reparación."
+    },
+    {
+      "id": "ef-20",
+      "type": "single",
+      "prompt": "En la bornera del motor, el térmico del motor (cables verde y blanco) es normal cerrado. ¿Qué pasa cuando el motor supera su temperatura de control?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El contacto se cierra y enciende el ventilador"
+        },
+        {
+          "id": "b",
+          "text": "El contacto se abre y da aviso de sobretemperatura"
+        },
+        {
+          "id": "c",
+          "text": "El motor cambia a baja velocidad"
+        },
+        {
+          "id": "d",
+          "text": "No pasa nada hasta los 150 °C"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El térmico del motor es normal cerrado y se abre al superar la temperatura de control (105 °C). El que se cierra para encender la ventilación es el del ventilador (normal abierto)."
+    },
+    {
+      "id": "ef-21",
+      "type": "multiple",
+      "prompt": "El ventilador forzado de una máquina no arranca. ¿Qué elementos conviene revisar según el esquema del manual? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "El capacitor de arranque de 2 µF 450 V"
+        },
+        {
+          "id": "b",
+          "text": "La alimentación de 230 V del ventilador"
+        },
+        {
+          "id": "c",
+          "text": "El térmico del ventilador (rojo y celeste) y su conexión con la bornera del motor"
+        },
+        {
+          "id": "d",
+          "text": "El nivel de aceite del reductor"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "El ventilador es monofásico, con capacitor externo, alimentado a 230 V y comandado por su térmico. El nivel de aceite no tiene relación con el arranque del ventilador."
+    },
+    {
+      "id": "ef-22",
+      "type": "single",
+      "prompt": "Hay que trasladar una máquina RHINO con puente grúa. ¿Cuál es una forma correcta de izarla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tomándola del volante de inercia"
+        },
+        {
+          "id": "b",
+          "text": "Con cuerdas a los costados, cuidando el volante y el freno, o con un cáncamo en un orificio del cuerpo reductor"
+        },
+        {
+          "id": "c",
+          "text": "Desarmándola en partes para alivianarla"
+        },
+        {
+          "id": "d",
+          "text": "Tomándola de la ventilación forzada"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "La RHINO se iza con cuerdas a los costados, con mucho cuidado del volante y del freno, o con un cáncamo en el cuerpo reductor. Nunca de partes frágiles ni desarmada."
+    },
+    {
+      "id": "ef-23",
+      "type": "single",
+      "prompt": "Durante el cambio de polea tractora, antes de desconectar todo, ¿qué verificación pide el manual con el coche en manual y en el último piso?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el aceite esté en el centro del visor"
+        },
+        {
+          "id": "b",
+          "text": "Que al liberar el freno (posición B) el coche no se mueva"
+        },
+        {
+          "id": "c",
+          "text": "Que el ventilador arranque"
+        },
+        {
+          "id": "d",
+          "text": "Que el juego del reductor esté en tolerancia"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El primer paso es dejar el coche en manual en el último piso y verificar que, al liberar el freno, no se mueve."
+    },
+    {
+      "id": "ef-24",
+      "type": "true_false",
+      "prompt": "Al montar la polea nueva sobre el encastre cónico, se la hace encastrar hasta su tope y se le dan algunos golpes sobre la banda de canaletas hasta que clave totalmente.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "Los golpes van sobre la masa del centro de la polea. La banda de canaletas es frágil y tiene riesgo de rotura."
+    }
+  ]
+}

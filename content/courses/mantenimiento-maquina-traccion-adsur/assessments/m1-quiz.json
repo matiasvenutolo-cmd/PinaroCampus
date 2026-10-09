@@ -1,0 +1,135 @@
+{
+  "id": "m1-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 1",
+  "description": "5 preguntas para repasar el módulo 1. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m1-q1",
+      "type": "single",
+      "prompt": "¿Qué componente transforma el giro rápido del motor en un giro lento y con mucha fuerza en el eje de tracción?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El volante de inercia"
+        },
+        {
+          "id": "b",
+          "text": "La caja reductora sinfín-corona"
+        },
+        {
+          "id": "c",
+          "text": "La polea de desvío"
+        },
+        {
+          "id": "d",
+          "text": "El electroimán del freno"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El reductor sinfín-corona reduce la velocidad y aumenta el par. El volante es parte del freno, la polea de desvío solo separa los cables y el electroimán abre el freno."
+    },
+    {
+      "id": "m1-q2",
+      "type": "single",
+      "prompt": "Se corta la energía mientras el ascensor viaja. ¿Qué hace el freno de la máquina?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Queda abierto hasta que vuelve la energía"
+        },
+        {
+          "id": "b",
+          "text": "Se cierra por la acción de los resortes"
+        },
+        {
+          "id": "c",
+          "text": "Se cierra solo si el técnico acciona la manija"
+        },
+        {
+          "id": "d",
+          "text": "Depende de la posición de la polea de desvío"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El freno se cierra con resortes y se abre con el electroimán. Sin energía, el electroimán no actúa y los resortes cierran las zapatas."
+    },
+    {
+      "id": "m1-q3",
+      "type": "multiple",
+      "prompt": "Un técnico tiene que distinguir el volante de inercia de la polea tractora. ¿Qué características corresponden a la polea tractora? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tiene canaletas donde apoyan los cables de acero"
+        },
+        {
+          "id": "b",
+          "text": "Está del lado del tercer apoyo"
+        },
+        {
+          "id": "c",
+          "text": "Es la superficie sobre la que actúan las zapatas"
+        },
+        {
+          "id": "d",
+          "text": "Transmite el movimiento a los cables por fricción"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "d"
+      ],
+      "explanation": "La polea tractora lleva los cables en sus canaletas, está del lado del tercer apoyo y mueve los cables por fricción. Las zapatas actúan sobre el volante de inercia, no sobre la polea."
+    },
+    {
+      "id": "m1-q4",
+      "type": "single",
+      "prompt": "Tenés que completar aceite y verificar el juego del reductor en una máquina, pero no sabés el modelo. ¿Qué hacés primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Uso los valores de la M-194, que es el modelo intermedio"
+        },
+        {
+          "id": "b",
+          "text": "Identifico el modelo en la placa, porque capacidad de aceite y juego admisible cambian según el modelo"
+        },
+        {
+          "id": "c",
+          "text": "Lleno hasta que el aceite rebalse por el tapón"
+        },
+        {
+          "id": "d",
+          "text": "Uso los valores de la M-202 para tener margen"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "La capacidad (3,5, 4,0 o 5,0 litros) y los valores de juego dependen del modelo. Usar valores de otro modelo lleva a errores."
+    },
+    {
+      "id": "m1-q5",
+      "type": "true_false",
+      "prompt": "En un ascensor con comando VVVF, el volante de inercia es igual al de una máquina de 2 velocidades.",
+      "correct": [
+        "false"
+      ],
+      "explanation": "El manual muestra campanas distintas para 1 velocidad, 2 velocidades y VVVF, porque en VVVF el variador suaviza el arranque y la parada."
+    }
+  ]
+}

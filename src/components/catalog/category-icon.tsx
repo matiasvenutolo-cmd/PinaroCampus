@@ -1,4 +1,4 @@
-import { Calculator, Cpu, GraduationCap, Globe, HardHat, Users, Zap, type LucideIcon } from "lucide-react";
+import { Calculator, Cpu, GraduationCap, Globe, HardHat, Users, Wrench, Zap, type LucideIcon } from "lucide-react";
 
 // Los íconos de las categorías se guardan como nombre de lucide (docs/03).
 const ICONS: Record<string, LucideIcon> = {
@@ -8,6 +8,7 @@ const ICONS: Record<string, LucideIcon> = {
   cpu: Cpu,
   globe: Globe,
   calculator: Calculator,
+  wrench: Wrench,
 };
 
 export function CategoryIcon({ name, className }: { name?: string | null; className?: string }) {

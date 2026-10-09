@@ -17,10 +17,10 @@ export async function SiteHeader({ tenant }: { tenant: Tenant }) {
       <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2 font-semibold text-foreground">
           {tenant.logoUrl ? (
-            // Logo subido por la cámara; next/image exige configurar cada
+            // Logo de la cámara (alto pensado para que un logo apaisado no baje de ~95 px de ancho, como pide el manual de marca de ADS); next/image exige configurar cada
             // hostname remoto, y acá puede ser cualquiera (Blob de la cámara).
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={tenant.logoUrl} alt={tenant.campusName} className="h-8 w-auto" />
+            <img src={tenant.logoUrl} alt={tenant.campusName} className="h-11 w-auto sm:h-[52px]" />
           ) : (
             <span>{tenant.campusName}</span>
           )}

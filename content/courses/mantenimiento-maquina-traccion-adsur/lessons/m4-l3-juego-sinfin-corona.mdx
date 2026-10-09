@@ -1,0 +1,89 @@
+Con el uso, los dientes de la corona de bronce se desgastan y aparece **juego** entre el sinfín y la corona: un pequeño giro libre antes de que los dientes hagan presión. Un poco de juego es normal; demasiado indica un reductor desgastado. Medirlo a tiempo permite planificar la reparación antes de que se convierta en una falla.
+
+<KeyFigures>
+  <KeyFigure value="3.000 h" label="de funcionamiento entre controles" />
+  <KeyFigure value="1 vez por año" label="como mínimo, si no se llega a las 3.000 h" />
+</KeyFigures>
+
+## El principio de la medición
+
+Con el freno abierto y la polea tractora quieta, se gira el **volante de inercia** (que está en el eje del sinfín) hacia un lado hasta sentir que el diente hace presión, y después hacia el otro. Ese giro libre, medido como un **arco sobre la campana de freno**, es el juego.
+
+<Figure src="assets/marcas-campana-sinfin-corona.png" alt="El sinfín y la corona, el punto fijo de referencia en la carcasa y la marca sobre la campana de freno" caption="El sinfín y la corona, el punto fijo de referencia en la carcasa y la marca sobre la campana de freno (manual p. 9)." />
+
+## El procedimiento
+
+<Steps>
+  <Step title="Desconectar">
+    Cortar la alimentación eléctrica de la máquina, deteniendo la instalación por completo, con la cabina en la parada más alta
+  </Step>
+  <Step title="Liberar los esfuerzos">
+    Apoyar el contrapeso sobre el paragolpes o retirar los cables de acero de la polea de tracción
+  </Step>
+  <Step title="Abrir el freno">
+    Llevar la manija a la posición B, para liberar la campana y el volante de la acción de las zapatas
+  </Step>
+  <Step title="Familiarizarse">
+    Con la manija en B, girar suavemente el volante en ambos sentidos hasta advertir la presión entre el sinfín y el diente de la corona, sin que la polea de tracción se mueva (verificarlo con un comparador)
+  </Step>
+  <Step title="Primera marca">
+    Girar hacia un lado hasta advertir la presión del diente y marcar la campana frente a un punto fijo de la carcasa
+  </Step>
+  <Step title="Segunda marca">
+    Girar en sentido contrario, con el mismo punto fijo de referencia, hasta advertir la presión sobre el otro flanco del diente, y marcar de nuevo, sin que la polea haya girado
+  </Step>
+  <Step title="Medir">
+    Medir el arco de circunferencia entre ambas marcas sobre la campana (distancia A)
+  </Step>
+  <Step title="Comparar">
+    Con la tabla de valores admisibles del modelo
+  </Step>
+  <Step title="Ajustar la instalación">
+    A las condiciones de funcionamiento
+  </Step>
+  <Step title="Reconectar">
+    La alimentación eléctrica
+  </Step>
+  <Step title="Verificar a mano">
+    El funcionamiento de la máquina antes de la puesta en marcha
+  </Step>
+</Steps>
+
+<Figure src="assets/palanca-posicion-a-b.png" alt="Posición A y posición B de la manija de accionamiento del freno" caption="Posición A y posición B de la manija de accionamiento del freno (manual p. 8)." />
+
+<Figure src="assets/girar-volante-juego-dientes.png" alt="Girar el volante en ambos sentidos hasta sentir la presión de los dientes, con la manija en posición B" caption="Girar el volante en ambos sentidos hasta sentir la presión de los dientes, con la manija en posición B (manual p. 8)." />
+
+<Callout type="tip" title="El comparador sobre la polea">
+La clave de la medición es que la polea tractora no se mueva. Si se mueve, ya no estás midiendo el juego, sino el giro del conjunto. Un comparador apoyado sobre la polea te avisa del menor movimiento.
+</Callout>
+
+## Cómo se interpreta
+
+<Figure src="assets/distancia-a-juego.png" alt="La distancia A entre las dos marcas determina el juego entre sinfín y corona" caption="La distancia A entre las dos marcas determina el juego entre sinfín y corona (manual p. 10)." />
+
+<Figure src="assets/tabla-juego-sinfin-corona.png" alt="Tabla de valores admisibles para el juego sinfín-corona" caption="Tabla de valores admisibles para el juego sinfín-corona (manual p. 10)." />
+
+| Modelo | Máquina nueva | Máquina desgastada |
+|---|---|---|
+| M-137 (todas las versiones) | 3,5 mm | 38,5 mm |
+| MV-137 RHINO (todas las versiones) | 3,5 mm | 38,5 mm |
+| M-194 (todas las versiones) | 4,4 mm | 48,4 mm |
+| M-202 (todas las versiones) | 4,8 mm | 52,8 mm |
+
+La distancia A de una máquina sana está entre el valor de "nueva" y el de "desgastada". Para saber **cuánto del margen ya se consumió**, se compara la medición con ese rango:
+
+`% del rango = (A − nueva) ÷ (desgastada − nueva) × 100`
+
+<Calculator id="worm-gear-backlash" />
+
+<Callout type="case" title="El reductor de la M-194">
+Con la máquina detenida, la cabina arriba, el contrapeso apoyado y la manija en posición B, Nico marca la campana en los dos extremos del juego. Mide 21 mm entre marcas. Para una M-194, el rango va de 4,4 a 48,4 mm: el reductor consumió cerca del 38% de su margen. Está dentro de tolerancia. Lo anota en la ficha con la fecha y las horas de servicio (3.600 h), para comparar con la próxima medición.
+</Callout>
+
+<Callout type="info" title="Una medición sola dice poco">
+Lo más útil es la tendencia. Si guardás la distancia A de cada control, vas a ver a qué velocidad se desgasta cada reductor y vas a poder anticipar la reparación. Si una medición supera el valor de máquina desgastada, consultá al servicio técnico del fabricante.
+</Callout>
+
+## Qué hacer el lunes
+
+<Checklist id="m4-l3-juego-sinfin-corona-lista" items={["Identificá las máquinas de tu cartera que nunca tuvieron control de juego", "Conseguí un comparador con base magnética para la medición", "Programá el control en las máquinas con más de 3.000 h o más de un año desde el último", "Registrá la distancia A, la fecha y las horas de servicio en cada control"]} />

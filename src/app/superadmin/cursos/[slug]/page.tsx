@@ -59,7 +59,13 @@ export default async function SuperadminCoursePage({
         </CardContent>
       </Card>
 
-      {allTenants.map((tenant) => {
+      {course.ownerTenantId ? (
+        <p className="text-sm text-muted-foreground">Curso propio de una cámara: solo se puede asignar a ella.</p>
+      ) : null}
+
+      {allTenants
+        .filter((tenant) => !course.ownerTenantId || tenant.id === course.ownerTenantId)
+        .map((tenant) => {
         const assignment = assignments.find((a) => a.tenantId === tenant.id);
         const tenantCategories = allCategories.filter((c) => c.tenantId === tenant.id);
         const id = (field: string) => `${tenant.slug}-${field}`;

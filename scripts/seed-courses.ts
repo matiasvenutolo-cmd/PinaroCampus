@@ -53,6 +53,7 @@ const COMING_SOON_PRICES: Record<string, number> = {
 };
 
 const DEMO_COURSE = "eficiencia-energetica-pymes-industriales";
+const SEEDED_SEPARATELY = new Set(["ads"]);
 const DEMO_PRICES: Record<string, { member: number; nonMember: number; featured: boolean }> = {
   civa: { member: 45000, nonMember: 90000, featured: true },
   ribera: { member: 0, nonMember: 60000, featured: true },
@@ -85,6 +86,8 @@ export async function seedCourses() {
   const allCourses = await db.select().from(courses);
 
   for (const tenant of allTenants) {
+    // Campus ADS arma su propio catálogo (scripts/seed-ads.ts).
+    if (SEEDED_SEPARATELY.has(tenant.slug)) continue;
     const categoryRows = await db
       .insert(categories)
       .values(CATEGORIES.map((c, index) => ({ tenantId: tenant.id, ...c, sortOrder: index })))
@@ -99,7 +102,8 @@ export async function seedCourses() {
       .insert(tenantCourses)
       .values(
         allCourses
-          .filter((c) => c.status === "published" || c.status === "coming_soon")
+          // Un curso propio de una cámara (`ownerTenant`) solo se asigna a ella.
+          .filter((c) => (c.status === "published" || c.status === "coming_soon") && (!c.ownerTenantId || c.ownerTenantId === tenant.id))
           .map((course, index) => {
             const demo = course.slug === DEMO_COURSE ? DEMO_PRICES[tenant.slug] : undefined;
             const nonMember = demo ? demo.nonMember : (COMING_SOON_PRICES[course.slug] ?? 50000);
@@ -256,7 +260,7 @@ export async function seedCourses() {
  * (las primeras `correct` preguntas bien y el resto mal), y el certificado si
  * aprobó. Idempotente: el intento 1 se pisa y el certificado no se duplica.
  */
-async function seedExamAttempt({
+export async function seedExamAttempt({
   tenantId,
   enrollmentId,
   assessment,

@@ -1,0 +1,50 @@
+La línea ADSUR comparte la misma lógica constructiva, pero cada modelo tiene sus propios valores de aceite, juego admisible y rodamientos. Confundirlos es uno de los errores más frecuentes, así que lo primero en cada visita es **saber qué máquina tenés adelante**.
+
+## Los cuatro modelos
+
+| Modelo | Aceite del reductor | Juego sinfín-corona (nueva / desgastada) | Particularidad |
+|---|---|---|---|
+| **M-137** | 3,5 litros | 3,5 / 38,5 mm | Modelo horizontal más chico de la línea |
+| **MV-137 RHINO** | 3,5 litros | 3,5 / 38,5 mm | Máquina **vertical**, con menor base de apoyo; no lleva tercer apoyo |
+| **M-194** | 4,0 litros | 4,4 / 48,4 mm | Modelo intermedio |
+| **M-202** | 5,0 litros | 4,8 / 52,8 mm | El más grande; su visor de aceite es distinto |
+
+En las próximas lecciones vas a usar estos valores, así que tené esta tabla a mano. En los recursos del módulo 5 está la tabla de rodamientos de cada modelo.
+
+## Variantes según la aplicación
+
+Además del modelo, cada máquina se arma según el **tipo de comando** del ascensor y la **red eléctrica**. Eso cambia, sobre todo, el **volante de inercia** (la campana de freno):
+
+- **1 velocidad**: el motor arranca y para a una sola velocidad.
+- **2 velocidades**: el motor tiene dos bobinados, uno para viajar rápido y otro para aproximarse despacio al piso.
+- **VVVF** (variador de voltaje y frecuencia): un variador electrónico controla la velocidad del motor en forma continua. Como el arranque y la parada los suaviza el variador, el volante es distinto.
+
+<Figure src="assets/variantes-campanas-freno.png" alt="Variantes de volante de inercia según la aplicación: arriba, 3 × 380 V 50 Hz; abajo, 3 × 220 V 60 Hz" caption="Variantes de volante de inercia según la aplicación: arriba, 3 × 380 V 50 Hz; abajo, 3 × 220 V 60 Hz (manual p. 11)." />
+
+La red estándar es **3 × 380 V, 50 Hz**. Para mercados con **3 × 220 V, 60 Hz** hay campanas específicas, incluso según la potencia (7 HP o 10 HP en 2 velocidades).
+
+## Los datos del motor
+
+El manual trae dos tablas de motores. Leerlas bien te ayuda a detectar si un motor está trabajando fuera de lo normal.
+
+<Figure src="assets/datos-motores.png" alt="Datos de los motores de 2 velocidades y VVVF" caption="Datos de los motores de 2 velocidades y VVVF (manual p. 15)." />
+
+**Motores de 2 velocidades:** son de 4/16 polos, giran a 1.500 rpm en alta y 375 rpm en baja (en vacío), y tienen un par de arranque igual a 2 veces el par nominal. La corriente nominal va de 9 A (5 HP) a 26 A (15 HP).
+
+**Motores VVVF:** son de 4 polos y 1.500 rpm, con potencias de 5 a 40 HP y corrientes nominales de 9 A a 60 A. Su par de arranque es de 1,6 a 1,8 veces el nominal.
+
+<Callout type="tip" title="La corriente nominal como referencia">
+Si medís la corriente del motor en servicio y la comparás con la nominal de la tabla, tenés un primer indicio de si el motor trabaja exigido. Una corriente sostenidamente por encima de la nominal merece una revisión: carga, freno que roza, reductor o tensión de alimentación.
+</Callout>
+
+<Callout type="case" title="La placa de la M-194">
+Nico revisa la placa de la máquina de Las Tipas: M-194, motor de 2 velocidades, 10 HP, 3 × 380 V 50 Hz. En la tabla encuentra su corriente nominal: 17 A. Lo anota en la ficha del equipo, junto con la capacidad de aceite de la M-194: 4 litros.
+</Callout>
+
+Para no perder estos datos, tenés una ficha de equipo lista para completar, con la fila de ejemplo de la M-194 de Las Tipas.
+
+<Download file="resources/ficha-de-equipo.csv" label="Descargar la ficha de equipo" />
+
+## Qué hacer el lunes
+
+<Checklist id="m1-l2-modelos-lista" items={["Armá una ficha por equipo con modelo, tipo de comando (1 velocidad, 2 velocidades o VVVF) y tensión", "Anotá en cada ficha la capacidad de aceite y los valores de juego de ese modelo", "Anotá la potencia y la corriente nominal del motor según la tabla", "Si un equipo es RHINO, marcalo: el traslado y el izaje tienen cuidados especiales"]} />

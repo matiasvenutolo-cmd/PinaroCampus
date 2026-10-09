@@ -75,6 +75,8 @@ export const courseJsonSchema = z.object({
   suggestedCategory: z.object({ slug: kebabId, name: z.string().min(1) }),
   tags: z.array(z.string()).default([]),
   cover: z.string().nullable().default(null),
+  /** Slug de la cámara dueña: un curso propio solo se asigna a esa cámara (docs/10, "Reutilización entre cámaras"). `null` = biblioteca. */
+  ownerTenant: kebabId.nullable().default(null),
   instructors: z.array(instructorSchema).default([]),
   outcomes: z.array(z.string()).default([]),
   audience: z.array(z.string()).default([]),
@@ -154,6 +156,9 @@ export const CALCULATOR_IDS = [
   "capacitor-sizing",
   "payback",
   "led-savings",
+  // Curso de la máquina de tracción ADSUR
+  "traction-maintenance-schedule",
+  "worm-gear-backlash",
 ] as const;
 export type CalculatorId = (typeof CALCULATOR_IDS)[number];
 

@@ -53,6 +53,8 @@ export async function saveCourseAssignment(courseSlug: string, tenantId: string,
 
   const course = await getCourseBySlug(courseSlug);
   if (!course) redirect("/superadmin/cursos");
+  // Un curso propio de una cámara no se asigna a otras.
+  if (course.ownerTenantId && course.ownerTenantId !== tenantId) redirect(`${back}?error=curso-propio`);
 
   if (parsed.data.categoryId) {
     const [category] = await db

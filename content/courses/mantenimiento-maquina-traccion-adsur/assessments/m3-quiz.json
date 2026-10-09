@@ -1,0 +1,153 @@
+{
+  "id": "m3-quiz",
+  "kind": "quiz",
+  "title": "Repaso del módulo 3",
+  "description": "5 preguntas para repasar el módulo 3. No suman nota: podés hacerlo las veces que quieras.",
+  "passingScore": null,
+  "maxAttempts": null,
+  "cooldownMinutes": 0,
+  "timeLimitMinutes": null,
+  "drawCount": null,
+  "shuffleQuestions": false,
+  "shuffleOptions": true,
+  "showExplanations": "after_submit",
+  "questions": [
+    {
+      "id": "m3-q1",
+      "type": "single",
+      "prompt": "¿Cómo se lee correctamente el nivel de aceite del reductor?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Con la máquina en marcha, en la parte superior del visor"
+        },
+        {
+          "id": "b",
+          "text": "Con la máquina detenida, el nivel tiene que estar en el centro del visor"
+        },
+        {
+          "id": "c",
+          "text": "Sacando el tapón de llenado y mirando adentro"
+        },
+        {
+          "id": "d",
+          "text": "Con la máquina detenida, el nivel tiene que cubrir todo el visor"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "Con la máquina detenida, el nivel tiene que quedar en el centro del visor. En marcha, el aceite se distribuye y la lectura no es confiable."
+    },
+    {
+      "id": "m3-q2",
+      "type": "single",
+      "prompt": "Una máquina tiene aceite mineral YPF Transmisión EP320 y solo tenés a mano un sintético equivalente. ¿Qué corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Completar con el sintético: son equivalentes"
+        },
+        {
+          "id": "b",
+          "text": "Mezclar mitad y mitad"
+        },
+        {
+          "id": "c",
+          "text": "No completar con el sintético: no hay que mezclar sintético con mineral; conseguir un mineral equivalente o hacer un cambio completo"
+        },
+        {
+          "id": "d",
+          "text": "Completar con grasa 62EP"
+        }
+      ],
+      "correct": [
+        "c"
+      ],
+      "explanation": "El fabricante acepta sintéticos equivalentes, pero prohíbe mezclarlos con minerales. Para pasar a sintético hay que hacer un cambio completo."
+    },
+    {
+      "id": "m3-q3",
+      "type": "single",
+      "prompt": "Una máquina nueva acumula 2.500 horas de servicio en sus primeros 12 meses. ¿Cuándo corresponde su primer cambio de aceite?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A las 4.000 horas, dentro de unos meses"
+        },
+        {
+          "id": "b",
+          "text": "Ahora, porque se cumplieron los 12 meses"
+        },
+        {
+          "id": "c",
+          "text": "A los 18 meses"
+        },
+        {
+          "id": "d",
+          "text": "A los 24 meses"
+        }
+      ],
+      "correct": [
+        "b"
+      ],
+      "explanation": "El primer cambio se hace a las 4.000 horas o a los 12 meses, lo que ocurra primero. Con 2.500 horas, los 12 meses llegan antes."
+    },
+    {
+      "id": "m3-q4",
+      "type": "multiple",
+      "prompt": "¿Cuáles de estos pasos forman parte del procedimiento de cambio de aceite? (Marcá todas las correctas)",
+      "options": [
+        {
+          "id": "a",
+          "text": "Colocar una batea debajo de la máquina"
+        },
+        {
+          "id": "b",
+          "text": "Girar la máquina manualmente para que escurra todo el aceite"
+        },
+        {
+          "id": "c",
+          "text": "Completar con aceite nuevo y revisar que no haya pérdidas"
+        },
+        {
+          "id": "d",
+          "text": "Engrasar el aceite nuevo con grasa 62EP antes de verterlo"
+        }
+      ],
+      "correct": [
+        "a",
+        "b",
+        "c"
+      ],
+      "explanation": "El procedimiento es batea, sacar tapones, girar para escurrir, colocar el tapón de vaciado, llenar, colocar el tapón de llenado y revisar pérdidas. La grasa 62EP es para el tercer apoyo."
+    },
+    {
+      "id": "m3-q5",
+      "type": "single",
+      "prompt": "Un técnico engrasó el tercer apoyo de una M-202 hace 5 meses. ¿Cuándo le toca el próximo engrase?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dentro de 1 mes"
+        },
+        {
+          "id": "b",
+          "text": "Dentro de 7 meses"
+        },
+        {
+          "id": "c",
+          "text": "Cuando cambie el aceite"
+        },
+        {
+          "id": "d",
+          "text": "Solo si hace ruido"
+        }
+      ],
+      "correct": [
+        "a"
+      ],
+      "explanation": "El tercer apoyo se engrasa cada 6 meses. Si pasaron 5, falta 1."
+    }
+  ]
+}
