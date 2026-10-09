@@ -15,7 +15,10 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/[domain]/aprender/[slug]/[lessonKey]": COURSE_CONTENT,
     "/preview/[slug]/[lessonKey]": COURSE_CONTENT,
+    // El `[...path]` de la ruta es una clase de caracteres para el glob: sin el comodín, en Vercel
+    // la función de imágenes y descargas no recibía los archivos del curso (404 en producción).
     "/api/course-files/[slug]/[...path]": COURSE_CONTENT,
+    "/api/course-files/**": COURSE_CONTENT,
     "/superadmin/cursos": COURSE_CONTENT,
     "/superadmin/cursos/[slug]": COURSE_CONTENT,
     "/api/certificates/[code]/pdf": PDF_ASSETS,
